@@ -1,16 +1,15 @@
 import React from 'react';
-import ReactCssModules from 'react-cssmodules';
 import PropTypes from 'prop-types';
+import ReactCssModules from 'react-cssmodules';
 
 // Components
 import Skeleton from '../skeleton/Skeleton';
 import Title from '../title/Title';
 import TextField from '../textField/TextField';
 
-
 // Styles
 import styles from './formGenerator.scss';
-import titleStyles from '../../containers/admin/aparment/title.scss';
+import titleStyles from '../../containers/aparment/title.scss';
 
 const FormGenerator = ({ formData, handleInputChange, valueObject }) => (
   <form styleName="form-generator">

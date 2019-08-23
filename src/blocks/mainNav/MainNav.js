@@ -9,6 +9,13 @@ const MainNav = () => {
       name: 'Home',
       href: '/',
       id: '1',
+      icon: {
+        props: {
+          type: 'plus',
+          inheritColor: true,
+          style: { height: '2em', marginRight: '8px' },
+        },
+      },
     },
     {
       name: 'Apartment',
@@ -18,7 +25,7 @@ const MainNav = () => {
   ]);
 
   return (
-    <Menu menuItems={menuList} />
+    <Menu menuItems={menuList} direction="vertical" />
   );
 };
 

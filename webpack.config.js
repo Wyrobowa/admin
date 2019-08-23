@@ -127,7 +127,7 @@ module.exports = (env = {}) => {
       host: 'localhost',
       contentBase: sourcePath,
       compress: true,
-      port: 8080,
+      port: 8090,
       historyApiFallback: true,
       hot: true,
     },

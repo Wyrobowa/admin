@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactCssModules from 'react-cssmodules';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ import history from '../history';
 import { requestAppInitialization } from '../actions/appInitializationActions';
 
 // Containers
-import MainWrapper from './mainWrapper/MainWrapper';
 import Admin from './admin/Admin';
 import Login from './login/Login';
 
@@ -31,18 +30,17 @@ const App = ({ requestAppStatusAction, initStatus }) => {
   }, []);
 
   return (
-    <Fragment>
+    <div styleName="admin-page">
       <Router history={history}>
         <Loader loading={initStatus}>
-          <MainWrapper path="/" />
           <Route
             path="/login"
             component={Login}
           />
-          <PrivateRoute path="/admin" component={Admin} loginStatus={loginStatus} />
+          <PrivateRoute component={Admin} loginStatus={loginStatus} />
         </Loader>
       </Router>
-    </Fragment>
+    </div>
   );
 };
 

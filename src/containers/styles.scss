@@ -1,7 +1,19 @@
-@import '../common/normalize.scss';
+@import '../common/normalize';
+@import '../common/variables';
+@import '../common/fonts';
 
 :global { /* stylelint-disable-line */
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: var(--font-alpha);
   }
+}
+
+.admin-page {
+  font-family: var(--font-alpha);
+  color: var(--cl-grey-80);
+  font-size: 15px;
 }

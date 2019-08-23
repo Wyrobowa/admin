@@ -14,6 +14,13 @@
   --cl-grey-40: hsl(0, 0%, 70%);
   --cl-grey-20: hsl(0, 0%, 90%);
   --cl-grey-10: hsl(0, 0%, 100%);
+  --cl-red-100: hsl(0, 88%, 20%);
+  --cl-red-80: hsl(0, 88%, 40%);
+  --cl-red-60: hsl(0, 88%, 60%);
+  --cl-red-40: hsl(0, 88%, 80%);
+  --cl-red-20: hsl(0, 88%, 90%);
   // fonts
-  --font-alpha: 'Open-sans', sans-serif;
+  --font-alpha: 'open_sans', sans-serif;
+  // box-shadows
+  --box-shadow-button: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
 }

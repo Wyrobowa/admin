@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import { editApartment, requestSendApartment } from '../../../actions/admin/apartmentActions';
+import { editApartment, requestSendApartment } from '../../actions/admin/apartmentActions';
 
 // Components
-import Button from '../../../components/button/Button';
-import FileInput from '../../../components/fileInput/FileInput';
-import FormGenerator from '../../../components/formGenerator/FormGenerator';
+import Button from '../../components/button/Button';
+import FileInput from '../../components/fileInput/FileInput';
+import FormGenerator from '../../components/formGenerator/FormGenerator';
 
 // Reducers
-import { getApartment } from '../../../reducers/admin/apartmentReducer';
+import { getApartment } from '../../reducers/admin/apartmentReducer';
 
 // Styles
 import styles from './apartment.scss';
