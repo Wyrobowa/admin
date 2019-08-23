@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getFeedType should return valid object with params for checkAvailability request 1`] = `
+Object {
+  "target": "/check-availability",
+}
+`;
+
+exports[`getFeedType should return valid object with params for login request 1`] = `
+Object {
+  "target": "/login",
+}
+`;
+
+exports[`getFeedType should return valid object with params for main-menu request 1`] = `
+Object {
+  "target": "/main-menu",
+}
+`;

@@ -1,0 +1,20 @@
+.title {
+  composes: title from '../../../components/title/title.scss';
+  margin-top: 5px;
+
+  &--primary {
+    composes: title--primary from '../../../components/title/title.scss';
+  }
+
+  &--secondary {
+    composes: title--secondary from '../../../components/title/title.scss';
+  }
+
+  &--tertiary {
+    composes: title--tertiary from '../../../components/title/title.scss';
+  }
+
+  &--uppercase {
+    composes: &--uppercase from '../../../components/title/title.scss';
+  }
+}

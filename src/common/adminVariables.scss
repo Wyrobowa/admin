@@ -1,0 +1,26 @@
+:root {
+  // colors
+  --cl-primary: hsl(187, 100%, 38%);
+  --cl-primary-100: hsl(187, 100%, 18%);
+  --cl-secondary: hsl(33, 100%, 49%);
+  --cl-secondary-100: hsl(33, 100%, 29%);
+  --cl-secondary-80: hsl(33, 100%, 49%);
+  --cl-tertiary-100: hsl(123, 41%, 35%);
+  --cl-tertiary-80: hsl(123, 41%, 55%);
+  --cl-grey-100: hsl(0, 0%, 10%);
+  --cl-grey-90: hsl(0, 0%, 20%);
+  --cl-grey-80: hsl(0, 0%, 30%);
+  --cl-grey-60: hsl(0, 0%, 50%);
+  --cl-grey-40: hsl(0, 0%, 70%);
+  --cl-grey-20: hsl(0, 0%, 90%);
+  --cl-grey-10: hsl(0, 0%, 100%);
+  --cl-red-100: hsl(0, 88%, 20%);
+  --cl-red-80: hsl(0, 88%, 40%);
+  --cl-red-60: hsl(0, 88%, 60%);
+  --cl-red-40: hsl(0, 88%, 80%);
+  --cl-red-20: hsl(0, 88%, 90%);
+  // fonts
+  --font-alpha: 'open_sans', sans-serif;
+  // box-shadows
+  --box-shadow-button: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
