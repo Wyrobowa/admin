@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import appInitialization from './appInitializationReducer';
 import appStatus from './appStatusReducer';
-import adminApartment from './admin/apartmentReducer';
+import adminApartment from './apartmentReducer';
 
 
 /**

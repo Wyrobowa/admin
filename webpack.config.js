@@ -75,6 +75,17 @@ module.exports = (env = {}) => {
           },
         },
         {
+          test: /\.(png|jpg|gif)$/i,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+              },
+            },
+          ],
+        },
+        {
           test: /\.scss$/,
           use: [
             {
@@ -89,13 +100,21 @@ module.exports = (env = {}) => {
               },
             },
             {
+              loader: 'resolve-url-loader',
+            },
+            {
               loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                sourceMapContents: false
+              },
             },
             {
               loader: 'sass-resources-loader',
               options: {
                 resources: [
                   path.join(__dirname, 'src/common/mixins.scss'),
+                  path.join(__dirname, 'src/common/variables.scss'),
                 ],
               },
             },

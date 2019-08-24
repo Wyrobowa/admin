@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import { editApartment, requestSendApartment } from '../../actions/admin/apartmentActions';
+import { editApartment, requestSendApartment } from '../../actions/apartmentActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -12,7 +12,7 @@ import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
 
 // Reducers
-import { getApartment } from '../../reducers/admin/apartmentReducer';
+import { getApartment } from '../../reducers/apartmentReducer';
 
 // Styles
 import styles from './apartment.scss';
@@ -59,6 +59,7 @@ const Apartment = ({ apartment, editApartmentAction, requestSendApartmentAction 
     },
     {
       sectionTitle: 'Gallery',
+      id: 'gallery',
       component: FileInput,
       props: {
         labelText: 'Main picture',

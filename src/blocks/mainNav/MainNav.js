@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MdDashboard, MdHotel } from 'react-icons/md';
 
 // Components
 import Menu from '../../components/menu/Menu';
@@ -6,14 +7,13 @@ import Menu from '../../components/menu/Menu';
 const MainNav = () => {
   const [menuList] = useState([
     {
-      name: 'Home',
+      name: 'Dashboard',
       href: '/',
       id: '1',
       icon: {
+        component: MdDashboard,
         props: {
-          type: 'plus',
-          inheritColor: true,
-          style: { height: '2em', marginRight: '8px' },
+          value: { size: '20px', style: { marginRight: '10px' } },
         },
       },
     },
@@ -21,6 +21,12 @@ const MainNav = () => {
       name: 'Apartment',
       href: '/apartment/20',
       id: '2',
+      icon: {
+        component: MdHotel,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
     },
   ]);
 

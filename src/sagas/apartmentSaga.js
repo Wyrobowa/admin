@@ -6,13 +6,13 @@ import {
 } from 'redux-saga/effects';
 
 // Actions
-import { REQUEST_SEND_APARTMENT, sendApartmentSuccessful, sendApartmentUnsuccessful } from '../../actions/admin/apartmentActions';
+import { REQUEST_SEND_APARTMENT, sendApartmentSuccessful, sendApartmentUnsuccessful } from '../actions/apartmentActions';
 
 // Reducers
-import { getApartment } from '../../reducers/admin/apartmentReducer';
+import { getApartment } from '../reducers/apartmentReducer';
 
 // Services
-import { sendData } from '../../services/requestService/requestService';
+import { sendData } from '../services/requestService/requestService';
 
 export function* sendApartment() {
   const apartmentFormData = yield select(getApartment);

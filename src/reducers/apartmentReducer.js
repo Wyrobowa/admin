@@ -1,4 +1,4 @@
-import { EDIT_APARTMENT_FORM } from '../../actions/admin/apartmentActions';
+import { EDIT_APARTMENT_FORM } from '../actions/apartmentActions';
 
 const adminApartment = (state = {
   title: '',
