@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import ReactCssModules from 'react-cssmodules';
 
 // Components
+import Fields from './Fields';
 import Skeleton from '../skeleton/Skeleton';
 import Title from '../title/Title';
-import TextField from '../textField/TextField';
 
 // Styles
 import styles from './formGenerator.scss';
 import titleStyles from '../../containers/aparment/title.scss';
 
-const FormGenerator = ({ formData, handleInputChange, valueObject }) => (
+const FormGenerator = ({ formData, ...props }) => (
   <form styleName="form-generator">
     {formData.map(item => (
       <Skeleton key={item.id}>
@@ -22,21 +22,7 @@ const FormGenerator = ({ formData, handleInputChange, valueObject }) => (
         </Skeleton.Item>
         <Skeleton.Item type="content">
           {item.fields
-            ? (
-              item.fields.map(field => (
-                <div styleName="form-generator__item" key={field.id}>
-                  <div styleName="form-generator__field">
-                    <TextField
-                      labelText={field.labelText}
-                      id={field.id}
-                      onChange={handleInputChange}
-                      value={valueObject[field.id]}
-                    />
-                  </div>
-                  <p>{field.description}</p>
-                </div>
-              ))
-            )
+            ? <Fields fields={item.fields} {...props} />
             : <item.component {...item.props}>test</item.component>
           }
         </Skeleton.Item>
@@ -47,8 +33,6 @@ const FormGenerator = ({ formData, handleInputChange, valueObject }) => (
 
 FormGenerator.propTypes = {
   formData: PropTypes.array.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
-  valueObject: PropTypes.object.isRequired,
 };
 
 export default ReactCssModules(FormGenerator, styles);

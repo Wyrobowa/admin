@@ -20,7 +20,7 @@ const Admin = () => (
 
     <main styleName="admin__main">
       <Route path="/" exact component={Dashboard} />
-      <Route path="/apartment/:apartmentId?" component={Apartment} />
+      <Route path="/apartment/:apartmentSlug?" component={Apartment} />
     </main>
   </section>
 );

@@ -15,7 +15,8 @@
     "no-underscore-dangle": 0,
     "react/require-extension": "off",
     "new-cap": "off",
-    "jsx-a11y/label-has-for": "off"
+    "jsx-a11y/label-has-for": "off",
+    "no-case-declarations": "off"
   },
   "settings": {
     "import/resolver": "webpack"
