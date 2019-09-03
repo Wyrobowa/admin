@@ -125,7 +125,7 @@ const Apartment = ({
           id: 'attributes.isWlanAvailable',
           labelText: 'Wi-fi',
           props: {
-            onChange: handleCheckboxChange,
+            onChange: handleCheckboxChange, isSwitch: true,
           },
           description: 'Wi-fi description',
         },
