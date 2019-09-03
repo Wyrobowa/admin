@@ -8,7 +8,7 @@ import getFeedType from './getFeedType';
 
 const accessToken = getBearerToken();
 const headers = {
-  // Authorization: `Bearer ${accessToken}`,
+  Authorization: `Bearer ${accessToken}`,
   'Content-Type': 'application/json',
 };
 

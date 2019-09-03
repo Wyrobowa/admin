@@ -1,15 +1,19 @@
-import { EDIT_APARTMENT_FORM } from '../actions/apartmentActions';
+import { EDIT_APARTMENT_FORM, SET_APARTMENT_DATA } from '../actions/apartmentActions';
 
-const adminApartment = (state = {
-  title: '',
+const apartment = (state = {
+  name: '',
+  yieldApartmentId: '',
   apartmentNumber: '',
   description: '',
+  mainPicture: '',
   gallery: [],
-  measurement: '',
-  guestsNumber: '',
-  guestsLimit: '',
-  extraGuestPrice: '',
-  isWlanAvailable: '',
+  attributes: {
+    measurement: '',
+    guestsNumber: '',
+    guestsLimit: '',
+    extraGuestPrice: '',
+    isWlanAvailable: false,
+  },
   location: {
     city: '',
     address: '',
@@ -18,19 +22,36 @@ const adminApartment = (state = {
       lng: 0,
     },
   },
-  clientId: 'accomore',
+  clientId: 'fragola',
 }, action) => {
   switch (action.type) {
     case EDIT_APARTMENT_FORM:
+      const field = action.field || '';
+      const [property, nestedProperty] = field.split('.');
+
+      if (nestedProperty) {
+        return {
+          ...state,
+          [property]: {
+            ...state[property],
+            [nestedProperty]: action.value,
+          },
+        };
+      }
       return {
         ...state,
         [action.field]: action.value,
+      };
+    case SET_APARTMENT_DATA:
+      return {
+        ...state,
+        ...action.payload.data,
       };
     default:
       return state;
   }
 };
 
-export const getApartment = state => state.adminApartment;
+export const getApartment = state => state.apartment;
 
-export default adminApartment;
+export default apartment;

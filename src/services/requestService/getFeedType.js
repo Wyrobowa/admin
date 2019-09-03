@@ -25,6 +25,18 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'apartment':
+      feedTarget = {
+        target: '/apartment',
+      };
+      break;
+
+    case 'adminApartment':
+      feedTarget = {
+        target: '/admin/apartment',
+      };
+      break;
+
     default:
       feedTarget = {
         target: '',

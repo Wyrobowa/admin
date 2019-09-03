@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactCssModules from 'react-cssmodules';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import { editApartment, requestSendApartment } from '../../actions/apartmentActions';
+import { editApartment, requestSendApartment, requestGetApartment } from '../../actions/apartmentActions';
 
 // Components
 import Button from '../../components/button/Button';
+import Checkbox from '../../components/checkbox/Checkbox';
 import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
 
@@ -17,11 +18,30 @@ import { getApartment } from '../../reducers/apartmentReducer';
 // Styles
 import styles from './apartment.scss';
 
-const Apartment = ({ apartment, editApartmentAction, requestSendApartmentAction }) => {
-  const handleInputChange = ({ target }) => {
-    const { name, value } = target;
+const Apartment = ({
+  apartment, editApartmentAction, requestSendApartmentAction, match, requestGetApartmentAction,
+}) => {
+  useEffect(() => {
+    if (match.params.apartmentSlug) {
+      requestGetApartmentAction(match.params.apartmentSlug);
+    }
+  }, []);
 
-    editApartmentAction(name, value);
+  const handleInputChange = ({ target }) => {
+    const { name, value, type } = target;
+    let inputValue = value;
+
+    if (type === 'number') {
+      inputValue = parseInt(inputValue, 10);
+    }
+
+    editApartmentAction(name, inputValue);
+  };
+
+  const handleCheckboxChange = ({ target }) => {
+    const { name, checked } = target;
+
+    editApartmentAction(name, checked);
   };
 
   const handleFileInputChange = ({ target }) => {
@@ -42,7 +62,12 @@ const Apartment = ({ apartment, editApartmentAction, requestSendApartmentAction 
       fields: [
         {
           labelText: 'Apartment name',
-          id: 'title',
+          id: 'name',
+          description: 'Apartment name description',
+        },
+        {
+          labelText: 'Apartment ID',
+          id: 'yieldApartmentId',
           description: 'Apartment name description',
         },
         {
@@ -59,7 +84,7 @@ const Apartment = ({ apartment, editApartmentAction, requestSendApartmentAction 
     },
     {
       sectionTitle: 'Gallery',
-      id: 'gallery',
+      id: 'mainPicture',
       component: FileInput,
       props: {
         labelText: 'Main picture',
@@ -68,32 +93,40 @@ const Apartment = ({ apartment, editApartmentAction, requestSendApartmentAction 
       },
     },
     {
-      sectionTitle: 'Details',
-      id: 'details',
+      sectionTitle: 'Attributes',
+      id: 'attributes',
       fields: [
         {
           labelText: 'Measurement',
-          id: 'measurement',
+          id: 'attributes.measurement',
           description: 'Measurement description',
+          inputType: 'number',
         },
         {
           labelText: 'Guests number',
-          id: 'guestsNumber',
+          id: 'attributes.guestsNumber',
           description: 'Guests number description',
+          inputType: 'number',
         },
         {
           labelText: 'Guests limit',
-          id: 'guestsLimit',
+          id: 'attributes.guestsLimit',
           description: 'Guests limit description',
+          inputType: 'number',
         },
         {
           labelText: 'Extra guest price',
-          id: 'extraGuestPrice',
+          id: 'attributes.extraGuestPrice',
           description: 'Extra guest price description',
+          inputType: 'number',
         },
         {
+          component: Checkbox,
+          id: 'attributes.isWlanAvailable',
           labelText: 'Wi-fi',
-          id: 'isWlanAvailable',
+          props: {
+            onChange: handleCheckboxChange,
+          },
           description: 'Wi-fi description',
         },
       ],
@@ -126,6 +159,8 @@ Apartment.propTypes = {
   apartment: PropTypes.object.isRequired,
   editApartmentAction: PropTypes.func.isRequired,
   requestSendApartmentAction: PropTypes.func.isRequired,
+  requestGetApartmentAction: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -136,6 +171,7 @@ export default connect(
   mapStateToProps,
   {
     requestSendApartmentAction: requestSendApartment,
+    requestGetApartmentAction: requestGetApartment,
     editApartmentAction: editApartment,
   },
 )(ReactCssModules(Apartment, styles));
