@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdDashboard, MdHotel } from 'react-icons/md';
+import { MdDashboard, MdHotel, MdList } from 'react-icons/md';
 
 // Components
 import Menu from '../../components/menu/Menu';
@@ -28,11 +28,20 @@ const MainNav = () => {
         },
       },
     },
+    {
+      name: 'Apartments List',
+      href: '/apartment-list',
+      id: '3',
+      icon: {
+        component: MdList,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
   ]);
 
-  return (
-    <Menu menuItems={menuList} direction="vertical" />
-  );
+  return <Menu menuItems={menuList} direction="vertical" />;
 };
 
 export default MainNav;
