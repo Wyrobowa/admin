@@ -6,27 +6,37 @@ import ReactCssModules from 'react-cssmodules';
 import styles from './checkbox.scss';
 
 const Checkbox = ({
-  id, labelText, onChange, ...rest
+  id, labelText, isSwitch, onChange, ...rest
 }) => (
-  <div styleName="checkbox">
-    <input
-      id={id}
-      name={id}
-      styleName="checkbox__input"
-      onChange={onChange}
-      type="checkbox"
-      {...rest}
-    />
-    {labelText
-    && <label htmlFor={id} styleName="checkbox__label">{labelText}</label>
-    }
+  <div styleName={`checkbox ${isSwitch ? 'checkbox--switch' : ''}`}>
+    <label htmlFor={id} styleName="checkbox__label">
+      <input
+        id={id}
+        name={id}
+        styleName="checkbox__input"
+        onChange={onChange}
+        type="checkbox"
+        {...rest}
+      />
+      {(labelText && isSwitch)
+        && labelText}
+      {isSwitch
+        && <span styleName="checkbox__indicator" />
+      }
+    </label>
   </div>
 );
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
-  labelText: PropTypes.string.isRequired,
+  labelText: PropTypes.string,
+  isSwitch: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+};
+
+Checkbox.defaultProps = {
+  labelText: null,
+  isSwitch: null,
 };
 
 export default ReactCssModules(Checkbox, styles);
