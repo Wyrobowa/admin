@@ -5,6 +5,7 @@ import ReactCssModules from 'react-cssmodules';
 // Containers
 import Apartment from '../aparment/Apartment';
 import Dashboard from '../dashboard/Dashboard';
+import ApartmentList from '../apartmentList/ApartmentList';
 
 // Blocks
 import MainNav from '../../blocks/mainNav/MainNav';
@@ -21,6 +22,7 @@ const Admin = () => (
     <main styleName="admin__main">
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
+      <Route path="/apartment-list" component={ApartmentList} />
     </main>
   </section>
 );

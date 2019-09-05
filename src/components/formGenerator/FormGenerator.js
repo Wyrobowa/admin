@@ -9,14 +9,13 @@ import Title from '../title/Title';
 
 // Styles
 import styles from './formGenerator.scss';
-import titleStyles from '../../containers/aparment/title.scss';
 
 const FormGenerator = ({ formData, ...props }) => (
   <form styleName="form-generator">
     {formData.map(item => (
       <Skeleton key={item.id}>
         <Skeleton.Item type="row-top">
-          <Title heading="h3" type="tertiary" styles={titleStyles}>
+          <Title header="h3" type="secondary">
             {item.sectionTitle}
           </Title>
         </Skeleton.Item>
