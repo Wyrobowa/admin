@@ -17,9 +17,6 @@ import ForgotPassword from '../../blocks/forgotPassword/ForgotPassword';
 // Reducers
 import { getLoginStatus } from '../../reducers/appStatusReducer';
 
-// Services
-import { getBearerToken } from '../../services/authService';
-
 // Styles
 import styles from './login.scss';
 
@@ -30,8 +27,8 @@ const Login = ({ requestLoginAction, loginStatus, history }) => {
   });
 
   useEffect(() => {
-    if (loginStatus.loggedIn || getBearerToken()) {
-      history.push('/admin/dashboard');
+    if (loginStatus.loggedIn) {
+      history.push('/');
     }
   });
 

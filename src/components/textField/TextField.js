@@ -6,13 +6,14 @@ import ReactCssModules from 'react-cssmodules';
 import styles from './textField.scss';
 
 const TextField = ({
-  id, labelText, onChange, ...rest
+  id, labelText, onChange, value, ...rest
 }) => (
   <div styleName="text-field">
     <input
       id={id}
       name={id}
       styleName="text-field__input"
+      value={value || ''}
       onChange={onChange}
       {...rest}
     />
@@ -22,10 +23,18 @@ const TextField = ({
   </div>
 );
 
+TextField.defaultProps = {
+  value: '',
+};
+
 TextField.propTypes = {
   id: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 export default ReactCssModules(TextField, styles);
