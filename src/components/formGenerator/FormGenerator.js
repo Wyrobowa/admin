@@ -15,7 +15,7 @@ const FormGenerator = ({ formData, ...props }) => (
     {formData.map(item => (
       <Skeleton key={item.id}>
         <Skeleton.Item type="row-top">
-          <Title header="h3" type="secondary">
+          <Title heading="h3" type="secondary">
             {item.sectionTitle}
           </Title>
         </Skeleton.Item>

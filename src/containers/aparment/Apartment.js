@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ReactCssModules from 'react-cssmodules';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -14,9 +13,6 @@ import FormGenerator from '../../components/formGenerator/FormGenerator';
 
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
-
-// Styles
-import styles from './apartment.scss';
 
 const Apartment = ({
   apartment, editApartmentAction, requestSendApartmentAction, match, requestGetApartmentAction,
@@ -144,7 +140,7 @@ const Apartment = ({
   ];
 
   return (
-    <section styleName="apartment">
+    <section>
       <FormGenerator
         formData={form}
         handleInputChange={handleInputChange}
@@ -174,4 +170,4 @@ export default connect(
     requestGetApartmentAction: requestGetApartment,
     editApartmentAction: editApartment,
   },
-)(ReactCssModules(Apartment, styles));
+)(Apartment);

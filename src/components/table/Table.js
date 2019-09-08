@@ -1,40 +1,60 @@
 import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
+import styled from 'styled-components';
 
 // Styles
-import styles from './table.scss';
-
-
-const Item = ({ type: TypeTag, children }) => <TypeTag>{children}</TypeTag>;
-Item.propTypes = {
-  type: PropTypes.oneOf(['thead', 'tbody', 'th', 'tr', 'td']).isRequired,
-  children: PropTypes.node,
-};
-
-Item.defaultProps = {
-  children: '',
-};
+const TableStyled = styled.table`
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-collapse: collapse;
+`;
 
 class Table extends Component {
-  static Item = Item;
+  static Header = styled.thead`
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--cl-grey-20);
+  `;
+
+  static Cell = styled.td`
+    padding: 15px;
+    
+    ${({ textAlign }) => textAlign && `
+      text-align: right;
+    `}
+  `;
+
+  static Row = styled.tr`
+    border-bottom: 1px solid var(--cl-grey-20);
+    
+    &:last-child {
+      border: 0;
+    }
+  `;
+
+  static Body = styled.tbody`
+    
+  `;
+
+  static HeaderCell = styled.th`
+    padding: 15px;
+    
+    ${({ textAlign }) => textAlign && `
+      text-align: right;
+    `}
+  `;
 
   render() {
-    const { children, props, ...rest } = this.props;
+    const { children, ...rest } = this.props;
 
     const childrenWithProps = Children.map(children, child => cloneElement(child, { rest }));
 
-    return <table styleName="table">{childrenWithProps}</table>;
+    return <TableStyled>{childrenWithProps}</TableStyled>;
   }
 }
 
 Table.propTypes = {
   children: PropTypes.node.isRequired,
-  props: PropTypes.node,
 };
 
-Table.defaultProps = {
-  props: undefined,
-};
-
-export default ReactCssModules(Table, styles);
+export default Table;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactCssModules from 'react-cssmodules';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import history from '../history';
 
 // Actions
 import { requestAppInitialization } from '../actions/appInitializationActions';
+import { loginSuccessful } from '../actions/appStatusActions';
 
 // Containers
 import Admin from './admin/Admin';
@@ -18,13 +19,14 @@ import PrivateRoute from '../components/privateRoute/PrivateRoute';
 
 // Reducers
 import { getInitStatus } from '../reducers/appInitializationReducer';
+import { getLoginStatus } from '../reducers/appStatusReducer';
 
 // Styles
 import styles from './styles.scss';
 
-const App = ({ requestAppStatusAction, initStatus }) => {
-  const [loginStatus] = useState('logged');
-
+const App = ({
+  requestAppStatusAction, initStatus, loginStatus,
+}) => {
   useEffect(() => {
     requestAppStatusAction();
   }, []);
@@ -37,7 +39,7 @@ const App = ({ requestAppStatusAction, initStatus }) => {
             path="/login"
             component={Login}
           />
-          <PrivateRoute component={Admin} loginStatus={loginStatus} />
+          <PrivateRoute component={Admin} loggedIn={loginStatus.loggedIn} />
         </Loader>
       </Router>
     </div>
@@ -46,16 +48,19 @@ const App = ({ requestAppStatusAction, initStatus }) => {
 
 App.propTypes = {
   initStatus: PropTypes.string.isRequired,
+  loginStatus: PropTypes.object.isRequired,
   requestAppStatusAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   initStatus: getInitStatus(state),
+  loginStatus: getLoginStatus(state),
 });
 
 export default connect(
   mapStateToProps,
   {
+    loginSuccessfulAction: loginSuccessful,
     requestAppStatusAction: requestAppInitialization,
   },
 )(ReactCssModules(App, styles));

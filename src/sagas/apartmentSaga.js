@@ -9,11 +9,14 @@ import {
 import {
   REQUEST_SEND_APARTMENT,
   REQUEST_GET_APARTMENT,
+  REQUEST_GET_APARTMENTS_LIST,
   sendApartmentSuccessful,
   sendApartmentUnsuccessful,
   setApartmentData,
   getApartmentSuccessful,
   getApartmentUnsuccessful,
+  getApartmentsListSuccessful,
+  getApartmentsListUnsuccessful,
 } from '../actions/apartmentActions';
 
 // Reducers
@@ -51,10 +54,24 @@ export function* getApartmentData(action) {
   }
 }
 
+export function* getApartmentsList() {
+  try {
+    const apartmentList = yield call(getData, 'apartmentsList');
+
+    yield put(getApartmentsListSuccessful(apartmentList.data));
+  } catch {
+    yield put(getApartmentsListUnsuccessful());
+  }
+}
+
 export function* watchSendApartment() {
   yield takeEvery(REQUEST_SEND_APARTMENT, sendApartment);
 }
 
 export function* watchGetApartment() {
   yield takeEvery(REQUEST_GET_APARTMENT, getApartmentData);
+}
+
+export function* watchGetApartmentsList() {
+  yield takeEvery(REQUEST_GET_APARTMENTS_LIST, getApartmentsList);
 }

@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => (
-      rest.loginStatus === 'logged'
+      rest.loggedIn
         ? <Component {...props} />
         : <Redirect to="/login" />
     )}
@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 PrivateRoute.propTypes = {
-  component: PropTypes.node.isRequired,
+  component: PropTypes.func.isRequired,
 };
 
 
