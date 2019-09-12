@@ -19,6 +19,11 @@ import {
   getApartmentsListUnsuccessful,
 } from '../actions/apartmentActions';
 
+import {
+  showLoader,
+  hideLoader,
+} from '../actions/appStatusActions';
+
 // Reducers
 import { getApartment } from '../reducers/apartmentReducer';
 
@@ -45,22 +50,30 @@ export function* sendApartment() {
 
 export function* getApartmentData(action) {
   try {
-    const apartmentData = yield call(getData, 'apartment', `?slug=${action.slug}`);
+    yield put(showLoader());
 
+    const apartmentData = yield call(getData, 'apartment', `?slug=${action.slug}`);
     yield put(setApartmentData(apartmentData));
     yield put(getApartmentSuccessful());
+
+    yield put(hideLoader());
   } catch (error) {
     yield put(getApartmentUnsuccessful(error));
+    yield put(hideLoader());
   }
 }
 
 export function* getApartmentsList() {
   try {
-    const apartmentList = yield call(getData, 'apartmentsList');
+    yield put(showLoader());
 
+    const apartmentList = yield call(getData, 'apartmentsList');
     yield put(getApartmentsListSuccessful(apartmentList.data));
+
+    yield put(hideLoader());
   } catch {
     yield put(getApartmentsListUnsuccessful());
+    yield put(hideLoader());
   }
 }
 

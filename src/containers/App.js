@@ -14,7 +14,7 @@ import Admin from './admin/Admin';
 import Login from './login/Login';
 
 // Components
-import Loader from '../components/loader/Loader';
+import AppLoader from '../components/appLoader/AppLoader';
 import PrivateRoute from '../components/privateRoute/PrivateRoute';
 
 // Reducers
@@ -34,13 +34,13 @@ const App = ({
   return (
     <div styleName="admin-page">
       <Router history={history}>
-        <Loader loading={initStatus}>
+        <AppLoader loading={initStatus}>
           <Route
             path="/login"
             component={Login}
           />
           <PrivateRoute component={Admin} loggedIn={loginStatus.loggedIn} />
-        </Loader>
+        </AppLoader>
       </Router>
     </div>
   );
