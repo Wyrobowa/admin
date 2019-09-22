@@ -35,7 +35,7 @@ import History from '../history';
 export function* sendApartment() {
   const apartmentFormData = yield select(getApartment);
 
-  const isEdited = History.location.pathname.split('/')[2] !== '';
+  const isEdited = History.location.pathname.split('/')[2];
   const sendMethod = isEdited ? updateData : sendData;
 
   try {

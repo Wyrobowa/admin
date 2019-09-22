@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import { editApartment, requestSendApartment, requestGetApartment } from '../../actions/apartmentActions';
+import {
+  editApartment, requestSendApartment, requestGetApartment, clearApartmentForm,
+} from '../../actions/apartmentActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -15,11 +17,18 @@ import FormGenerator from '../../components/formGenerator/FormGenerator';
 import { getApartment } from '../../reducers/apartmentReducer';
 
 const Apartment = ({
-  apartment, editApartmentAction, requestSendApartmentAction, match, requestGetApartmentAction,
+  apartment,
+  editApartmentAction,
+  requestSendApartmentAction,
+  match,
+  requestGetApartmentAction,
+  clearApartmentFormAction,
 }) => {
   useEffect(() => {
     if (match.params.apartmentSlug) {
       requestGetApartmentAction(match.params.apartmentSlug);
+    } else {
+      clearApartmentFormAction();
     }
   }, []);
 
@@ -157,6 +166,7 @@ Apartment.propTypes = {
   requestSendApartmentAction: PropTypes.func.isRequired,
   requestGetApartmentAction: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  clearApartmentFormAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -166,6 +176,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
+    clearApartmentFormAction: clearApartmentForm,
     requestSendApartmentAction: requestSendApartment,
     requestGetApartmentAction: requestGetApartment,
     editApartmentAction: editApartment,
