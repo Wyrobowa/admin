@@ -61,8 +61,7 @@ const Nav = styled.nav`
 
 const Main = styled.main`
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
   overflow-y: scroll;
   padding: 30px;
 `;
