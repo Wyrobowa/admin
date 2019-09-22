@@ -9,6 +9,7 @@ export const REQUEST_GET_APARTMENT = 'REQUEST_GET_APARTMENT';
 export const SET_APARTMENT_DATA = 'SET_APARTMENT_DATA';
 export const REQUEST_GET_APARTMENTS_LIST = 'REQUEST_GET_APARTMENTS_LIST';
 export const GET_APARTMENTS_LIST_UNSUCCESSFUL = 'GET_APARTMENTS_LIST_UNSUCCESSFUL';
+export const CLEAR_APARTMENT_FORM = 'CLEAR_APARTMENT_FORM';
 
 export const editApartment = (field, value) => ({
   type: EDIT_APARTMENT_FORM,
@@ -57,4 +58,8 @@ export const requestGetApartmentsList = () => ({
 export const setApartmentData = payload => ({
   type: SET_APARTMENT_DATA,
   payload,
+});
+
+export const clearApartmentForm = () => ({
+  type: CLEAR_APARTMENT_FORM,
 });

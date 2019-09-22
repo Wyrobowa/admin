@@ -1,6 +1,6 @@
-import { EDIT_APARTMENT_FORM, SET_APARTMENT_DATA } from '../actions/apartmentActions';
+import { EDIT_APARTMENT_FORM, SET_APARTMENT_DATA, CLEAR_APARTMENT_FORM } from '../actions/apartmentActions';
 
-const apartment = (state = {
+const initialState = {
   name: '',
   yieldApartmentId: '',
   apartmentNumber: '',
@@ -23,7 +23,9 @@ const apartment = (state = {
     },
   },
   clientId: 'fragola',
-}, action) => {
+};
+
+const apartment = (state = initialState, action) => {
   switch (action.type) {
     case EDIT_APARTMENT_FORM:
       const field = action.field || '';
@@ -46,6 +48,11 @@ const apartment = (state = {
       return {
         ...state,
         ...action.payload.data,
+      };
+    case CLEAR_APARTMENT_FORM:
+      return {
+        ...state,
+        ...initialState,
       };
     default:
       return state;
