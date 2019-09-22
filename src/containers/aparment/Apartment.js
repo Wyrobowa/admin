@@ -62,7 +62,7 @@ const Apartment = ({
 
   const form = [
     {
-      sectionTitle: 'General information\'s',
+      sectionTitle: 'General information',
       id: 'general-information',
       fields: [
         {

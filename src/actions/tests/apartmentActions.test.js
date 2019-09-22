@@ -1,5 +1,5 @@
 import {
-  editApartment,
+  editApartmentForm,
   EDIT_APARTMENT_FORM,
   sendApartmentSuccessful,
   SEND_APARTMENT_SUCCESSFUL,
@@ -30,7 +30,7 @@ describe('apartmentActions', () => {
     const expectedAction = {
       type: EDIT_APARTMENT_FORM,
     };
-    expect(editApartment()).toEqual(expectedAction);
+    expect(editApartmentForm()).toEqual(expectedAction);
   });
 
   it('should create an action to sendApartmentSuccessful', () => {
