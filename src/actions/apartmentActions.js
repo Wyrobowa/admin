@@ -11,7 +11,7 @@ export const REQUEST_GET_APARTMENTS_LIST = 'REQUEST_GET_APARTMENTS_LIST';
 export const GET_APARTMENTS_LIST_UNSUCCESSFUL = 'GET_APARTMENTS_LIST_UNSUCCESSFUL';
 export const CLEAR_APARTMENT_FORM = 'CLEAR_APARTMENT_FORM';
 
-export const editApartment = (field, value) => ({
+export const editApartmentForm = (field, value) => ({
   type: EDIT_APARTMENT_FORM,
   field,
   value,

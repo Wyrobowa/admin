@@ -43,6 +43,24 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'page':
+      feedTarget = {
+        target: '/page',
+      };
+      break;
+
+    case 'pagesList':
+      feedTarget = {
+        target: '/pages-list',
+      };
+      break;
+
+    case 'adminPage':
+      feedTarget = {
+        target: '/admin/page',
+      };
+      break;
+
     default:
       feedTarget = {
         target: '',

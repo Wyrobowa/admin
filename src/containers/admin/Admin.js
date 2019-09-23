@@ -12,6 +12,8 @@ import ContentLoader from '../../components/contentLoader/ContentLoader';
 import Apartment from '../aparment/Apartment';
 import ApartmentsList from '../apartmentsList/ApartmentsList';
 import Dashboard from '../dashboard/Dashboard';
+import Page from '../page/Page';
+import PagesList from '../pagesList/PagesList';
 
 // Styles
 const AdminStyled = styled.section`
@@ -76,6 +78,8 @@ const Admin = () => (
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
       <Route path="/apartments-list" component={ApartmentsList} />
+      <Route path="/page/:pageSlug?" component={Page} />
+      <Route path="/pages-list" component={PagesList} />
       <ContentLoader />
     </Main>
   </AdminStyled>
