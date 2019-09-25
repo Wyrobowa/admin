@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import { editPage, requestSendPage, requestGetPage } from '../../actions/pageActions';
+import { editPageForm, requestSendPage, requestGetPage } from '../../actions/pageActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -102,6 +102,6 @@ export default connect(
   {
     requestSendPageAction: requestSendPage,
     requestGetPageAction: requestGetPage,
-    editPageAction: editPage,
+    editPageAction: editPageForm,
   },
 )(Page);

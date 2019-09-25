@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import {
-  editApartment, requestSendApartment, requestGetApartment, clearApartmentForm,
+  editApartmentForm, requestSendApartment, requestGetApartment, clearApartmentForm,
 } from '../../actions/apartmentActions';
 
 // Components
@@ -179,6 +179,6 @@ export default connect(
     clearApartmentFormAction: clearApartmentForm,
     requestSendApartmentAction: requestSendApartment,
     requestGetApartmentAction: requestGetApartment,
-    editApartmentAction: editApartment,
+    editApartmentAction: editApartmentForm,
   },
 )(Apartment);
