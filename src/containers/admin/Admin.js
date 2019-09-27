@@ -12,6 +12,8 @@ import ContentLoader from '../../components/contentLoader/ContentLoader';
 import Apartment from '../aparment/Apartment';
 import ApartmentsList from '../apartmentsList/ApartmentsList';
 import Dashboard from '../dashboard/Dashboard';
+import Location from '../location/Location';
+import LocationsList from '../locationsList/LocationsList';
 import Page from '../page/Page';
 import PagesList from '../pagesList/PagesList';
 
@@ -78,6 +80,8 @@ const Admin = () => (
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
       <Route path="/apartments-list" component={ApartmentsList} />
+      <Route path="/location/:locationSlug?" component={Location} />
+      <Route path="/locations-list" component={LocationsList} />
       <Route path="/page/:pageSlug?" component={Page} />
       <Route path="/pages-list" component={PagesList} />
       <ContentLoader />

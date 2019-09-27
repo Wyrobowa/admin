@@ -43,6 +43,24 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'location':
+      feedTarget = {
+        target: '/location',
+      };
+      break;
+
+    case 'locationsList':
+      feedTarget = {
+        target: '/locations-list',
+      };
+      break;
+
+    case 'adminLocation':
+      feedTarget = {
+        target: '/admin/location',
+      };
+      break;
+
     case 'page':
       feedTarget = {
         target: '/page',
