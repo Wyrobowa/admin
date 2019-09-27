@@ -1,34 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
 
 // Styles
-import styles from './textField.scss';
+import {
+  TextFieldStyles, InputStyles, TextareaStyles, LabelStyles,
+} from './textFieldStyles';
 
 const TextField = ({
-  id, labelText, onChange, value, ...rest
+  id, fieldType, labelText, onChange, value, ...rest
 }) => (
-  <div styleName="text-field">
-    <input
-      id={id}
-      name={id}
-      styleName="text-field__input"
-      value={value || ''}
-      onChange={onChange}
-      {...rest}
-    />
+  <TextFieldStyles>
+    {fieldType === 'input' && (
+      <InputStyles
+        id={id}
+        name={id}
+        value={value}
+        onChange={onChange}
+        {...rest}
+      />
+    )}
+    {fieldType === 'textarea' && (
+      <TextareaStyles id={id} name={id} onChange={onChange} value={value} {...rest} />
+    )}
     {labelText
-    && <label htmlFor={id} styleName="text-field__label">{labelText}</label>
+    && <LabelStyles htmlFor={id}>{labelText}</LabelStyles>
     }
-  </div>
+  </TextFieldStyles>
 );
 
 TextField.defaultProps = {
   value: '',
+  fieldType: 'input',
 };
 
 TextField.propTypes = {
   id: PropTypes.string.isRequired,
+  fieldType: PropTypes.string,
   labelText: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
@@ -37,4 +44,4 @@ TextField.propTypes = {
   ]),
 };
 
-export default ReactCssModules(TextField, styles);
+export default TextField;
