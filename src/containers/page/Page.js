@@ -9,6 +9,7 @@ import { editPageForm, requestSendPage, requestGetPage } from '../../actions/pag
 import Button from '../../components/button/Button';
 import Checkbox from '../../components/checkbox/Checkbox';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
+import TextField from '../../components/textField/TextField';
 
 // Reducers
 import { getPage } from '../../reducers/pageReducer';
@@ -56,9 +57,15 @@ const Page = ({
           description: 'Page name',
         },
         {
+          component: TextField,
           labelText: 'Page text',
           id: 'text',
           description: 'Page text',
+          props: {
+            fieldType: 'textarea',
+            onChange: handleInputChange,
+            value: page.text,
+          },
         },
         {
           component: Checkbox,
@@ -66,7 +73,8 @@ const Page = ({
           id: 'visibility',
           description: 'Page visibility',
           props: {
-            onChange: handleCheckboxChange, isSwitch: true,
+            onChange: handleCheckboxChange,
+            isSwitch: true,
           },
         },
       ],
