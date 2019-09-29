@@ -1,13 +1,13 @@
 import React, { Component, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
 
-import styles from './skeleton.scss';
+// Styles
+import { SkeletonStyled, SkeletonItem } from './skeletonStyles';
 
 const Item = ({ children, type }) => (
-  <div styleName={`skeleton__${type}`}>
+  <SkeletonItem type={type}>
     {children}
-  </div>
+  </SkeletonItem>
 );
 
 Item.propTypes = {
@@ -16,7 +16,7 @@ Item.propTypes = {
 };
 
 class Skeleton extends Component {
-  static Item = ReactCssModules(Item, styles);
+  static Item = Item;
 
   render() {
     const {
@@ -29,12 +29,9 @@ class Skeleton extends Component {
       .map(children, child => cloneElement(child, { rest }));
 
     return (
-      <div
-        styleName={`skeleton${position ? ` skeleton--${position}` : ''} `}
-        {...rest}
-      >
+      <SkeletonStyled position={position} {...rest}>
         {childrenWithProps}
-      </div>
+      </SkeletonStyled>
     );
   }
 }
@@ -48,4 +45,4 @@ Skeleton.defaultProps = {
   position: '',
 };
 
-export default ReactCssModules(Skeleton, styles);
+export default Skeleton;

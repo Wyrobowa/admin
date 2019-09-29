@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LabelStyles = styled.label`
+const LabelStyled = styled.label`
   display: block;
   position: absolute;
   top: 0;
@@ -13,7 +13,7 @@ const LabelStyles = styled.label`
   color: var(--cl-grey-40);
 `;
 
-const InputStyles = styled.input`
+const InputStyled = styled.input`
   position: relative;
   outline: 0;
   box-sizing: border-box;
@@ -37,7 +37,7 @@ const InputStyles = styled.input`
   }
 `;
 
-const TextareaStyles = styled.textarea`
+const TextareaStyled = styled.textarea`
   position: relative;
   outline: 0;
   box-sizing: border-box;
@@ -62,7 +62,7 @@ const TextareaStyles = styled.textarea`
   }
 `;
 
-const TextFieldStyles = styled.div`
+const TextFieldStyled = styled.div`
   display: block;
   position: relative;
   width: 100%;
@@ -71,11 +71,11 @@ const TextFieldStyles = styled.div`
   &:focus-within {
     transition: 500ms;
 
-    ${InputStyles} {
+    ${InputStyled} {
       border-color: var(--cl-primary);
     }
 
-    ${LabelStyles} {
+    ${LabelStyled} {
       top: -26px;
       left: -5px;
       font-size: 12px;
@@ -87,5 +87,5 @@ const TextFieldStyles = styled.div`
 `;
 
 export {
-  TextFieldStyles, InputStyles, TextareaStyles, LabelStyles,
+  TextFieldStyled, InputStyled, TextareaStyled, LabelStyled,
 };

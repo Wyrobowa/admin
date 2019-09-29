@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
 
 // Styles
-import styles from './button.scss';
+import { ButtonStyled } from './buttonStyles';
 
 const Button = ({
   children, isDisabled, onClick, model, type,
 }) => (
   // eslint-disable-next-line react/button-has-type
-  <button
+  <ButtonStyled
     onClick={onClick}
-    styleName={`button ${`button--${model}`}`}
+    model={model}
     type={type || 'button'}
     disabled={isDisabled}
   >
     {children}
-  </button>
+  </ButtonStyled>
 );
 
 Button.propTypes = {
@@ -33,4 +32,4 @@ Button.defaultProps = {
   onClick: () => {},
 };
 
-export default ReactCssModules(Button, styles);
+export default Button;

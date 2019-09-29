@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 
 // Styles
 import {
-  TextFieldStyles, InputStyles, TextareaStyles, LabelStyles,
+  TextFieldStyled, InputStyled, TextareaStyled, LabelStyled,
 } from './textFieldStyles';
 
 const TextField = ({
   id, fieldType, labelText, onChange, value, ...rest
 }) => (
-  <TextFieldStyles>
+  <TextFieldStyled>
     {fieldType === 'input' && (
-      <InputStyles
+      <InputStyled
         id={id}
         name={id}
-        value={value}
+        value={value || ''}
         onChange={onChange}
         {...rest}
       />
     )}
     {fieldType === 'textarea' && (
-      <TextareaStyles id={id} name={id} onChange={onChange} value={value} {...rest} />
+      <TextareaStyled id={id} name={id} onChange={onChange} value={value || ''} {...rest} />
     )}
     {labelText
-    && <LabelStyles htmlFor={id}>{labelText}</LabelStyles>
+    && <LabelStyled htmlFor={id}>{labelText}</LabelStyled>
     }
-  </TextFieldStyles>
+  </TextFieldStyled>
 );
 
 TextField.defaultProps = {

@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactCssModules from 'react-cssmodules';
 import PropTypes from 'prop-types';
 
 // Components
 import TextField from '../textField/TextField';
 
 // Styles
-import styles from './formGenerator.scss';
+import { FormGeneratorItem, FormGeneratorField } from './formGeneratorStyles';
 
 const Fields = ({
   fields, handleInputChange, valueObject,
@@ -15,8 +14,8 @@ const Fields = ({
     const [property, nestedProperty] = field.id.split('.');
 
     return (
-      <div styleName="form-generator__item" key={nestedProperty || property}>
-        <div styleName="form-generator__field">
+      <FormGeneratorItem key={nestedProperty || property}>
+        <FormGeneratorField>
           {field.component
             ? (
               <field.component
@@ -37,9 +36,9 @@ const Fields = ({
               />
             )
           }
-        </div>
+        </FormGeneratorField>
         <p>{field.description}</p>
-      </div>
+      </FormGeneratorItem>
     );
   })
 );
@@ -49,4 +48,4 @@ Fields.propTypes = {
   valueObject: PropTypes.object.isRequired,
 };
 
-export default ReactCssModules(Fields, styles);
+export default Fields;

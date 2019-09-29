@@ -1,48 +1,21 @@
 import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 // Styles
-const TableStyled = styled.table`
-  width: 100%;
-  text-align: left;
-  border: 0;
-  border-collapse: collapse;
-`;
+import {
+  TableStyled, HeaderStyled, CellStyled, RowStyled, BodyStyled, HeaderCellStyled,
+} from './tableStyles';
 
 class Table extends Component {
-  static Header = styled.thead`
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--cl-grey-20);
-  `;
+  static Header = HeaderStyled;
 
-  static Cell = styled.td`
-    padding: 15px;
-    
-    ${({ textAlign }) => textAlign && `
-      text-align: right;
-    `}
-  `;
+  static Cell = CellStyled;
 
-  static Row = styled.tr`
-    border-bottom: 1px solid var(--cl-grey-20);
-    
-    &:last-child {
-      border: 0;
-    }
-  `;
+  static Row = RowStyled;
 
-  static Body = styled.tbody`
-    
-  `;
+  static Body = BodyStyled;
 
-  static HeaderCell = styled.th`
-    padding: 15px;
-    
-    ${({ textAlign }) => textAlign && `
-      text-align: right;
-    `}
-  `;
+  static HeaderCell = HeaderCellStyled;
 
   render() {
     const { children, ...rest } = this.props;

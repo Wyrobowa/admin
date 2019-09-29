@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
-import ReactCssModules from 'react-cssmodules';
+import { withRouter } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 
 // Styles
-import styles from './menu.scss';
+import {
+  MenuStyled, MenuListWrapper, MenuItem, MenuLink,
+} from './menuStyles';
 
 const Menu = ({ menuItems, direction, location }) => (
-  <nav styleName="menu">
-    <ul styleName={`menu__list-wrapper menu__list-wrapper--${direction}`}>
+  <MenuStyled>
+    <MenuListWrapper direction={direction}>
       {menuItems
         && menuItems.map(item => (
-          <li key={item.id} styleName={`menu__item ${location.pathname === item.href ? 'menu__item--active' : ''}`}>
-            <Link styleName="menu__link" to={item.href}>
+          <MenuItem key={item.id} active={location.pathname === item.href}>
+            <MenuLink to={item.href}>
               {item.icon
                 && (
                   <IconContext.Provider {...item.icon.props}>
@@ -21,12 +22,12 @@ const Menu = ({ menuItems, direction, location }) => (
                   </IconContext.Provider>
                 )}
               <span>{item.name}</span>
-            </Link>
-          </li>
+            </MenuLink>
+          </MenuItem>
         ))
       }
-    </ul>
-  </nav>
+    </MenuListWrapper>
+  </MenuStyled>
 );
 
 Menu.defaultProps = {
@@ -39,4 +40,4 @@ Menu.propTypes = {
   direction: PropTypes.string,
 };
 
-export default withRouter(ReactCssModules(Menu, styles));
+export default withRouter(Menu);

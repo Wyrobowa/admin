@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { MdModeEdit } from 'react-icons/md';
 
 // Actions
@@ -18,12 +17,7 @@ import Table from '../../components/table/Table';
 import { getApartmentsListFiltered } from '../../reducers/apartmentsListReducer';
 
 // Styles
-const Heading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 15px;
-`;
+import { Heading } from './apartmentsListStyles';
 
 const headers = ['Apartment name'];
 

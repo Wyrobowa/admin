@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactCssModules from 'react-cssmodules';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -18,7 +17,9 @@ import ForgotPassword from '../../blocks/forgotPassword/ForgotPassword';
 import { getLoginStatus } from '../../reducers/appStatusReducer';
 
 // Styles
-import styles from './login.scss';
+import {
+  LoginStyled, LoginForm, LoginTitle, LoginItem, LoginFooter,
+} from './loginStyles';
 
 const Login = ({ requestLoginAction, loginStatus, history }) => {
   const [login, setLogin] = useState({
@@ -50,36 +51,36 @@ const Login = ({ requestLoginAction, loginStatus, history }) => {
   const toggleModalVisibility = () => setModalVisibility(!isModalVisible);
 
   return (
-    <section styleName="login">
-      <form styleName="login__form">
-        <div styleName="login__title">
+    <LoginStyled>
+      <LoginForm>
+        <LoginTitle>
           <Title heading="h1" type="primary">Sign in</Title>
-        </div>
+        </LoginTitle>
         {loginStatus.errorMsg
           && (
-            <div styleName="login__item">
+            <LoginItem>
               <Message msg={loginStatus.errorMsg} type="error" />
-            </div>
+            </LoginItem>
           )
         }
 
-        <div styleName="login__item">
+        <LoginItem>
           <TextField id="email" labelText="Email" onChange={handleChange} type="text" value={login.email} name="email" />
-        </div>
-        <div styleName="login__item">
+        </LoginItem>
+        <LoginItem>
           <TextField id="password" labelText="Password" onChange={handleChange} type="password" value={login.password} name="password" />
-        </div>
+        </LoginItem>
 
         <Button onClick={handleSubmit} model="primary" type="submit">
           Sign in
         </Button>
-      </form>
+      </LoginForm>
 
-      <div styleName="login__footer">
+      <LoginFooter>
         <Button onClick={toggleModalVisibility} model="quaternary" type="button">
           Forgot password?
         </Button>
-      </div>
+      </LoginFooter>
 
       {isModalVisible
         && (
@@ -88,7 +89,7 @@ const Login = ({ requestLoginAction, loginStatus, history }) => {
           </Modal>
         )
       }
-    </section>
+    </LoginStyled>
   );
 };
 
@@ -107,4 +108,4 @@ export default connect(
   {
     requestLoginAction: requestLogin,
   },
-)(ReactCssModules(Login, styles));
+)(Login);

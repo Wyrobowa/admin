@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
 
-// components
-import Icon from '../icon/Icon';
-
-import styles from './modal.scss';
+// Styles
+import {
+  ModalStyled, ModalWrapper, ModalButton, ModalCloseIcon,
+} from './modalStyles';
 
 const Modal = ({ children, onToggleModalVisibility, shade }) => {
   const [isModalHiding, setModalHiding] = useState(false);
@@ -28,24 +27,24 @@ const Modal = ({ children, onToggleModalVisibility, shade }) => {
   };
 
   return (
-    <div
+    <ModalStyled
       data-element="modal-parent"
-      styleName={`modal${shade ? ' modal--shade' : ''}${isModalHiding ? ' modal--hiding' : ''}`}
+      shade={shade}
+      isModalHiding={isModalHiding}
       onClick={handleOutsideClick}
       role="presentation"
     >
-      <div data-element="modal-wrapper" styleName={`modal__wrapper${isModalHiding ? ' modal__wrapper--hiding' : ''}`}>
+      <ModalWrapper data-element="modal-wrapper" isModalHiding={isModalHiding}>
         {children}
-        <button data-element="modal-close-button" type="button" styleName="modal__close-button" onClick={handleOutsideClick}>
-          <Icon
+        <ModalButton data-element="modal-close-button" type="button" onClick={handleOutsideClick}>
+          <ModalCloseIcon
             type="close"
-            styleName="modal__close-icon"
             width="16"
             height="16"
           />
-        </button>
-      </div>
-    </div>
+        </ModalButton>
+      </ModalWrapper>
+    </ModalStyled>
   );
 };
 
@@ -59,4 +58,4 @@ Modal.defaultProps = {
   shade: false,
 };
 
-export default ReactCssModules(Modal, styles);
+export default Modal;

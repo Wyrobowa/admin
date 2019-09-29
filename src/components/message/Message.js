@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
 
-import style from './message.scss';
+// Styles
+import { MessageStyled } from './messageStyles';
 
 const Message = ({ msg, type }) => (
-  <div styleName={`message message--${type}`}>
+  <MessageStyled type={type}>
     {msg}
-  </div>
+  </MessageStyled>
 );
 
 Message.propTypes = {
@@ -15,4 +15,4 @@ Message.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-export default ReactCssModules(Message, style);
+export default Message;

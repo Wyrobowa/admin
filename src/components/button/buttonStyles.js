@@ -1,4 +1,6 @@
-.button {
+import styled from 'styled-components';
+
+const ButtonStyled = styled.button`
   border: 0;
   border-radius: 4px;
   padding: 12px 16px;
@@ -11,23 +13,23 @@
   cursor: pointer;
   transition: all ease-in-out 200ms;
 
-  &--primary {
+  ${({ model }) => model === 'primary' && `
     background: var(--cl-primary);
 
     &:hover {
       background: var(--cl-primary-100);
     }
-  }
+  `};
 
-  &--secondary {
+  ${({ model }) => model === 'secondary' && `
     background: var(--cl-secondary);
 
     &:hover {
       background: var(--cl-secondary-100);
     }
-  }
+  `};
 
-  &--quaternary {
+  ${({ model }) => model === 'quaternary' && `
     background-color: transparent;
     color: var(--cl-grey-60);
     box-shadow: none;
@@ -36,5 +38,7 @@
     &:hover {
       text-decoration: underline;
     }
-  }
-}
+  `};
+`;
+
+export { ButtonStyled };

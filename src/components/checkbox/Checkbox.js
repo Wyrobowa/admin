@@ -1,30 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCssModules from 'react-cssmodules';
 
 // Styles
-import styles from './checkbox.scss';
+import {
+  CheckboxStyled, CheckboxLabel, CheckboxInput, CheckboxIndicator,
+} from './checkboxStyles';
 
 const Checkbox = ({
   id, labelText, isSwitch, onChange, ...rest
 }) => (
-  <div styleName={`checkbox ${isSwitch ? 'checkbox--switch' : ''}`}>
-    <label htmlFor={id} styleName="checkbox__label">
-      <input
+  <CheckboxStyled isSwitch={isSwitch}>
+    <CheckboxLabel htmlFor={id}>
+      <CheckboxInput
         id={id}
         name={id}
-        styleName="checkbox__input"
+        isSwitch={isSwitch}
         onChange={onChange}
         type="checkbox"
         {...rest}
       />
-      {(labelText && isSwitch)
+      {(labelText && !isSwitch)
         && labelText}
       {isSwitch
-        && <span styleName="checkbox__indicator" />
+        && <CheckboxIndicator isSwitch={isSwitch} />
       }
-    </label>
-  </div>
+    </CheckboxLabel>
+  </CheckboxStyled>
 );
 
 Checkbox.propTypes = {
@@ -39,4 +40,4 @@ Checkbox.defaultProps = {
   isSwitch: null,
 };
 
-export default ReactCssModules(Checkbox, styles);
+export default Checkbox;
