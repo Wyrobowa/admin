@@ -8,6 +8,8 @@ import location from './locationReducer';
 import locationsList from './locationsListReducer';
 import page from './pageReducer';
 import pagesList from './pagesListReducer';
+import apartmentService from './apartmentServiceReducer';
+import apartmentServiceList from './apartmentServiceListReducer';
 
 /**
  * Turns different reducing functions into a single reducing function
@@ -21,6 +23,8 @@ const AppReducer = combineReducers({
   locationsList,
   page,
   pagesList,
+  apartmentService,
+  apartmentServiceList,
 });
 
 export default AppReducer;

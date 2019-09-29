@@ -3,6 +3,7 @@ import { all } from 'redux-saga/effects';
 import { watchAppInitialization } from './appInitializationSaga';
 import { watchLogin } from './authSaga';
 import { watchSendApartment, watchGetApartment, watchGetApartmentsList } from './apartmentSaga';
+import { watchSendApartmentService, watchGetApartmentService, watchGetApartmentServiceList } from './apartmentServiceSaga';
 import { watchSendLocation, watchGetLocation, watchGetLocationsList } from './locationSaga';
 import { watchGetPage, watchGetPagesList, watchSendPage } from './pageSaga';
 
@@ -19,5 +20,8 @@ export default function* rootSaga() {
     watchGetPage(),
     watchGetPagesList(),
     watchSendPage(),
+    watchSendApartmentService(),
+    watchGetApartmentService(),
+    watchGetApartmentServiceList(),
   ]);
 }

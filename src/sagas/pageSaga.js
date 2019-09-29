@@ -12,23 +12,20 @@ import {
   REQUEST_GET_PAGES_LIST,
   sendPageSuccessful,
   sendPageUnsuccessful,
-  setPageData,
   getPageSuccessful,
   getPageUnsuccessful,
   getPagesListSuccessful,
   getPagesListUnsuccessful,
 } from '../actions/pageActions';
 
-import {
-  showLoader,
-  hideLoader,
-} from '../actions/appStatusActions';
-
 // Reducers
 import { getPage } from '../reducers/pageReducer';
 
+// SagasHelpers
+import { getDataSaga } from './sagasHelpers';
+
 // Services
-import { sendData, getData, updateData } from '../services/requestService/requestService';
+import { sendData, updateData } from '../services/requestService/requestService';
 
 import History from '../history';
 
@@ -48,43 +45,22 @@ export function* sendPage() {
   }
 }
 
-export function* getPageData(action) {
-  try {
-    yield put(showLoader());
-
-    const pageData = yield call(getData, 'page', `?slug=${action.slug}`);
-    yield put(setPageData(pageData));
-    yield put(getPageSuccessful());
-
-    yield put(hideLoader());
-  } catch (error) {
-    yield put(getPageUnsuccessful(error));
-    yield put(hideLoader());
-  }
-}
-
-export function* getPagesList() {
-  try {
-    yield put(showLoader());
-
-    const pagesList = yield call(getData, 'pagesList');
-    yield put(getPagesListSuccessful(pagesList.data));
-
-    yield put(hideLoader());
-  } catch {
-    yield put(getPagesListUnsuccessful());
-    yield put(hideLoader());
-  }
-}
-
 export function* watchSendPage() {
   yield takeEvery(REQUEST_SEND_PAGE, sendPage);
 }
 
 export function* watchGetPage() {
-  yield takeEvery(REQUEST_GET_PAGE, getPageData);
+  yield takeEvery(REQUEST_GET_PAGE, getDataSaga(
+    getPageSuccessful,
+    getPageUnsuccessful,
+    'page',
+  ));
 }
 
 export function* watchGetPagesList() {
-  yield takeEvery(REQUEST_GET_PAGES_LIST, getPagesList);
+  yield takeEvery(REQUEST_GET_PAGES_LIST, getDataSaga(
+    getPagesListSuccessful,
+    getPagesListUnsuccessful,
+    'pagesList',
+  ));
 }

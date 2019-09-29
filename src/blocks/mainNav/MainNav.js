@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  MdDashboard, MdHotel, MdLocationOn, MdPages,
+  MdDashboard, MdHotel, MdPages, MdLocalAirport, MdLocationOn,
 } from 'react-icons/md';
 
 // Components
@@ -47,6 +47,17 @@ const MainNav = () => {
       id: '5',
       icon: {
         component: MdPages,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
+      name: 'Service List',
+      href: '/apartment-service-list',
+      id: '6',
+      icon: {
+        component: MdLocalAirport,
         props: {
           value: { size: '20px', style: { marginRight: '10px' } },
         },

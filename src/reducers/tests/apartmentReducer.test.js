@@ -1,5 +1,5 @@
 import reducer from '../apartmentReducer';
-import { EDIT_APARTMENT_FORM, SET_APARTMENT_DATA, CLEAR_APARTMENT_FORM } from '../../actions/apartmentActions';
+import { EDIT_APARTMENT_FORM, GET_APARTMENT_SUCCESSFUL, CLEAR_APARTMENT_FORM } from '../../actions/apartmentActions';
 
 const initialState = {
   name: '',
@@ -60,23 +60,16 @@ describe('apartment reducer', () => {
     })).toEqual(changedState);
   });
 
-  it('should handle SET_APARTMENT_DATA', () => {
-    const changedState = {
+  it('should handle GET_APARTMENT_SUCCESSFUL', () => {
+    const payload = {
       ...initialState,
       name: 'nameFromPayload',
     };
 
-    const payload = {
-      data: {
-        ...initialState,
-        name: 'nameFromPayload',
-      },
-    };
-
     expect(reducer(initialState, {
-      type: SET_APARTMENT_DATA,
+      type: GET_APARTMENT_SUCCESSFUL,
       payload,
-    })).toEqual(changedState);
+    })).toEqual(payload);
   });
 
   it('should handle CLEAR_APARTMENT_FORM', () => {

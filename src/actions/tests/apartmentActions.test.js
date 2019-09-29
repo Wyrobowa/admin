@@ -19,8 +19,6 @@ import {
   GET_APARTMENTS_LIST_UNSUCCESSFUL,
   requestGetApartmentsList,
   REQUEST_GET_APARTMENTS_LIST,
-  setApartmentData,
-  SET_APARTMENT_DATA,
   clearApartmentForm,
   CLEAR_APARTMENT_FORM,
 } from '../apartmentActions';
@@ -95,13 +93,6 @@ describe('apartmentActions', () => {
       type: REQUEST_GET_APARTMENTS_LIST,
     };
     expect(requestGetApartmentsList()).toEqual(expectedAction);
-  });
-
-  it('should create an action to setApartmentData', () => {
-    const expectedAction = {
-      type: SET_APARTMENT_DATA,
-    };
-    expect(setApartmentData()).toEqual(expectedAction);
   });
 
   it('should create an action to clearApartmentForm', () => {

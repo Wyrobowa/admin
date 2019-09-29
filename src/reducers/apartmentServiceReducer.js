@@ -1,33 +1,19 @@
-import { EDIT_APARTMENT_FORM, GET_APARTMENT_SUCCESSFUL, CLEAR_APARTMENT_FORM } from '../actions/apartmentActions';
+import { EDIT_APARTMENT_SERVICE_FORM, GET_APARTMENT_SERVICE_SUCCESSFUL, CLEAR_APARTMENT_SERVICE_FORM } from '../actions/apartmentServiceActions';
 
 const initialState = {
   name: '',
-  yieldApartmentId: '',
-  apartmentNumber: '',
+  price: '',
   description: '',
   mainPicture: '',
-  gallery: [],
-  attributes: {
-    measurement: '',
-    guestsNumber: '',
-    guestsLimit: '',
-    extraGuestPrice: '',
-    isWlanAvailable: false,
-  },
-  location: {
-    city: '',
-    address: '',
-    coordinates: {
-      lat: 0,
-      lng: 0,
-    },
-  },
+  picture: '',
+  published: false,
+  promoted: false,
   clientId: 'fragola',
 };
 
-const apartment = (state = initialState, action) => {
+const apartmentService = (state = initialState, action) => {
   switch (action.type) {
-    case EDIT_APARTMENT_FORM:
+    case EDIT_APARTMENT_SERVICE_FORM:
       const field = action.field || '';
       const [property, nestedProperty] = field.split('.');
 
@@ -44,12 +30,12 @@ const apartment = (state = initialState, action) => {
         ...state,
         [action.field]: action.value,
       };
-    case GET_APARTMENT_SUCCESSFUL:
+    case GET_APARTMENT_SERVICE_SUCCESSFUL:
       return {
         ...state,
         ...action.payload,
       };
-    case CLEAR_APARTMENT_FORM:
+    case CLEAR_APARTMENT_SERVICE_FORM:
       return {
         ...state,
         ...initialState,
@@ -59,6 +45,6 @@ const apartment = (state = initialState, action) => {
   }
 };
 
-export const getApartment = state => state.apartment;
+export const getApartmentService = state => state.apartmentService;
 
-export default apartment;
+export default apartmentService;
