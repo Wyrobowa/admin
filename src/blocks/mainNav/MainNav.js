@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { MdDashboard, MdHotel, MdPages } from 'react-icons/md';
+import {
+  MdDashboard, MdHotel, MdLocationOn, MdPages,
+} from 'react-icons/md';
 
 // Components
 import Menu from '../../components/menu/Menu';
@@ -29,9 +31,20 @@ const MainNav = () => {
       },
     },
     {
+      name: 'Locations List',
+      href: '/locations-list',
+      id: '4',
+      icon: {
+        component: MdLocationOn,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
       name: 'Pages List',
       href: '/pages-list',
-      id: '4',
+      id: '5',
       icon: {
         component: MdPages,
         props: {
