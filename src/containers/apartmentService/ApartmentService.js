@@ -90,7 +90,7 @@ const ApartmentService = ({
           props: {
             onChange: handleCheckboxChange, isSwitch: true,
           },
-          description: 'Promoted description',
+          description: 'Promoted apartment',
         },
         {
           labelText: 'Icon',
@@ -109,7 +109,7 @@ const ApartmentService = ({
           props: {
             onChange: handleCheckboxChange, isSwitch: true,
           },
-          description: 'Published description',
+          description: 'Published apartment',
         },
       ],
     },

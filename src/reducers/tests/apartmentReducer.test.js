@@ -23,6 +23,7 @@ const initialState = {
       lng: 0,
     },
   },
+  recommended: false,
   clientId: 'fragola',
 };
 

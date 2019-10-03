@@ -27,6 +27,7 @@ describe('apartmentsList reducer', () => {
             lng: -100,
           },
         },
+        recommended: false,
         clientId: 'fragola',
       }],
     })).toEqual({
@@ -52,6 +53,7 @@ describe('apartmentsList reducer', () => {
             lng: -100,
           },
         },
+        recommended: false,
         clientId: 'fragola',
       }],
     });

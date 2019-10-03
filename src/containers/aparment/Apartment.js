@@ -73,17 +73,26 @@ const Apartment = ({
         {
           labelText: 'Apartment ID',
           id: 'yieldApartmentId',
-          description: 'Apartment name description',
+          description: 'Apartment ID from external service',
         },
         {
           labelText: 'Apartment number',
           id: 'apartmentNumber',
-          description: 'Apartment ID from external service',
+          description: 'Apartment number',
         },
         {
           labelText: 'Description',
           id: 'description',
-          description: 'Apartment ID from external service',
+          description: 'Apartment description',
+        },
+        {
+          component: Checkbox,
+          id: 'recommended',
+          labelText: 'Recommended',
+          props: {
+            onChange: handleCheckboxChange, isSwitch: true, checked: apartment.recommended,
+          },
+          description: 'Recommended apartment',
         },
       ],
     },
@@ -130,7 +139,9 @@ const Apartment = ({
           id: 'attributes.isWlanAvailable',
           labelText: 'Wi-fi',
           props: {
-            onChange: handleCheckboxChange, isSwitch: true,
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.attributes.isWlanAvailable,
           },
           description: 'Wi-fi description',
         },
