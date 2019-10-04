@@ -14,6 +14,11 @@ const FormGeneratorField = styled.div`
   width: 50%;
   max-width: 300px;
   margin-right: 25px;
+
+  ${({ stretched }) => stretched && `
+    width: 100%;
+    max-width: unset;
+  `}
 `;
 
 export { FormGeneratorStyled, FormGeneratorItem, FormGeneratorField };

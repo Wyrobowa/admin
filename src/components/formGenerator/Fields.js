@@ -11,11 +11,11 @@ const Fields = ({
   fields, handleInputChange, valueObject,
 }) => (
   fields.map((field) => {
-    const [property, nestedProperty] = field.id.split('.');
+    const [property, nestedProperty] = field.id && field.id.split('.');
 
     return (
       <FormGeneratorItem key={nestedProperty || property}>
-        <FormGeneratorField>
+        <FormGeneratorField stretched={field.stretched}>
           {field.component
             ? (
               <field.component

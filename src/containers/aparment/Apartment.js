@@ -12,6 +12,8 @@ import Button from '../../components/button/Button';
 import Checkbox from '../../components/checkbox/Checkbox';
 import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
+import ImagesList from '../../components/imagesList/ImagesList';
+import Image from '../../components/image/Image';
 
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
@@ -98,14 +100,50 @@ const Apartment = ({
     },
     {
       sectionTitle: 'Gallery',
-      id: 'mainPicture',
-      component: FileInput,
-      props: {
-        labelText: 'Main picture',
-        id: 'main-picture',
-        onChange: handleFileInputChange,
-      },
+      id: 'main-picture',
+      fields: [
+        {
+          component: FileInput,
+          id: 'mainPictureInput',
+          labelText: 'Main picture',
+          props: {
+            onChange: handleFileInputChange,
+          },
+        },
+        {
+          component: Image,
+          id: 'mainPicture',
+          labelText: 'Gallery',
+          props: {
+            item: apartment,
+            type: 'apartment',
+            alt: apartment.name,
+            height: '150',
+          },
+        },
+        {
+          component: FileInput,
+          id: 'galleryInput',
+          labelText: 'Gallery',
+          props: {
+            onChange: handleFileInputChange,
+          },
+        },
+        {
+          component: ImagesList,
+          id: 'gallery',
+          stretched: true,
+          labelText: 'Gallery',
+          props: {
+            item: apartment,
+            type: 'apartment',
+            alt: apartment.name,
+            height: '150',
+          },
+        },
+      ],
     },
+
     {
       sectionTitle: 'Attributes',
       id: 'attributes',
