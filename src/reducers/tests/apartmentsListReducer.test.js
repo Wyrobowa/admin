@@ -17,7 +17,18 @@ describe('apartmentsList reducer', () => {
           guestsNumber: '2',
           guestsLimit: '',
           extraGuestPrice: '',
-          isWlanAvailable: false,
+        },
+        facilities: {
+          wlan: false,
+          elevator: false,
+          balcony: false,
+          garden: false,
+          parking: false,
+          cosmetics: false,
+          towels: false,
+        },
+        equipment: {
+          hairDryer: false,
         },
         location: {
           city: 'City',
@@ -43,7 +54,18 @@ describe('apartmentsList reducer', () => {
           guestsNumber: '2',
           guestsLimit: '',
           extraGuestPrice: '',
-          isWlanAvailable: false,
+        },
+        facilities: {
+          wlan: false,
+          elevator: false,
+          balcony: false,
+          garden: false,
+          parking: false,
+          cosmetics: false,
+          towels: false,
+        },
+        equipment: {
+          hairDryer: false,
         },
         location: {
           city: 'City',

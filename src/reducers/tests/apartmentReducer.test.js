@@ -13,7 +13,18 @@ const initialState = {
     guestsNumber: '',
     guestsLimit: '',
     extraGuestPrice: '',
-    isWlanAvailable: false,
+  },
+  facilities: {
+    wlan: false,
+    elevator: false,
+    balcony: false,
+    garden: false,
+    parking: false,
+    cosmetics: false,
+    towels: false,
+  },
+  equipment: {
+    hairDryer: false,
   },
   location: {
     city: '',

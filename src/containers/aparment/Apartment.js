@@ -172,16 +172,97 @@ const Apartment = ({
           description: 'Extra guest price description',
           inputType: 'number',
         },
+      ],
+    },
+    {
+      sectionTitle: 'Facilities',
+      id: 'facilities',
+      fields: [
         {
           component: Checkbox,
-          id: 'attributes.isWlanAvailable',
-          labelText: 'Wi-fi',
+          id: 'facilities.wlan',
           props: {
             onChange: handleCheckboxChange,
             isSwitch: true,
-            checked: apartment.attributes.isWlanAvailable,
+            checked: apartment.facilities.wlan,
           },
-          description: 'Wi-fi description',
+          description: 'Wi-fi',
+        },
+        {
+          component: Checkbox,
+          id: 'facilities.parking',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.facilities.parking,
+          },
+          description: 'Parking',
+        },
+        {
+          component: Checkbox,
+          id: 'facilities.elevator',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.facilities.elevator,
+          },
+          description: 'Elevator',
+        },
+        {
+          component: Checkbox,
+          id: 'facilities.balcony',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.facilities.balcony,
+          },
+          description: 'Balcony',
+        },
+        {
+          component: Checkbox,
+          id: 'facilities.garden',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.facilities.garden,
+          },
+          description: 'Garden',
+        },
+        {
+          component: Checkbox,
+          id: 'facilities.cosmetics',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.facilities.cosmetics,
+          },
+          description: 'Cosmetics',
+        },
+        {
+          component: Checkbox,
+          id: 'facilities.towels',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.facilities.towels,
+          },
+          description: 'Towels',
+        },
+      ],
+    },
+    {
+      sectionTitle: 'Equipment',
+      id: 'equipment',
+      fields: [
+        {
+          component: Checkbox,
+          id: 'equipment.hairDryer',
+          props: {
+            onChange: handleCheckboxChange,
+            isSwitch: true,
+            checked: apartment.equipment.hairDryer,
+          },
+          description: 'Hair dryer',
         },
       ],
     },
