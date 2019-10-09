@@ -4,6 +4,8 @@ const initialState = {
   name: '',
   description: '',
   gallery: [],
+  mainPhoto: '',
+  isPromoted: false,
   apartmentsList: [],
 };
 

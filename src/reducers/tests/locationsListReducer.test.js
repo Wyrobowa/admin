@@ -9,6 +9,7 @@ describe('locationsList reducer', () => {
         name: 'testLocation',
         description: 'test description',
         gallery: [],
+        isPromoted: false,
         apartments: [],
       }],
     })).toEqual({
@@ -16,6 +17,7 @@ describe('locationsList reducer', () => {
         name: 'testLocation',
         description: 'test description',
         gallery: [],
+        isPromoted: false,
         apartments: [],
       }],
     });

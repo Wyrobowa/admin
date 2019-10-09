@@ -4,7 +4,9 @@ import { EDIT_LOCATION_FORM, SET_LOCATION_DATA, CLEAR_LOCATION_FORM } from '../.
 const initialState = {
   name: '',
   description: '',
+  mainPhoto: '',
   gallery: [],
+  isPromoted: false,
   apartmentsList: [],
 };
 

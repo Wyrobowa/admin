@@ -35,9 +35,15 @@ const buildFeedUrl = (feedType, additionalQuery = '') => {
 const requester = async (feedUrl, requestType, data) => {
   const options = {
     method: requestType,
-    headers,
+    // prevent permanent content-type delete by removing reference to original headers
+    headers: { ...headers },
     ...data && { body: JSON.stringify(data) },
   };
+
+  if (data && data.constructor.name === 'FormData') {
+    options.body = data;
+    delete options.headers['Content-Type'];
+  }
 
   try {
     const response = await fetch(feedUrl, options);

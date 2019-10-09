@@ -91,6 +91,12 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'adminGalleryUpload':
+      feedTarget = {
+        target: '/admin/gallery/add',
+      };
+      break;
+
     default:
       feedTarget = {
         target: '',

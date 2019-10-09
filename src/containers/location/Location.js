@@ -3,23 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import { editLocationForm, requestSendLocation, requestGetLocation } from '../../actions/locationActions';
+import {
+  editLocationForm, requestSendLocation, requestGetLocation, clearLocationForm,
+} from '../../actions/locationActions';
 
 // Components
 import Button from '../../components/button/Button';
 import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
+import Checkbox from '../../components/checkbox/Checkbox';
+import { sendData } from '../../services/requestService/requestService';
 
 // Reducers
 import { getLocation } from '../../reducers/locationReducer';
 
 const Location = ({
-  location, editLocationAction, requestSendLocationAction, match, requestGetLocationAction,
+  location, editLocationAction, requestSendLocationAction, match,
+  requestGetLocationAction, clearLocationAction,
 }) => {
   useEffect(() => {
     if (match.params.locationSlug) {
       requestGetLocationAction(match.params.locationSlug);
     }
+
+    return () => {
+      clearLocationAction();
+    };
   }, []);
 
   const handleInputChange = ({ target }) => {
@@ -33,9 +42,22 @@ const Location = ({
     editLocationAction(name, inputValue);
   };
 
-  const handleFileInputChange = ({ target }) => {
-    // TODO: Create FileInput component
-    console.log(target.files);
+  const handleFileInputChange = async ({ target }) => {
+    const data = new FormData();
+    data.append('images', target.files[0]);
+    const additionalQueryA = `?slug=${location.slug}&type=location`;
+    const requestResult = sendData('adminGalleryUpload', data, additionalQueryA);
+
+    // @NOTE when you use remote DB and upload images locally
+    //       they won't be available to the others
+    const uploadedImages = requestResult.imagesList;
+    if (uploadedImages && uploadedImages.length) {
+      editLocationAction('mainPicture', uploadedImages[0]);
+    }
+  };
+
+  const handleIsPromotedChange = (evt) => {
+    editLocationAction('isPromoted', evt.target.checked);
   };
 
   const handleSubmit = (event) => {
@@ -58,6 +80,15 @@ const Location = ({
           labelText: 'Location description',
           id: 'description',
           description: 'Location description',
+        },
+        {
+          component: Checkbox,
+          id: 'promoted',
+          labelText: 'Promoted',
+          props: {
+            onChange: handleIsPromotedChange, isSwitch: true, checked: location.isPromoted,
+          },
+          description: 'Promoted location',
         },
       ],
     },
@@ -91,6 +122,7 @@ Location.propTypes = {
   requestSendLocationAction: PropTypes.func.isRequired,
   requestGetLocationAction: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  clearLocationAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -103,5 +135,6 @@ export default connect(
     requestSendLocationAction: requestSendLocation,
     requestGetLocationAction: requestGetLocation,
     editLocationAction: editLocationForm,
+    clearLocationAction: clearLocationForm,
   },
 )(Location);
