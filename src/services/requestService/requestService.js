@@ -12,13 +12,6 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const domainList = {
-  'intrlab.usermd.net': '//intrlab.usermd.net:300',
-  localhost: 'http://localhost:3000',
-};
-
-const feedDomain = domainList[window.location.hostname] || '//production.domain.com';
-
 /**
  * Build url based on passed arguments
  * @param {string} feedType
@@ -28,7 +21,7 @@ const feedDomain = domainList[window.location.hostname] || '//production.domain.
 const buildFeedUrl = (feedType, additionalQuery = '') => {
   const { target } = getFeedType(feedType);
 
-  return `${feedDomain}/api${target}${additionalQuery}`;
+  return `//${process.env.API_HOST}/api${target}${additionalQuery}`;
 };
 
 /**

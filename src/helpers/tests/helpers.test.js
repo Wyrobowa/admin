@@ -1,6 +1,18 @@
 import { getImageUrl, serializeToQueryString } from '../helpers';
 
 describe('Helpers - getImageUrl', () => {
+  const OLD_ENV = process.env;
+
+  beforeEach(() => {
+    jest.resetModules();
+    process.env = { ...OLD_ENV, API_HOST: 'localhost:3000' };
+    delete process.env.NODE_ENV;
+  });
+
+  afterEach(() => {
+    process.env = OLD_ENV;
+  });
+
   it('Should return proper URL to image', () => {
     const params = {
       type: 'apartment',

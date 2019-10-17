@@ -6,7 +6,9 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "start": "webpack-dev-server --mode=development --hot",
-    "build": "echo '=> building' && rm -Rf dist/* && webpack --mode=production --env.production --progress",
+    "start:local": "webpack-dev-server --mode=development --hot --env.NODE_ENV=local",
+    "build": "echo '=> building' && rm -Rf dist/* && webpack --mode=production --env.production --progress --env.NODE_ENV=production",
+    "build:develop": "echo '=> building' && rm -Rf dist/* && webpack --mode=production --env.production --progress --env.NODE_ENV=development",
     "lint": "npm run lint:js lint:css",
     "lint:js": "echo '=> linting js' && eslint src",
     "lint:css": "stylelint './src/**/*.scss'",
@@ -37,6 +39,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-styled-components": "^1.10.6",
     "css-loader": "^2.1.0",
+    "dotenv": "^8.2.0",
     "eslint": "^5.11.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-webpack": "^0.11.1",

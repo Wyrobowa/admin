@@ -24,7 +24,9 @@ const getImageUrl = (params) => {
   } = params;
   const queryString = serializeToQueryString(rest);
 
-  let url = `//localhost:3000/api/images/${params.type}/${params.slug}/${params.imageName || 'default'}`;
+  console.log('process.env', process.env);
+
+  let url = `//${process.env.API_HOST}/api/images/${params.type}/${params.slug}/${params.imageName || 'default'}`;
 
   url += rest ? `?${queryString}` : '';
   return url;

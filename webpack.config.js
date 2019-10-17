@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const envConfig = require('dotenv').config().parsed;
 
 const sourcePath = path.join(__dirname, './src');
 const distPath = path.join(__dirname, './dist');
@@ -14,6 +15,28 @@ module.exports = (env = {}) => {
     template: path.join(__dirname, 'src/index.html'),
     filename: 'index.html',
     inject: 'body',
+  });
+
+  const getApiHost = () => {
+    switch (true) {
+      case env.NODE_ENV === 'production':
+        return envConfig.PRODUCTION_HOST;
+
+      case env.NODE_ENV === 'local':
+        return envConfig.LOCAL_HOST;
+
+      case env.NODE_ENV === 'development':
+        return envConfig.DEVELOPMENT_HOST;
+
+      default:
+        return envConfig.DEVELOPMENT_HOST;
+    }
+  };
+
+  const definePlugin = new webpack.DefinePlugin({
+    'process.env': {
+      API_HOST: JSON.stringify(getApiHost()),
+    },
   });
 
   return {
@@ -53,8 +76,8 @@ module.exports = (env = {}) => {
     },
 
     plugins: isProduction
-      ? [htmlWebpackPlugin]
-      : [new webpack.HotModuleReplacementPlugin(), htmlWebpackPlugin],
+      ? [htmlWebpackPlugin, definePlugin]
+      : [new webpack.HotModuleReplacementPlugin(), htmlWebpackPlugin, definePlugin],
 
     resolve: {
       alias: {
@@ -106,7 +129,7 @@ module.exports = (env = {}) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                sourceMapContents: false
+                sourceMapContents: false,
               },
             },
             {

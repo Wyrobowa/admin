@@ -21,6 +21,11 @@ Some description... Seba will fill that soon :)
 Use [npm](https://nodejs.com) for managing front-end dependencies.
 In the project directory use `npm install` to install it on local machine.
 
+You need to have .env file with declared positions:
+PRODUCTION_HOST
+DEVELOPMENT_HOST
+LOCAL_HOST
+
 We use [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) as a branching model with a GitHub integration - [GitHubFlow](https://datasift.github.io/gitflow/GitFlowForGitHub.html).
 Git HF [Installation guide](https://datasift.github.io/gitflow/TheHubFlowTools.html)
 
@@ -37,8 +42,14 @@ In the project directory, you can run:
 
 Runs the app in the development mode.<br>
 Open [localhost:8080](http://localhost:8080) to view it in the browser.
+Application gets data from development API host
 
 The page will reload if you make edits. You will also see any code errors in the console.
+
+#### `npm run start:local`
+
+Runs the app in the development mode.<br>
+Application gets data from localhost API host, default - localhost:3000
 
 
 ### Linting
@@ -66,9 +77,13 @@ Launches unit tests using [Jest](https://facebook.github.io/jest/).
 
 Builds the app for production to the `dist` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
+Application gets data from production host API
 
 The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
+
+#### `npm run build:develop`
+Builds the app same like npm run build but changes API host to development
 
 ### Deploying
 
