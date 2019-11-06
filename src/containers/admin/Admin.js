@@ -10,8 +10,10 @@ import ContentLoader from '../../components/contentLoader/ContentLoader';
 // Containers
 import Apartment from '../aparment/Apartment';
 import ApartmentsList from '../apartmentsList/ApartmentsList';
-import ApartmentServiceList from '../apartmentServiceList/ApartmentServiceList';
 import ApartmentService from '../apartmentService/ApartmentService';
+import ApartmentServiceList from '../apartmentServiceList/ApartmentServiceList';
+import ApartmentServiceGroup from '../apartmentServiceGroup/ApartmentServiceGroup';
+import ApartmentServiceGroupList from '../apartmentServiceGroupList/ApartmentServiceGroupList';
 import Dashboard from '../dashboard/Dashboard';
 import Language from '../language/Language';
 import LanguagesList from '../languagesList/LanguagesList';
@@ -37,8 +39,10 @@ const Admin = () => (
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
       <Route path="/apartments-list" component={ApartmentsList} />
-      <Route path="/apartment-service/:apartmentSlug?" component={ApartmentService} />
+      <Route path="/apartment-service/:apartmentServiceSlug?" component={ApartmentService} />
       <Route path="/apartment-service-list" component={ApartmentServiceList} />
+      <Route path="/apartment-service-group/:apartmentServiceGroupSlug?" component={ApartmentServiceGroup} />
+      <Route path="/apartment-service-group-list" component={ApartmentServiceGroupList} />
       <Route path="/language/:languageCode?" component={Language} />
       <Route path="/languages-list" component={LanguagesList} />
       <Route path="/location/:locationSlug?" component={Location} />

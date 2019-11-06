@@ -4,6 +4,7 @@ import * as appInitializationWatchers from './appInitializationSaga';
 import * as authWatchers from './authSaga';
 import * as apartmentWatchers from './apartmentSaga';
 import * as apartmentServiceWatchers from './apartmentServiceSaga';
+import * as apartmentServiceGroupWatchers from './apartmentServiceGroupSaga';
 import * as languageWatchers from './languageSaga';
 import * as locationWatchers from './locationSaga';
 import * as pageWatchers from './pageSaga';
@@ -22,6 +23,10 @@ export default function* rootSaga() {
     apartmentServiceWatchers.watchGetApartmentService(),
     apartmentServiceWatchers.watchGetApartmentServiceList(),
     apartmentServiceWatchers.watchDeleteApartmentService(),
+    apartmentServiceGroupWatchers.watchSendApartmentServiceGroup(),
+    apartmentServiceGroupWatchers.watchGetApartmentServiceGroup(),
+    apartmentServiceGroupWatchers.watchGetApartmentServiceGroupList(),
+    apartmentServiceGroupWatchers.watchDeleteApartmentServiceGroup(),
     languageWatchers.watchSendLanguage(),
     languageWatchers.watchGetLanguage(),
     languageWatchers.watchGetLanguagesList(),

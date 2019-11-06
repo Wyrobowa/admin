@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as Styled from './selectStyles';
 
 const Select = ({
-  id, labelText, list, optionTextField, onChange, selectValue,
+  id, labelText, list, optionTextField, onChange, selectValue, multiple,
 }) => (
   <Styled.SelectStyled>
     <Styled.SelectInput
@@ -13,6 +13,7 @@ const Select = ({
       name={id}
       onChange={onChange}
       value={selectValue}
+      multiple={multiple}
     >
       <option value="">{` - ${labelText} - `}</option>
       {list.map(option => (
@@ -33,12 +34,14 @@ Select.propTypes = {
   labelText: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectValue: PropTypes.string,
+  selectValue: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   optionTextField: PropTypes.string.isRequired,
+  multiple: PropTypes.bool,
 };
 
 Select.defaultProps = {
   selectValue: '',
+  multiple: false,
 };
 
 export default Select;

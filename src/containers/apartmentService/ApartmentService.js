@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -20,7 +20,8 @@ import FormGenerator from '../../components/formGenerator/FormGenerator';
 import { getApartmentService } from '../../reducers/apartmentServiceReducer';
 
 // Services
-import { sendData } from '../../services/requestService/requestService';
+import { getData, sendData } from '../../services/requestService/requestService';
+import Select from '../../components/select/Select';
 
 const ApartmentService = ({
   apartmentService,
@@ -30,12 +31,28 @@ const ApartmentService = ({
   requestGetApartmentServiceAction,
   clearApartmentServiceFormAction,
 }) => {
+  const [apartmentServiceGroupList, setApartmentServiceGroupList] = useState([
+    {
+      _id: '',
+      name: '',
+    },
+  ]);
+
   useEffect(() => {
-    if (match.params.apartmentSlug) {
-      requestGetApartmentServiceAction(match.params.apartmentSlug);
+    if (match.params.apartmentServiceSlug) {
+      requestGetApartmentServiceAction(match.params.apartmentServiceSlug);
     } else {
       clearApartmentServiceFormAction();
     }
+  }, []);
+
+  async function getApartmentServiceGroupList() {
+    const response = await getData('apartmentServiceGroupList');
+    setApartmentServiceGroupList(response.data);
+  }
+
+  useEffect(() => {
+    getApartmentServiceGroupList();
   }, []);
 
   const handleInputChange = ({ target }) => {
@@ -66,6 +83,12 @@ const ApartmentService = ({
     if (uploadedImages) {
       editApartmentServiceAction('mainPicture', uploadedImages);
     }
+  };
+
+  const handleSelectChange = ({ target }) => {
+    const { name, value } = target;
+
+    editApartmentServiceAction(name, value);
   };
 
   const handleSubmit = (event) => {
@@ -104,6 +127,41 @@ const ApartmentService = ({
           description: 'Promoted apartment',
         },
         {
+          component: Checkbox,
+          id: 'published',
+          labelText: 'Published',
+          props: {
+            onChange: handleCheckboxChange, isSwitch: true,
+          },
+          description: 'Published apartment',
+        },
+      ],
+    },
+    {
+      sectionTitle: 'Apartment Service Group',
+      id: 'apartment-service-group-section',
+      fields: [
+        {
+          component: Select,
+          labelText: 'Apartment Service Group list',
+          id: 'apartmentServiceGroup',
+          description: 'Apartment Service Group list',
+          props: {
+            id: 'apartmentServiceGroup',
+            labelText: 'Apartment Service Group list',
+            list: apartmentServiceGroupList,
+            onChange: handleSelectChange,
+            selectValue: apartmentService.apartmentServiceGroup,
+            optionTextField: 'name',
+          },
+        },
+      ],
+    },
+    {
+      sectionTitle: 'Icon',
+      id: 'icon-section',
+      fields: [
+        {
           labelText: 'Icon',
           id: 'picture',
           component: FileInput,
@@ -112,15 +170,6 @@ const ApartmentService = ({
             id: 'mainPicture',
             onChange: handleFileInputChange,
           },
-        },
-        {
-          component: Checkbox,
-          id: 'published',
-          labelText: 'Published',
-          props: {
-            onChange: handleCheckboxChange, isSwitch: true,
-          },
-          description: 'Published apartment',
         },
       ],
     },

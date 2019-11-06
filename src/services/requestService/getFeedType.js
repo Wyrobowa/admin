@@ -97,15 +97,27 @@ const getFeedType = (feedType) => {
       };
       break;
 
-    case 'adminApartmentService':
+    case 'apartmentService':
       feedTarget = {
         target: '/admin/apartment-service',
       };
       break;
 
-    case 'adminApartmentServiceList':
+    case 'apartmentServiceList':
       feedTarget = {
         target: '/admin/apartment-service-list',
+      };
+      break;
+
+    case 'apartmentServiceGroup':
+      feedTarget = {
+        target: '/admin/apartment-service-group',
+      };
+      break;
+
+    case 'apartmentServiceGroupList':
+      feedTarget = {
+        target: '/admin/apartment-service-group-list',
       };
       break;
 

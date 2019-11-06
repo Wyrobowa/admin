@@ -66,12 +66,12 @@ const ApartmentsList = ({
                   {Object.keys(row).map(key => (
                     key === 'slug'
                       ? (
-                        <Styled.Cell key={row.name + key} textAlign="right">
+                        <Styled.Cell key={row.slug + key} textAlign="right">
                           <Styled.EditButton to={`/apartment/${row[key]}`}><MdModeEdit /></Styled.EditButton>
                           <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdBlock /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
-                        <Table.Cell key={row.name + key}>
+                        <Table.Cell key={row.slug + key}>
                           {row[key]}
                         </Table.Cell>
                       )

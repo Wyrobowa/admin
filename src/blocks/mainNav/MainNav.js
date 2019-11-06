@@ -60,7 +60,7 @@ const MainNav = () => {
       },
     },
     {
-      name: 'Service List',
+      name: 'Apartment Service List',
       href: '/apartment-service-list',
       id: '6',
       icon: {
@@ -71,9 +71,20 @@ const MainNav = () => {
       },
     },
     {
+      name: 'Apartment Service Groups List',
+      href: '/apartment-service-group-list',
+      id: '7',
+      icon: {
+        component: MdLocalAirport,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
       name: 'Languages',
       href: '/languages-list',
-      id: '7',
+      id: '8',
       icon: {
         component: MdLanguage,
         props: {
@@ -84,7 +95,7 @@ const MainNav = () => {
     {
       name: 'Phrases',
       href: '/phrases-list',
-      id: '8',
+      id: '9',
       icon: {
         component: MdTextFields,
         props: {
@@ -95,7 +106,7 @@ const MainNav = () => {
     {
       name: 'Translations',
       href: '/translations-list',
-      id: '9',
+      id: '10',
       icon: {
         component: MdTranslate,
         props: {

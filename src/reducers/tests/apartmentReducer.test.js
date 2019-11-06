@@ -9,6 +9,7 @@ const initialState = {
   location: '',
   mainPicture: '',
   gallery: [],
+  apartmentServices: [],
   attributes: {
     measurement: '',
     guestsNumber: '',

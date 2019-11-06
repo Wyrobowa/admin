@@ -14,6 +14,7 @@ describe('apartmentsList reducer', () => {
         mainPicture: '',
         isPromoted: false,
         gallery: [],
+        apartmentServices: [],
         attributes: {
           measurement: '',
           guestsNumber: '2',
@@ -53,6 +54,7 @@ describe('apartmentsList reducer', () => {
         mainPicture: '',
         gallery: [],
         isPromoted: false,
+        apartmentServices: [],
         attributes: {
           measurement: '',
           guestsNumber: '2',

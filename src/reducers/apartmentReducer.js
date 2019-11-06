@@ -8,6 +8,7 @@ const initialState = {
   location: '',
   mainPicture: '',
   gallery: [],
+  apartmentServices: [],
   attributes: {
     measurement: '',
     guestsNumber: '',
@@ -78,6 +79,39 @@ const apartment = (state = initialState, action) => {
             [action.field]: action.value,
           },
         },
+      };
+    case apartmentActions.EDIT_APARTMENT_SERVICES_FORM:
+      const fieldApartmentService = action.field || '';
+      const [, nestedPropertyApartmentService] = fieldApartmentService.split('.');
+      const isInState = state.apartmentServices.includes(nestedPropertyApartmentService);
+
+      if (isInState && action.value === false) {
+        const filteredState = state.apartmentServices.filter(
+          item => item !== nestedPropertyApartmentService,
+        );
+
+        return {
+          ...state,
+          apartmentServices: [
+            ...filteredState,
+          ],
+        };
+      }
+      if (!isInState && action.value === true) {
+        return {
+          ...state,
+          apartmentServices: [
+            ...state.apartmentServices,
+            nestedPropertyApartmentService,
+          ],
+        };
+      }
+
+      return {
+        ...state,
+        apartmentServices: [
+          ...state.apartmentServices,
+        ],
       };
     case apartmentActions.GET_APARTMENT_SUCCESSFUL:
       return {

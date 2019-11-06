@@ -26,7 +26,7 @@ export function* sendApartmentService() {
   const sendMethod = isEdited ? updateData : sendData;
 
   try {
-    yield call(sendMethod, 'adminApartmentService', apartmentFormData);
+    yield call(sendMethod, 'apartmentService', apartmentFormData);
 
     yield put(apartmentServicesActions.sendApartmentServiceSuccessful());
     History.push('/apartment-service-list');
@@ -37,7 +37,7 @@ export function* sendApartmentService() {
 
 export function* deleteApartmentService(action) {
   try {
-    yield call(deleteData, 'adminApartmentService', action.slug);
+    yield call(deleteData, 'apartmentService', action.slug);
 
     yield put(apartmentServicesActions.deleteApartmentServiceSuccessful(action.slug));
     History.push('/apartment-service-list');
@@ -61,7 +61,7 @@ export function* watchGetApartmentService() {
   yield takeEvery(apartmentServicesActions.REQUEST_GET_APARTMENT_SERVICE, getDataSaga(
     apartmentServicesActions.getApartmentServiceSuccessful,
     apartmentServicesActions.getApartmentServiceUnsuccessful,
-    'adminApartmentService',
+    'apartmentService',
   ));
 }
 
@@ -69,6 +69,6 @@ export function* watchGetApartmentServiceList() {
   yield takeEvery(apartmentServicesActions.REQUEST_GET_APARTMENT_SERVICE_LIST, getDataSaga(
     apartmentServicesActions.getApartmentServiceListSuccessful,
     apartmentServicesActions.getApartmentServiceListUnsuccessful,
-    'adminApartmentServiceList',
+    'apartmentServiceList',
   ));
 }

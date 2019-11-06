@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 import {
   editApartmentForm,
   editApartmentAddressForm,
+  editApartmentServicesForm,
   requestSendApartment,
   requestGetApartment,
   clearApartmentForm,
 } from '../../actions/apartmentActions';
+import { requestGetApartmentServiceList } from '../../actions/apartmentServiceActions';
 
 // Components
 import ApartmentAddress from '../../components/apartmentAddress/ApartmentAddress';
+import ApartmentServices from './ApartmentServices';
 import Button from '../../components/button/Button';
 import Checkbox from '../../components/checkbox/Checkbox';
 import FileInput from '../../components/fileInput/FileInput';
@@ -24,16 +27,20 @@ import TextField from '../../components/textField/TextField';
 
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
+import { getApartmentServiceList } from '../../reducers/apartmentServiceListReducer';
 
 // Services
 import { getData, sendData } from '../../services/requestService/requestService';
 
 const Apartment = ({
   apartment,
+  apartmentServices,
   editApartmentAction,
   editApartmentAddressCoordinatesAction,
+  editApartmentServicesAction,
   requestSendApartmentAction,
   requestGetApartmentAction,
+  requestGetApartmentServiceListAction,
   clearApartmentFormAction,
   match,
 }) => {
@@ -50,6 +57,8 @@ const Apartment = ({
     } else {
       clearApartmentFormAction();
     }
+
+    requestGetApartmentServiceListAction();
   }, []);
 
   async function getLocationsList() {
@@ -82,6 +91,12 @@ const Apartment = ({
     const { name, checked } = target;
 
     editApartmentAction(name, checked);
+  };
+
+  const handleApartmentServicesCheckboxChange = ({ target }) => {
+    const { name, checked } = target;
+
+    editApartmentServicesAction(name, checked);
   };
 
   const handleFileInputChange = async ({ target }) => {
@@ -219,7 +234,6 @@ const Apartment = ({
         },
       ],
     },
-
     {
       sectionTitle: 'Attributes',
       id: 'attributes',
@@ -356,6 +370,12 @@ const Apartment = ({
         onAddressCoordinatesChange={handleAddressCoordinatesInputChange}
         apartmentAddressData={apartment.address}
       />
+      <ApartmentServices
+        handleCheckboxChange={handleApartmentServicesCheckboxChange}
+        handleInputChange={handleInputChange}
+        mainObject={apartment}
+        listOfAvailableObjects={apartmentServices}
+      />
       <Button model="primary" type="submit" onClick={handleSubmit}>Save Apartment</Button>
     </section>
   );
@@ -363,25 +383,31 @@ const Apartment = ({
 
 Apartment.propTypes = {
   apartment: PropTypes.object.isRequired,
+  apartmentServices: PropTypes.array.isRequired,
+  clearApartmentFormAction: PropTypes.func.isRequired,
   editApartmentAction: PropTypes.func.isRequired,
   editApartmentAddressCoordinatesAction: PropTypes.func.isRequired,
-  requestSendApartmentAction: PropTypes.func.isRequired,
+  editApartmentServicesAction: PropTypes.func.isRequired,
   requestGetApartmentAction: PropTypes.func.isRequired,
-  clearApartmentFormAction: PropTypes.func.isRequired,
+  requestGetApartmentServiceListAction: PropTypes.func.isRequired,
+  requestSendApartmentAction: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   apartment: getApartment(state),
+  apartmentServices: getApartmentServiceList(state),
 });
 
 export default connect(
   mapStateToProps,
   {
     clearApartmentFormAction: clearApartmentForm,
-    requestSendApartmentAction: requestSendApartment,
-    requestGetApartmentAction: requestGetApartment,
     editApartmentAction: editApartmentForm,
     editApartmentAddressCoordinatesAction: editApartmentAddressForm,
+    editApartmentServicesAction: editApartmentServicesForm,
+    requestSendApartmentAction: requestSendApartment,
+    requestGetApartmentAction: requestGetApartment,
+    requestGetApartmentServiceListAction: requestGetApartmentServiceList,
   },
 )(Apartment);
