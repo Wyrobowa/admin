@@ -13,6 +13,8 @@ import ApartmentsList from '../apartmentsList/ApartmentsList';
 import ApartmentServiceList from '../apartmentServiceList/ApartmentServiceList';
 import ApartmentService from '../apartmentService/ApartmentService';
 import Dashboard from '../dashboard/Dashboard';
+import Language from '../language/Language';
+import LanguagesList from '../languagesList/LanguagesList';
 import Location from '../location/Location';
 import LocationsList from '../locationsList/LocationsList';
 import Page from '../page/Page';
@@ -31,6 +33,8 @@ const Admin = () => (
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
       <Route path="/apartments-list" component={ApartmentsList} />
+      <Route path="/language/:languageCode?" component={Language} />
+      <Route path="/languages-list" component={LanguagesList} />
       <Route path="/location/:locationSlug?" component={Location} />
       <Route path="/locations-list" component={LocationsList} />
       <Route path="/page/:pageSlug?" component={Page} />

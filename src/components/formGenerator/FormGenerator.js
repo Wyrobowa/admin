@@ -9,7 +9,7 @@ import Title from '../title/Title';
 // Styles
 import { FormGeneratorStyled } from './formGeneratorStyles';
 
-const FormGenerator = ({ formData, ...props }) => (
+const FormGenerator = ({ formData, children, ...props }) => (
   <FormGeneratorStyled>
     {formData.map(item => (
       <Skeleton key={item.id}>
@@ -24,6 +24,7 @@ const FormGenerator = ({ formData, ...props }) => (
             : <item.component {...item.props}>test</item.component>
           }
         </Skeleton.Item>
+        {children}
       </Skeleton>
     ))}
   </FormGeneratorStyled>
@@ -31,6 +32,11 @@ const FormGenerator = ({ formData, ...props }) => (
 
 FormGenerator.propTypes = {
   formData: PropTypes.array.isRequired,
+  children: PropTypes.node,
+};
+
+FormGenerator.defaultProps = {
+  children: '',
 };
 
 export default FormGenerator;

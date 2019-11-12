@@ -6,6 +6,7 @@ import { watchSendApartment, watchGetApartment, watchGetApartmentsList } from '.
 import { watchSendApartmentService, watchGetApartmentService, watchGetApartmentServiceList } from './apartmentServiceSaga';
 import { watchSendLocation, watchGetLocation, watchGetLocationsList } from './locationSaga';
 import { watchGetPage, watchGetPagesList, watchSendPage } from './pageSaga';
+import { watchSendLanguage, watchGetLanguage, watchGetLanguagesList } from './languageSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -23,5 +24,8 @@ export default function* rootSaga() {
     watchSendApartmentService(),
     watchGetApartmentService(),
     watchGetApartmentServiceList(),
+    watchSendLanguage(),
+    watchGetLanguage(),
+    watchGetLanguagesList(),
   ]);
 }

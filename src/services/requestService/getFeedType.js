@@ -79,6 +79,18 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'language':
+      feedTarget = {
+        target: '/admin/language',
+      };
+      break;
+
+    case 'languagesList':
+      feedTarget = {
+        target: '/admin/languages-list',
+      };
+      break;
+
     case 'adminApartmentService':
       feedTarget = {
         target: '/admin/apartment-service',
