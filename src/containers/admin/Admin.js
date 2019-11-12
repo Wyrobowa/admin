@@ -19,6 +19,8 @@ import Location from '../location/Location';
 import LocationsList from '../locationsList/LocationsList';
 import Page from '../page/Page';
 import PagesList from '../pagesList/PagesList';
+import Phrase from '../phrase/Phrase';
+import PhrasesList from '../phrasesList/PhrasesList';
 
 // Styles
 import { AdminStyled, Nav, Main } from './adminStyles';
@@ -33,14 +35,16 @@ const Admin = () => (
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
       <Route path="/apartments-list" component={ApartmentsList} />
+      <Route path="/apartment-service/:apartmentSlug?" component={ApartmentService} />
+      <Route path="/apartment-service-list" component={ApartmentServiceList} />
       <Route path="/language/:languageCode?" component={Language} />
       <Route path="/languages-list" component={LanguagesList} />
       <Route path="/location/:locationSlug?" component={Location} />
       <Route path="/locations-list" component={LocationsList} />
       <Route path="/page/:pageSlug?" component={Page} />
       <Route path="/pages-list" component={PagesList} />
-      <Route path="/apartment-service/:apartmentSlug?" component={ApartmentService} />
-      <Route path="/apartment-service-list" component={ApartmentServiceList} />
+      <Route path="/phrase/:phraseId?" component={Phrase} />
+      <Route path="/phrases-list" component={PhrasesList} />
       <ContentLoader />
     </Main>
   </AdminStyled>

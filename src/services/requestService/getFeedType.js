@@ -91,6 +91,18 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'phrase':
+      feedTarget = {
+        target: '/admin/phrase',
+      };
+      break;
+
+    case 'phrasesList':
+      feedTarget = {
+        target: '/admin/phrases-list',
+      };
+      break;
+
     case 'adminApartmentService':
       feedTarget = {
         target: '/admin/apartment-service',

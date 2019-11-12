@@ -24,7 +24,7 @@ const FormGenerator = ({ formData, children, ...props }) => (
             : <item.component {...item.props}>test</item.component>
           }
         </Skeleton.Item>
-        {children}
+        <>{children}</>
       </Skeleton>
     ))}
   </FormGeneratorStyled>
@@ -32,7 +32,7 @@ const FormGenerator = ({ formData, children, ...props }) => (
 
 FormGenerator.propTypes = {
   formData: PropTypes.array.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
 };
 
 FormGenerator.defaultProps = {

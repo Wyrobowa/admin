@@ -4,9 +4,10 @@ import { watchAppInitialization } from './appInitializationSaga';
 import { watchLogin } from './authSaga';
 import { watchSendApartment, watchGetApartment, watchGetApartmentsList } from './apartmentSaga';
 import { watchSendApartmentService, watchGetApartmentService, watchGetApartmentServiceList } from './apartmentServiceSaga';
+import { watchSendLanguage, watchGetLanguage, watchGetLanguagesList } from './languageSaga';
 import { watchSendLocation, watchGetLocation, watchGetLocationsList } from './locationSaga';
 import { watchGetPage, watchGetPagesList, watchSendPage } from './pageSaga';
-import { watchSendLanguage, watchGetLanguage, watchGetLanguagesList } from './languageSaga';
+import { watchSendPhrase, watchGetPhrase, watchGetPhrasesList } from './phraseSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -27,5 +28,8 @@ export default function* rootSaga() {
     watchSendLanguage(),
     watchGetLanguage(),
     watchGetLanguagesList(),
+    watchSendPhrase(),
+    watchGetPhrase(),
+    watchGetPhrasesList(),
   ]);
 }
