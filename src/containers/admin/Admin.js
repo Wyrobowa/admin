@@ -21,6 +21,8 @@ import Page from '../page/Page';
 import PagesList from '../pagesList/PagesList';
 import Phrase from '../phrase/Phrase';
 import PhrasesList from '../phrasesList/PhrasesList';
+import Translation from '../translation/Translation';
+import TranslationsList from '../translationsList/TranslationsList';
 
 // Styles
 import { AdminStyled, Nav, Main } from './adminStyles';
@@ -45,6 +47,8 @@ const Admin = () => (
       <Route path="/pages-list" component={PagesList} />
       <Route path="/phrase/:phraseId?" component={Phrase} />
       <Route path="/phrases-list" component={PhrasesList} />
+      <Route path="/translation/:translationId?" component={Translation} />
+      <Route path="/translations-list" component={TranslationsList} />
       <ContentLoader />
     </Main>
   </AdminStyled>

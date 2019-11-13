@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import {
-  MdDashboard, MdHotel, MdPages, MdLocalAirport, MdLocationOn, MdLanguage, MdTextFields,
+  MdDashboard,
+  MdHotel,
+  MdPages,
+  MdLocalAirport,
+  MdLocationOn,
+  MdLanguage,
+  MdTextFields,
+  MdTranslate,
 } from 'react-icons/md';
 
 // Components
@@ -80,6 +87,17 @@ const MainNav = () => {
       id: '8',
       icon: {
         component: MdTextFields,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
+      name: 'Translations',
+      href: '/translations-list',
+      id: '9',
+      icon: {
+        component: MdTranslate,
         props: {
           value: { size: '20px', style: { marginRight: '10px' } },
         },

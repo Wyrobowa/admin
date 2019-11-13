@@ -103,6 +103,18 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'translation':
+      feedTarget = {
+        target: '/admin/translation',
+      };
+      break;
+
+    case 'translationsList':
+      feedTarget = {
+        target: '/admin/translations-list',
+      };
+      break;
+
     case 'adminApartmentService':
       feedTarget = {
         target: '/admin/apartment-service',

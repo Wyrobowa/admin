@@ -14,6 +14,8 @@ import page from './pageReducer';
 import pagesList from './pagesListReducer';
 import phrase from './phraseReducer';
 import phrasesList from './phrasesListReducer';
+import translation from './translationReducer';
+import translationsList from './translationsListReducer';
 
 /**
  * Turns different reducing functions into a single reducing function
@@ -33,6 +35,8 @@ const AppReducer = combineReducers({
   pagesList,
   phrase,
   phrasesList,
+  translation,
+  translationsList,
 });
 
 export default AppReducer;

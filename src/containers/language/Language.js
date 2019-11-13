@@ -82,7 +82,7 @@ const Language = ({
           Wikipedia:
           {' '}
           <Link
-            to="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
+            to="//en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
             target="_blank"
           >
             https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

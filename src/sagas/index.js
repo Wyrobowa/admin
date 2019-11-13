@@ -8,6 +8,7 @@ import { watchSendLanguage, watchGetLanguage, watchGetLanguagesList } from './la
 import { watchSendLocation, watchGetLocation, watchGetLocationsList } from './locationSaga';
 import { watchGetPage, watchGetPagesList, watchSendPage } from './pageSaga';
 import { watchSendPhrase, watchGetPhrase, watchGetPhrasesList } from './phraseSaga';
+import { watchSendTranslation, watchGetTranslation, watchGetTranslationsList } from './translationSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -31,5 +32,8 @@ export default function* rootSaga() {
     watchSendPhrase(),
     watchGetPhrase(),
     watchGetPhrasesList(),
+    watchSendTranslation(),
+    watchGetTranslation(),
+    watchGetTranslationsList(),
   ]);
 }
