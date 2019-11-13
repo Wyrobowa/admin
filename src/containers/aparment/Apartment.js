@@ -140,6 +140,7 @@ const Apartment = ({
           labelText: 'Gallery',
           props: {
             onChange: handleFileInputChange,
+            multiple: true,
           },
         },
         {
