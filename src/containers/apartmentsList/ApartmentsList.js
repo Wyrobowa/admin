@@ -52,7 +52,7 @@ const ApartmentsList = ({ requestGetApartmentsListAction, apartments }) => {
             </Table.Header>
             <Table.Body>
               {apartments.map(row => (
-                <Table.Row key={row.name}>
+                <Table.Row key={row.slug}>
                   {Object.keys(row).map(key => (
                     key === 'slug'
                       ? (

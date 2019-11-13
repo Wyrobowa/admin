@@ -52,6 +52,17 @@ const apartment = (state = initialState, action) => {
           },
         };
       }
+
+      if (field === 'gallery') {
+        return {
+          ...state,
+          [action.field]: [
+            ...state[property],
+            ...action.value,
+          ],
+        };
+      }
+
       return {
         ...state,
         [action.field]: action.value,

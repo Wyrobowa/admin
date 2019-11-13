@@ -18,6 +18,9 @@ import Image from '../../components/image/Image';
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
 
+// Services
+import { sendData } from '../../services/requestService/requestService';
+
 const Apartment = ({
   apartment,
   editApartmentAction,
@@ -51,9 +54,19 @@ const Apartment = ({
     editApartmentAction(name, checked);
   };
 
-  const handleFileInputChange = ({ target }) => {
-    // TODO: Create FileInput component
-    console.log(target.files);
+  const handleFileInputChange = async ({ target }) => {
+    const data = new FormData();
+
+    Array.from(target.files).forEach((file) => {
+      data.append('images', file);
+    });
+
+    const additionalQuery = `?slug=${apartment.slug}&type=apartment`;
+    const requestResult = await sendData('adminGalleryUpload', data, additionalQuery);
+
+    if (requestResult.imagesList) {
+      editApartmentAction('gallery', requestResult.imagesList);
+    }
   };
 
   const handleSubmit = (event) => {

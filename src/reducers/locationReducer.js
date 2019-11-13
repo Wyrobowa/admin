@@ -24,6 +24,7 @@ const location = (state = initialState, action) => {
           },
         };
       }
+
       return {
         ...state,
         [action.field]: action.value,

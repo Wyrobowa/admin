@@ -12,10 +12,13 @@ import Button from '../../components/button/Button';
 import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
 import Checkbox from '../../components/checkbox/Checkbox';
-import { sendData } from '../../services/requestService/requestService';
+import Image from '../../components/image/Image';
 
 // Reducers
 import { getLocation } from '../../reducers/locationReducer';
+
+// Services
+import { sendData } from '../../services/requestService/requestService';
 
 const Location = ({
   location, editLocationAction, requestSendLocationAction, match,
@@ -45,19 +48,18 @@ const Location = ({
   const handleFileInputChange = async ({ target }) => {
     const data = new FormData();
     data.append('images', target.files[0]);
-    const additionalQueryA = `?slug=${location.slug}&type=location`;
-    const requestResult = sendData('adminGalleryUpload', data, additionalQueryA);
 
-    // @NOTE when you use remote DB and upload images locally
-    //       they won't be available to the others
-    const uploadedImages = requestResult.imagesList;
-    if (uploadedImages && uploadedImages.length) {
-      editLocationAction('mainPicture', uploadedImages[0]);
+    const additionalQuery = `?slug=${location.slug}&type=location`;
+    const requestResult = await sendData('adminGalleryUpload', data, additionalQuery);
+    const [uploadedImages] = requestResult.imagesList;
+
+    if (uploadedImages) {
+      editLocationAction('mainPicture', uploadedImages);
     }
   };
 
-  const handleIsPromotedChange = (evt) => {
-    editLocationAction('isPromoted', evt.target.checked);
+  const handleIsPromotedChange = ({ target }) => {
+    editLocationAction('isPromoted', target.checked);
   };
 
   const handleSubmit = (event) => {
@@ -93,14 +95,30 @@ const Location = ({
       ],
     },
     {
-      sectionTitle: 'Gallery',
+      sectionTitle: 'Main picture',
       id: 'mainPicture',
-      component: FileInput,
-      props: {
-        labelText: 'Main picture',
-        id: 'main-picture',
-        onChange: handleFileInputChange,
-      },
+      fields: [
+        {
+          component: FileInput,
+          id: 'mainPictureInput',
+          labelText: 'Main picture',
+          props: {
+            onChange: handleFileInputChange,
+          },
+        },
+        {
+          component: Image,
+          id: 'mainPicture',
+          labelText: 'Main picture',
+          props: {
+            item: location,
+            imageName: location.mainPicture,
+            type: 'location',
+            alt: location.name,
+            height: '150',
+          },
+        },
+      ],
     },
   ];
 

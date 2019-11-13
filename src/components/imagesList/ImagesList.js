@@ -11,6 +11,7 @@ const ImagesList = ({
     {item.gallery && (
       item.gallery.map(imageName => (
         <ImageStyles
+          key={imageName}
           item={item}
           imageName={imageName}
           type={type}
