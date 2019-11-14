@@ -73,10 +73,7 @@ const apartment = (state = initialState, action) => {
         ...action.payload,
       };
     case CLEAR_APARTMENT_FORM:
-      return {
-        ...state,
-        ...initialState,
-      };
+      return initialState;
     default:
       return state;
   }
