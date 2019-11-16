@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -14,12 +14,13 @@ import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
 import ImagesList from '../../components/imagesList/ImagesList';
 import Image from '../../components/image/Image';
+import Select from '../../components/select/Select';
 
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
 
 // Services
-import { sendData } from '../../services/requestService/requestService';
+import { getData, sendData } from '../../services/requestService/requestService';
 
 const Apartment = ({
   apartment,
@@ -29,12 +30,28 @@ const Apartment = ({
   requestGetApartmentAction,
   clearApartmentFormAction,
 }) => {
+  const [locationsList, setLocationsList] = useState([
+    {
+      _id: '',
+      name: '',
+    },
+  ]);
+
   useEffect(() => {
     if (match.params.apartmentSlug) {
       requestGetApartmentAction(match.params.apartmentSlug);
     } else {
       clearApartmentFormAction();
     }
+  }, []);
+
+  async function getLocationsList() {
+    const response = await getData('locationsList');
+    setLocationsList(response.data);
+  }
+
+  useEffect(() => {
+    getLocationsList();
   }, []);
 
   const handleInputChange = ({ target }) => {
@@ -67,6 +84,12 @@ const Apartment = ({
     if (requestResult.imagesList) {
       editApartmentAction('gallery', requestResult.imagesList);
     }
+  };
+
+  const handleSelectChange = ({ target }) => {
+    const { name, value } = target;
+
+    editApartmentAction(name, value);
   };
 
   const handleSubmit = (event) => {
@@ -108,6 +131,26 @@ const Apartment = ({
             onChange: handleCheckboxChange, isSwitch: true, checked: apartment.recommended,
           },
           description: 'Recommended apartment',
+        },
+      ],
+    },
+    {
+      sectionTitle: 'Location',
+      id: 'location-section',
+      fields: [
+        {
+          component: Select,
+          labelText: 'Locations list',
+          id: 'location',
+          description: 'Locations list',
+          props: {
+            id: 'location',
+            labelText: 'Locations list',
+            list: locationsList,
+            onChange: handleSelectChange,
+            selectValue: apartment.location,
+            optionTextField: 'name',
+          },
         },
       ],
     },
@@ -279,16 +322,6 @@ const Apartment = ({
           description: 'Hair dryer',
         },
       ],
-    },
-    {
-      sectionTitle: 'Location',
-      id: 'location',
-      component: FileInput,
-      props: {
-        labelText: 'Main picture',
-        id: 'main-picture',
-        onChange: handleFileInputChange,
-      },
     },
   ];
 

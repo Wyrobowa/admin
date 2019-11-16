@@ -5,6 +5,7 @@ const initialState = {
   yieldApartmentId: '',
   apartmentNumber: '',
   description: '',
+  location: '',
   mainPicture: '',
   gallery: [],
   attributes: {
@@ -25,7 +26,7 @@ const initialState = {
   equipment: {
     hairDryer: false,
   },
-  location: {
+  address: {
     city: '',
     address: '',
     coordinates: {

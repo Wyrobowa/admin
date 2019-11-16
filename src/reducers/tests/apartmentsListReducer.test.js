@@ -10,6 +10,7 @@ describe('apartmentsList reducer', () => {
         yieldApartmentId: '1',
         apartmentNumber: '2',
         description: 'test description',
+        location: '',
         mainPicture: '',
         isPromoted: false,
         gallery: [],
@@ -31,7 +32,7 @@ describe('apartmentsList reducer', () => {
         equipment: {
           hairDryer: false,
         },
-        location: {
+        address: {
           city: 'City',
           address: 'Street 123',
           coordinates: {
@@ -48,6 +49,7 @@ describe('apartmentsList reducer', () => {
         yieldApartmentId: '1',
         apartmentNumber: '2',
         description: 'test description',
+        location: '',
         mainPicture: '',
         gallery: [],
         isPromoted: false,
@@ -69,7 +71,7 @@ describe('apartmentsList reducer', () => {
         equipment: {
           hairDryer: false,
         },
-        location: {
+        address: {
           city: 'City',
           address: 'Street 123',
           coordinates: {

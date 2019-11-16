@@ -45,37 +45,25 @@ const getFeedType = (feedType) => {
 
     case 'location':
       feedTarget = {
-        target: '/location',
+        target: '/admin/location',
       };
       break;
 
     case 'locationsList':
       feedTarget = {
-        target: '/locations-list',
-      };
-      break;
-
-    case 'adminLocation':
-      feedTarget = {
-        target: '/admin/location',
+        target: '/admin/locations-list',
       };
       break;
 
     case 'page':
       feedTarget = {
-        target: '/page',
+        target: '/admin/page',
       };
       break;
 
     case 'pagesList':
       feedTarget = {
-        target: '/pages-list',
-      };
-      break;
-
-    case 'adminPage':
-      feedTarget = {
-        target: '/admin/page',
+        target: '/admin/pages-list',
       };
       break;
 
