@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 
 // Actions
 import {
-  editApartmentForm, requestSendApartment, requestGetApartment, clearApartmentForm,
+  editApartmentForm,
+  editApartmentAddressForm,
+  requestSendApartment,
+  requestGetApartment,
+  clearApartmentForm,
 } from '../../actions/apartmentActions';
 
 // Components
+import ApartmentAddress from '../../components/apartmentAddress/ApartmentAddress';
 import Button from '../../components/button/Button';
 import Checkbox from '../../components/checkbox/Checkbox';
 import FileInput from '../../components/fileInput/FileInput';
@@ -21,14 +26,16 @@ import { getApartment } from '../../reducers/apartmentReducer';
 
 // Services
 import { getData, sendData } from '../../services/requestService/requestService';
+import TextField from '../../components/textField/TextField';
 
 const Apartment = ({
   apartment,
   editApartmentAction,
+  editApartmentAddressCoordinatesAction,
   requestSendApartmentAction,
-  match,
   requestGetApartmentAction,
   clearApartmentFormAction,
+  match,
 }) => {
   const [locationsList, setLocationsList] = useState([
     {
@@ -63,6 +70,12 @@ const Apartment = ({
     }
 
     editApartmentAction(name, inputValue);
+  };
+
+  const handleAddressCoordinatesInputChange = ({ target }) => {
+    const { name, value } = target;
+
+    editApartmentAddressCoordinatesAction(name, value);
   };
 
   const handleCheckboxChange = ({ target }) => {
@@ -119,9 +132,15 @@ const Apartment = ({
           description: 'Apartment number',
         },
         {
+          component: TextField,
           labelText: 'Description',
           id: 'description',
-          description: 'Apartment description',
+          description: 'Description',
+          props: {
+            fieldType: 'textarea',
+            onChange: handleInputChange,
+            value: apartment.description,
+          },
         },
         {
           component: Checkbox,
@@ -332,6 +351,11 @@ const Apartment = ({
         handleInputChange={handleInputChange}
         valueObject={apartment}
       />
+      <ApartmentAddress
+        onChange={handleInputChange}
+        onAddressCoordinatesChange={handleAddressCoordinatesInputChange}
+        apartmentAddressData={apartment.address}
+      />
       <Button model="primary" type="submit" onClick={handleSubmit}>Save Apartment</Button>
     </section>
   );
@@ -340,10 +364,11 @@ const Apartment = ({
 Apartment.propTypes = {
   apartment: PropTypes.object.isRequired,
   editApartmentAction: PropTypes.func.isRequired,
+  editApartmentAddressCoordinatesAction: PropTypes.func.isRequired,
   requestSendApartmentAction: PropTypes.func.isRequired,
   requestGetApartmentAction: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
   clearApartmentFormAction: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -357,5 +382,6 @@ export default connect(
     requestSendApartmentAction: requestSendApartment,
     requestGetApartmentAction: requestGetApartment,
     editApartmentAction: editApartmentForm,
+    editApartmentAddressCoordinatesAction: editApartmentAddressForm,
   },
 )(Apartment);

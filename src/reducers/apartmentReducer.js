@@ -1,4 +1,4 @@
-import { EDIT_APARTMENT_FORM, GET_APARTMENT_SUCCESSFUL, CLEAR_APARTMENT_FORM } from '../actions/apartmentActions';
+import * as apartmentActions from '../actions/apartmentActions';
 
 const initialState = {
   name: '',
@@ -29,7 +29,7 @@ const initialState = {
   address: {
     city: '',
     address: '',
-    coordinates: {
+    mapCoordinates: {
       lat: 0,
       lng: 0,
     },
@@ -40,7 +40,7 @@ const initialState = {
 
 const apartment = (state = initialState, action) => {
   switch (action.type) {
-    case EDIT_APARTMENT_FORM:
+    case apartmentActions.EDIT_APARTMENT_FORM:
       const field = action.field || '';
       const [property, nestedProperty] = field.split('.');
 
@@ -68,12 +68,25 @@ const apartment = (state = initialState, action) => {
         ...state,
         [action.field]: action.value,
       };
-    case GET_APARTMENT_SUCCESSFUL:
+    case apartmentActions.EDIT_APARTMENT_ADDRESS_FORM:
+      console.log(action.field);
+      console.log(action.value);
+      return {
+        ...state,
+        address: {
+          ...state.address,
+          mapCoordinates: {
+            ...state.address.mapCoordinates,
+            [action.field]: action.value,
+          },
+        },
+      };
+    case apartmentActions.GET_APARTMENT_SUCCESSFUL:
       return {
         ...state,
         ...action.payload,
       };
-    case CLEAR_APARTMENT_FORM:
+    case apartmentActions.CLEAR_APARTMENT_FORM:
       return initialState;
     default:
       return state;

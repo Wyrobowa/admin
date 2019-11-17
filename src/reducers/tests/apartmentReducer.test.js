@@ -30,7 +30,7 @@ const initialState = {
   address: {
     city: '',
     address: '',
-    coordinates: {
+    mapCoordinates: {
       lat: 0,
       lng: 0,
     },

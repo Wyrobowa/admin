@@ -35,7 +35,7 @@ describe('apartmentsList reducer', () => {
         address: {
           city: 'City',
           address: 'Street 123',
-          coordinates: {
+          mapCoordinates: {
             lat: 50,
             lng: -100,
           },
@@ -74,7 +74,7 @@ describe('apartmentsList reducer', () => {
         address: {
           city: 'City',
           address: 'Street 123',
-          coordinates: {
+          mapCoordinates: {
             lat: 50,
             lng: -100,
           },
