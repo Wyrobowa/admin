@@ -1,6 +1,9 @@
 export const SEND_TRANSLATION_SUCCESSFUL = 'SEND_TRANSLATION_SUCCESSFUL';
 export const SEND_TRANSLATION_UNSUCCESSFUL = 'SEND_TRANSLATION_UNSUCCESSFUL';
 export const REQUEST_SEND_TRANSLATION = 'REQUEST_SEND_TRANSLATION';
+export const DELETE_TRANSLATION_SUCCESSFUL = 'DELETE_TRANSLATION_SUCCESSFUL';
+export const DELETE_TRANSLATION_UNSUCCESSFUL = 'DELETE_TRANSLATION_UNSUCCESSFUL';
+export const REQUEST_DELETE_TRANSLATION = 'REQUEST_DELETE_TRANSLATION';
 export const EDIT_TRANSLATION_FORM = 'EDIT_TRANSLATION_FORM';
 export const GET_TRANSLATION_SUCCESSFUL = 'GET_TRANSLATION_SUCCESSFUL';
 export const GET_TRANSLATIONS_LIST_SUCCESSFUL = 'GET_TRANSLATIONS_LIST_SUCCESSFUL';
@@ -27,6 +30,20 @@ export const sendTranslationUnsuccessful = () => ({
 
 export const requestSendTranslation = () => ({
   type: REQUEST_SEND_TRANSLATION,
+});
+
+export const deleteTranslationSuccessful = slug => ({
+  type: DELETE_TRANSLATION_SUCCESSFUL,
+  slug,
+});
+
+export const deleteTranslationUnsuccessful = () => ({
+  type: DELETE_TRANSLATION_UNSUCCESSFUL,
+});
+
+export const requestDeleteTranslation = slug => ({
+  type: REQUEST_DELETE_TRANSLATION,
+  slug,
 });
 
 export const getTranslationSuccessful = payload => ({

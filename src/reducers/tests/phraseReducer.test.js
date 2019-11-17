@@ -1,9 +1,9 @@
 import reducer from '../phraseReducer';
-import { EDIT_PHRASE_FORM, SET_PHRASE_DATA, CLEAR_PHRASE_FORM } from '../../actions/phraseActions';
+import * as phraseActions from '../../actions/phraseActions';
 
 const initialState = {
   text: '',
-  id: '',
+  _id: '',
 };
 
 describe('phrase reducer', () => {
@@ -18,7 +18,7 @@ describe('phrase reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_PHRASE_FORM,
+      type: phraseActions.EDIT_PHRASE_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -34,7 +34,7 @@ describe('phrase reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_PHRASE_FORM,
+      type: phraseActions.EDIT_PHRASE_FORM,
       field: 'attributes.additionalAttribute',
       value: '10',
     })).toEqual(changedState);
@@ -54,14 +54,14 @@ describe('phrase reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: SET_PHRASE_DATA,
+      type: phraseActions.SET_PHRASE_DATA,
       payload,
     })).toEqual(changedState);
   });
 
   it('should handle CLEAR_PHRASE_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_PHRASE_FORM,
+      type: phraseActions.CLEAR_PHRASE_FORM,
     })).toEqual(initialState);
   });
 });

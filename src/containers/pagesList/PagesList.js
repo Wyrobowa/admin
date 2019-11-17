@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetPagesList } from '../../actions/pageActions';
+import { requestGetPagesList, requestDeletePage } from '../../actions/pageActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -17,27 +17,33 @@ import Table from '../../components/table/Table';
 import { getPagesListFiltered } from '../../reducers/pagesListReducer';
 
 // Styles
-import { Heading } from './pagesListStyles';
+import * as Styled from './pagesListStyles';
 
 const headers = ['Page name'];
 
-const PagesList = ({ requestGetPagesListAction, pages }) => {
+const PagesList = ({ requestGetPagesListAction, requestDeletePageAction, pages }) => {
   useEffect(() => {
     requestGetPagesListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeletePageAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Pages list
             </Title>
             <Link to="/page">
               <Button model="primary" type="button">Add page</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -56,9 +62,10 @@ const PagesList = ({ requestGetPagesListAction, pages }) => {
                   {Object.keys(row).map(key => (
                     key === 'slug'
                       ? (
-                        <Table.Cell key={row.slug + key} textAlign="right">
-                          <Link to={`/page/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.slug + key} textAlign="right">
+                          <Styled.EditButton to={`/page/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.slug + key}>
                           {row[key]}
@@ -77,6 +84,7 @@ const PagesList = ({ requestGetPagesListAction, pages }) => {
 
 PagesList.propTypes = {
   requestGetPagesListAction: PropTypes.func.isRequired,
+  requestDeletePageAction: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
 };
 
@@ -88,5 +96,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetPagesListAction: requestGetPagesList,
+    requestDeletePageAction: requestDeletePage,
   },
 )(PagesList);

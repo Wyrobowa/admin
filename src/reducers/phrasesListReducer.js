@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { GET_PHRASES_LIST_SUCCESSFUL } from '../actions/phraseActions';
+import { GET_PHRASES_LIST_SUCCESSFUL, DELETE_PHRASE_SUCCESSFUL } from '../actions/phraseActions';
 
 const phrasesList = (state = {
   phrases: [],
@@ -9,6 +9,13 @@ const phrasesList = (state = {
       return {
         ...state,
         phrases: action.payload,
+      };
+    case DELETE_PHRASE_SUCCESSFUL:
+      const newPhrases = state.phrases.filter(phrase => action.slug !== phrase._id);
+
+      return {
+        ...state,
+        phrases: newPhrases,
       };
     default:
       return state;

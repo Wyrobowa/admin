@@ -1,113 +1,111 @@
-import {
-  editPageForm,
-  EDIT_PAGE_FORM,
-  sendPageSuccessful,
-  SEND_PAGE_SUCCESSFUL,
-  sendPageUnsuccessful,
-  SEND_PAGE_UNSUCCESSFUL,
-  requestSendPage,
-  REQUEST_SEND_PAGE,
-  getPageSuccessful,
-  GET_PAGE_SUCCESSFUL,
-  getPageUnsuccessful,
-  GET_PAGE_UNSUCCESSFUL,
-  requestGetPage,
-  REQUEST_GET_PAGE,
-  getPagesListSuccessful,
-  GET_PAGES_LIST_SUCCESSFUL,
-  getPagesListUnsuccessful,
-  GET_PAGES_LIST_UNSUCCESSFUL,
-  requestGetPagesList,
-  REQUEST_GET_PAGES_LIST,
-  setPageData,
-  SET_PAGE_DATA,
-  clearPageForm,
-  CLEAR_PAGE_FORM,
-} from '../pageActions';
+import * as pageActions from '../pageActions';
 
 describe('pageActions', () => {
   it('should create an action to editPage form ', () => {
     const expectedAction = {
-      type: EDIT_PAGE_FORM,
+      type: pageActions.EDIT_PAGE_FORM,
     };
-    expect(editPageForm()).toEqual(expectedAction);
+    expect(pageActions.editPageForm()).toEqual(expectedAction);
   });
 
   it('should create an action to sendPageSuccessful', () => {
     const expectedAction = {
-      type: SEND_PAGE_SUCCESSFUL,
+      type: pageActions.SEND_PAGE_SUCCESSFUL,
     };
-    expect(sendPageSuccessful()).toEqual(expectedAction);
+    expect(pageActions.sendPageSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to sendPageUnsuccessful', () => {
     const expectedAction = {
-      type: SEND_PAGE_UNSUCCESSFUL,
+      type: pageActions.SEND_PAGE_UNSUCCESSFUL,
     };
-    expect(sendPageUnsuccessful()).toEqual(expectedAction);
+    expect(pageActions.sendPageUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestSendPage', () => {
     const expectedAction = {
-      type: REQUEST_SEND_PAGE,
+      type: pageActions.REQUEST_SEND_PAGE,
     };
-    expect(requestSendPage()).toEqual(expectedAction);
+    expect(pageActions.requestSendPage()).toEqual(expectedAction);
+  });
+
+  it('should create an action to deletePageSuccessful', () => {
+    const expectedAction = {
+      type: pageActions.DELETE_PAGE_SUCCESSFUL,
+      slug: 'exampleSlug',
+    };
+    expect(pageActions.deletePageSuccessful('exampleSlug')).toEqual(expectedAction);
+  });
+
+  it('should create an action to deletePageUnsuccessful', () => {
+    const expectedAction = {
+      type: pageActions.DELETE_PAGE_UNSUCCESSFUL,
+    };
+    expect(pageActions.deletePageUnsuccessful()).toEqual(expectedAction);
+  });
+
+  it('should create an action to requestDeletePage', () => {
+    const expectedAction = {
+      type: pageActions.REQUEST_DELETE_PAGE,
+      slug: 'exampleSlug',
+    };
+    expect(pageActions.requestDeletePage('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getPageSuccessful', () => {
     const expectedAction = {
-      type: GET_PAGE_SUCCESSFUL,
+      type: pageActions.GET_PAGE_SUCCESSFUL,
     };
-    expect(getPageSuccessful()).toEqual(expectedAction);
+    expect(pageActions.getPageSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getPageUnsuccessful', () => {
     const expectedAction = {
-      type: GET_PAGE_UNSUCCESSFUL,
+      type: pageActions.GET_PAGE_UNSUCCESSFUL,
     };
-    expect(getPageUnsuccessful()).toEqual(expectedAction);
+    expect(pageActions.getPageUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetPage', () => {
     const expectedAction = {
-      type: REQUEST_GET_PAGE,
+      type: pageActions.REQUEST_GET_PAGE,
       slug: 'exampleSlug',
     };
-    expect(requestGetPage('exampleSlug')).toEqual(expectedAction);
+    expect(pageActions.requestGetPage('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getPagesListSuccessful', () => {
     const expectedAction = {
-      type: GET_PAGES_LIST_SUCCESSFUL,
+      type: pageActions.GET_PAGES_LIST_SUCCESSFUL,
     };
-    expect(getPagesListSuccessful()).toEqual(expectedAction);
+    expect(pageActions.getPagesListSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getPagesListUnsuccessful', () => {
     const expectedAction = {
-      type: GET_PAGES_LIST_UNSUCCESSFUL,
+      type: pageActions.GET_PAGES_LIST_UNSUCCESSFUL,
     };
-    expect(getPagesListUnsuccessful()).toEqual(expectedAction);
+    expect(pageActions.getPagesListUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetPagesList', () => {
     const expectedAction = {
-      type: REQUEST_GET_PAGES_LIST,
+      type: pageActions.REQUEST_GET_PAGES_LIST,
     };
-    expect(requestGetPagesList()).toEqual(expectedAction);
+    expect(pageActions.requestGetPagesList()).toEqual(expectedAction);
   });
 
   it('should create an action to setPageData', () => {
     const expectedAction = {
-      type: SET_PAGE_DATA,
+      type: pageActions.SET_PAGE_DATA,
     };
-    expect(setPageData()).toEqual(expectedAction);
+    expect(pageActions.setPageData()).toEqual(expectedAction);
   });
 
   it('should create an action to clearPageForm', () => {
     const expectedAction = {
-      type: CLEAR_PAGE_FORM,
+      type: pageActions.CLEAR_PAGE_FORM,
     };
-    expect(clearPageForm()).toEqual(expectedAction);
+    expect(pageActions.clearPageForm()).toEqual(expectedAction);
   });
 });

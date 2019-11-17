@@ -70,7 +70,7 @@ const Page = ({
         {
           component: Checkbox,
           labelText: 'Page visibility',
-          id: 'visibility',
+          id: 'published',
           description: 'Page visibility',
           props: {
             onChange: handleCheckboxChange,

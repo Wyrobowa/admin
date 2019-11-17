@@ -20,13 +20,13 @@ import FormGenerator from '../../components/formGenerator/FormGenerator';
 import ImagesList from '../../components/imagesList/ImagesList';
 import Image from '../../components/image/Image';
 import Select from '../../components/select/Select';
+import TextField from '../../components/textField/TextField';
 
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
 
 // Services
 import { getData, sendData } from '../../services/requestService/requestService';
-import TextField from '../../components/textField/TextField';
 
 const Apartment = ({
   apartment,

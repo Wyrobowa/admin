@@ -1,7 +1,11 @@
 export const SEND_APARTMENT_SERVICE_SUCCESSFUL = 'SEND_APARTMENT_SERVICE_SUCCESSFUL';
 export const SEND_APARTMENT_SERVICE_UNSUCCESSFUL = 'SEND_APARTMENT_SERVICE_UNSUCCESSFUL';
 
+export const DELETE_APARTMENT_SERVICE_SUCCESSFUL = 'DELETE_APARTMENT_SERVICE_SUCCESSFUL';
+export const DELETE_APARTMENT_SERVICE_UNSUCCESSFUL = 'DELETE_APARTMENT_SERVICE_UNSUCCESSFUL';
+
 export const REQUEST_SEND_APARTMENT_SERVICE = 'REQUEST_SEND_APARTMENT_SERVICE';
+export const REQUEST_DELETE_APARTMENT_SERVICE = 'REQUEST_DELETE_APARTMENT_SERVICE';
 export const REQUEST_GET_APARTMENT_SERVICE = 'REQUEST_GET_APARTMENT_SERVICE';
 export const REQUEST_GET_APARTMENT_SERVICE_LIST = 'REQUEST_GET_APARTMENT_SERVICE_LIST';
 
@@ -25,6 +29,20 @@ export const sendApartmentServiceUnsuccessful = () => ({
 
 export const requestSendApartmentService = () => ({
   type: REQUEST_SEND_APARTMENT_SERVICE,
+});
+
+export const deleteApartmentServiceSuccessful = slug => ({
+  type: DELETE_APARTMENT_SERVICE_SUCCESSFUL,
+  slug,
+});
+
+export const deleteApartmentServiceUnsuccessful = () => ({
+  type: DELETE_APARTMENT_SERVICE_UNSUCCESSFUL,
+});
+
+export const requestDeleteApartmentService = slug => ({
+  type: REQUEST_DELETE_APARTMENT_SERVICE,
+  slug,
 });
 
 export const requestGetApartmentService = slug => ({

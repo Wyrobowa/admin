@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetPhrasesList } from '../../actions/phraseActions';
+import { requestGetPhrasesList, requestDeletePhrase } from '../../actions/phraseActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -17,27 +17,33 @@ import Table from '../../components/table/Table';
 import { getPhrasesListFiltered } from '../../reducers/phrasesListReducer';
 
 // Styles
-import { Heading } from './phrasesListStyles';
+import * as Styled from './phrasesListStyles';
 
 const headers = ['Phrase name'];
 
-const PhrasesList = ({ requestGetPhrasesListAction, phrases }) => {
+const PhrasesList = ({ requestGetPhrasesListAction, requestDeletePhraseAction, phrases }) => {
   useEffect(() => {
     requestGetPhrasesListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeletePhraseAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Phrases list
             </Title>
             <Link to="/phrase">
               <Button model="primary" type="button">Add phrase</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -56,9 +62,10 @@ const PhrasesList = ({ requestGetPhrasesListAction, phrases }) => {
                   {Object.keys(row).map(key => (
                     key === 'id'
                       ? (
-                        <Table.Cell key={row.id + key} textAlign="right">
-                          <Link to={`/phrase/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.id + key} textAlign="right">
+                          <Styled.EditButton to={`/phrase/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.id + key}>
                           {row[key]}
@@ -77,6 +84,7 @@ const PhrasesList = ({ requestGetPhrasesListAction, phrases }) => {
 
 PhrasesList.propTypes = {
   requestGetPhrasesListAction: PropTypes.func.isRequired,
+  requestDeletePhraseAction: PropTypes.func.isRequired,
   phrases: PropTypes.array.isRequired,
 };
 
@@ -88,5 +96,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetPhrasesListAction: requestGetPhrasesList,
+    requestDeletePhraseAction: requestDeletePhrase,
   },
 )(PhrasesList);

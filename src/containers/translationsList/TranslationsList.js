@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetTranslationsList } from '../../actions/translationActions';
+import { requestGetTranslationsList, requestDeleteTranslation } from '../../actions/translationActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -17,27 +17,37 @@ import Table from '../../components/table/Table';
 import { getTranslationsListFiltered } from '../../reducers/translationsListReducer';
 
 // Styles
-import { Heading } from './translationsListStyles';
+import * as Styled from './translationsListStyles';
 
 const headers = ['Translation name'];
 
-const TranslationsList = ({ requestGetTranslationsListAction, translations }) => {
+const TranslationsList = ({
+  requestGetTranslationsListAction,
+  requestDeleteTranslationAction,
+  translations,
+}) => {
   useEffect(() => {
     requestGetTranslationsListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeleteTranslationAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Translations list
             </Title>
             <Link to="/translation">
               <Button model="primary" type="button">Add translation</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -56,9 +66,10 @@ const TranslationsList = ({ requestGetTranslationsListAction, translations }) =>
                   {Object.keys(row).map(key => (
                     key === 'id'
                       ? (
-                        <Table.Cell key={row.id + key} textAlign="right">
-                          <Link to={`/translation/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.id + key} textAlign="right">
+                          <Styled.EditButton to={`/translation/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.id + key}>
                           {row[key]}
@@ -77,6 +88,7 @@ const TranslationsList = ({ requestGetTranslationsListAction, translations }) =>
 
 TranslationsList.propTypes = {
   requestGetTranslationsListAction: PropTypes.func.isRequired,
+  requestDeleteTranslationAction: PropTypes.func.isRequired,
   translations: PropTypes.array.isRequired,
 };
 
@@ -88,5 +100,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetTranslationsListAction: requestGetTranslationsList,
+    requestDeleteTranslationAction: requestDeleteTranslation,
   },
 )(TranslationsList);

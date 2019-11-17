@@ -6,18 +6,7 @@ import {
 } from 'redux-saga/effects';
 
 // Actions
-import {
-  REQUEST_SEND_LOCATION,
-  REQUEST_GET_LOCATION,
-  REQUEST_GET_LOCATIONS_LIST,
-  sendLocationSuccessful,
-  sendLocationUnsuccessful,
-  setLocationData,
-  getLocationSuccessful,
-  getLocationUnsuccessful,
-  getLocationsListSuccessful,
-  getLocationsListUnsuccessful,
-} from '../actions/locationActions';
+import * as locationActions from '../actions/locationActions';
 
 import {
   showLoader,
@@ -28,7 +17,12 @@ import {
 import { getLocation } from '../reducers/locationReducer';
 
 // Services
-import { sendData, getData, updateData } from '../services/requestService/requestService';
+import {
+  sendData,
+  getData,
+  updateData,
+  deleteData,
+} from '../services/requestService/requestService';
 
 import History from '../history';
 
@@ -41,10 +35,21 @@ export function* sendLocation() {
   try {
     yield call(sendMethod, 'location', locationFormData);
 
-    yield put(sendLocationSuccessful());
+    yield put(locationActions.sendLocationSuccessful());
     History.push('/locations-list');
   } catch (error) {
-    yield put(sendLocationUnsuccessful());
+    yield put(locationActions.sendLocationUnsuccessful());
+  }
+}
+
+export function* deleteLocation(action) {
+  try {
+    yield call(deleteData, 'location', action.slug);
+
+    yield put(locationActions.deleteLocationSuccessful(action.slug));
+    History.push('/locations-list');
+  } catch (error) {
+    yield put(locationActions.deleteLocationUnsuccessful());
   }
 }
 
@@ -53,12 +58,12 @@ export function* getLocationData(action) {
     yield put(showLoader());
 
     const locationData = yield call(getData, 'location', `?slug=${action.slug}`);
-    yield put(setLocationData(locationData));
-    yield put(getLocationSuccessful());
+    yield put(locationActions.setLocationData(locationData));
+    yield put(locationActions.getLocationSuccessful());
 
     yield put(hideLoader());
   } catch (error) {
-    yield put(getLocationUnsuccessful(error));
+    yield put(locationActions.getLocationUnsuccessful(error));
     yield put(hideLoader());
   }
 }
@@ -68,23 +73,27 @@ export function* getLocationsList() {
     yield put(showLoader());
 
     const locationsList = yield call(getData, 'locationsList');
-    yield put(getLocationsListSuccessful(locationsList.data));
+    yield put(locationActions.getLocationsListSuccessful(locationsList.data));
 
     yield put(hideLoader());
   } catch {
-    yield put(getLocationsListUnsuccessful());
+    yield put(locationActions.getLocationsListUnsuccessful());
     yield put(hideLoader());
   }
 }
 
 export function* watchSendLocation() {
-  yield takeEvery(REQUEST_SEND_LOCATION, sendLocation);
+  yield takeEvery(locationActions.REQUEST_SEND_LOCATION, sendLocation);
+}
+
+export function* watchDeleteLocation() {
+  yield takeEvery(locationActions.REQUEST_DELETE_LOCATION, deleteLocation);
 }
 
 export function* watchGetLocation() {
-  yield takeEvery(REQUEST_GET_LOCATION, getLocationData);
+  yield takeEvery(locationActions.REQUEST_GET_LOCATION, getLocationData);
 }
 
 export function* watchGetLocationsList() {
-  yield takeEvery(REQUEST_GET_LOCATIONS_LIST, getLocationsList);
+  yield takeEvery(locationActions.REQUEST_GET_LOCATIONS_LIST, getLocationsList);
 }

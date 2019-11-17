@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetApartmentServiceList } from '../../actions/apartmentServiceActions';
+import {
+  requestDeleteApartmentService,
+  requestGetApartmentServiceList,
+} from '../../actions/apartmentServiceActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -18,32 +20,37 @@ import Table from '../../components/table/Table';
 import { getApartmentServiceListFiltered } from '../../reducers/apartmentServiceListReducer';
 
 // Styles
-const Heading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 15px;
-`;
+import * as Styled from './apartmentServiceListStyles';
 
 const headers = ['Service name'];
 
-const ApartmentServiceList = ({ requestGetApartmentServiceListAction, apartmentServices }) => {
+const ApartmentServiceList = ({
+  requestGetApartmentServiceListAction,
+  requestDeleteApartmentServiceAction,
+  apartmentServices,
+}) => {
   useEffect(() => {
     requestGetApartmentServiceListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeleteApartmentServiceAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Apartment Service list
             </Title>
             <Link to="/apartment-service">
               <Button model="primary" type="button">Add apartment service</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -62,9 +69,10 @@ const ApartmentServiceList = ({ requestGetApartmentServiceListAction, apartmentS
                   {Object.keys(row).map(key => (
                     key === 'slug'
                       ? (
-                        <Table.Cell key={row.name + key} textAlign="right">
-                          <Link to={`/apartment-service/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.name + key} textAlign="right">
+                          <Styled.EditButton to={`/apartment-service/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.name + key}>
                           {row[key]}
@@ -83,6 +91,7 @@ const ApartmentServiceList = ({ requestGetApartmentServiceListAction, apartmentS
 
 ApartmentServiceList.propTypes = {
   requestGetApartmentServiceListAction: PropTypes.func.isRequired,
+  requestDeleteApartmentServiceAction: PropTypes.func.isRequired,
   apartmentServices: PropTypes.array.isRequired,
 };
 
@@ -94,5 +103,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetApartmentServiceListAction: requestGetApartmentServiceList,
+    requestDeleteApartmentServiceAction: requestDeleteApartmentService,
   },
 )(ApartmentServiceList);

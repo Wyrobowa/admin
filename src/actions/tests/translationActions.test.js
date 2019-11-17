@@ -1,113 +1,111 @@
-import {
-  editTranslationForm,
-  EDIT_TRANSLATION_FORM,
-  sendTranslationSuccessful,
-  SEND_TRANSLATION_SUCCESSFUL,
-  sendTranslationUnsuccessful,
-  SEND_TRANSLATION_UNSUCCESSFUL,
-  requestSendTranslation,
-  REQUEST_SEND_TRANSLATION,
-  getTranslationSuccessful,
-  GET_TRANSLATION_SUCCESSFUL,
-  getTranslationUnsuccessful,
-  GET_TRANSLATION_UNSUCCESSFUL,
-  requestGetTranslation,
-  REQUEST_GET_TRANSLATION,
-  getTranslationsListSuccessful,
-  GET_TRANSLATIONS_LIST_SUCCESSFUL,
-  getTranslationsListUnsuccessful,
-  GET_TRANSLATIONS_LIST_UNSUCCESSFUL,
-  requestGetTranslationsList,
-  REQUEST_GET_TRANSLATIONS_LIST,
-  setTranslationData,
-  SET_TRANSLATION_DATA,
-  clearTranslationForm,
-  CLEAR_TRANSLATION_FORM,
-} from '../translationActions';
+import * as translationActions from '../translationActions';
 
 describe('translationActions', () => {
   it('should create an action to editTranslation form ', () => {
     const expectedAction = {
-      type: EDIT_TRANSLATION_FORM,
+      type: translationActions.EDIT_TRANSLATION_FORM,
     };
-    expect(editTranslationForm()).toEqual(expectedAction);
+    expect(translationActions.editTranslationForm()).toEqual(expectedAction);
   });
 
   it('should create an action to sendTranslationSuccessful', () => {
     const expectedAction = {
-      type: SEND_TRANSLATION_SUCCESSFUL,
+      type: translationActions.SEND_TRANSLATION_SUCCESSFUL,
     };
-    expect(sendTranslationSuccessful()).toEqual(expectedAction);
+    expect(translationActions.sendTranslationSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to sendTranslationUnsuccessful', () => {
     const expectedAction = {
-      type: SEND_TRANSLATION_UNSUCCESSFUL,
+      type: translationActions.SEND_TRANSLATION_UNSUCCESSFUL,
     };
-    expect(sendTranslationUnsuccessful()).toEqual(expectedAction);
+    expect(translationActions.sendTranslationUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestSendTranslation', () => {
     const expectedAction = {
-      type: REQUEST_SEND_TRANSLATION,
+      type: translationActions.REQUEST_SEND_TRANSLATION,
     };
-    expect(requestSendTranslation()).toEqual(expectedAction);
+    expect(translationActions.requestSendTranslation()).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteTranslationSuccessful', () => {
+    const expectedAction = {
+      type: translationActions.DELETE_TRANSLATION_SUCCESSFUL,
+      slug: 'exampleSlug',
+    };
+    expect(translationActions.deleteTranslationSuccessful('exampleSlug')).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteTranslationUnsuccessful', () => {
+    const expectedAction = {
+      type: translationActions.DELETE_TRANSLATION_UNSUCCESSFUL,
+    };
+    expect(translationActions.deleteTranslationUnsuccessful()).toEqual(expectedAction);
+  });
+
+  it('should create an action to requestDeleteTranslation', () => {
+    const expectedAction = {
+      type: translationActions.REQUEST_DELETE_TRANSLATION,
+      slug: 'exampleSlug',
+    };
+    expect(translationActions.requestDeleteTranslation('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getTranslationSuccessful', () => {
     const expectedAction = {
-      type: GET_TRANSLATION_SUCCESSFUL,
+      type: translationActions.GET_TRANSLATION_SUCCESSFUL,
     };
-    expect(getTranslationSuccessful()).toEqual(expectedAction);
+    expect(translationActions.getTranslationSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getTranslationUnsuccessful', () => {
     const expectedAction = {
-      type: GET_TRANSLATION_UNSUCCESSFUL,
+      type: translationActions.GET_TRANSLATION_UNSUCCESSFUL,
     };
-    expect(getTranslationUnsuccessful()).toEqual(expectedAction);
+    expect(translationActions.getTranslationUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetTranslation', () => {
     const expectedAction = {
-      type: REQUEST_GET_TRANSLATION,
+      type: translationActions.REQUEST_GET_TRANSLATION,
       slug: 'exampleSlug',
     };
-    expect(requestGetTranslation('exampleSlug')).toEqual(expectedAction);
+    expect(translationActions.requestGetTranslation('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getTranslationsListSuccessful', () => {
     const expectedAction = {
-      type: GET_TRANSLATIONS_LIST_SUCCESSFUL,
+      type: translationActions.GET_TRANSLATIONS_LIST_SUCCESSFUL,
     };
-    expect(getTranslationsListSuccessful()).toEqual(expectedAction);
+    expect(translationActions.getTranslationsListSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getTranslationsListUnsuccessful', () => {
     const expectedAction = {
-      type: GET_TRANSLATIONS_LIST_UNSUCCESSFUL,
+      type: translationActions.GET_TRANSLATIONS_LIST_UNSUCCESSFUL,
     };
-    expect(getTranslationsListUnsuccessful()).toEqual(expectedAction);
+    expect(translationActions.getTranslationsListUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetTranslationsList', () => {
     const expectedAction = {
-      type: REQUEST_GET_TRANSLATIONS_LIST,
+      type: translationActions.REQUEST_GET_TRANSLATIONS_LIST,
     };
-    expect(requestGetTranslationsList()).toEqual(expectedAction);
+    expect(translationActions.requestGetTranslationsList()).toEqual(expectedAction);
   });
 
   it('should create an action to setTranslationData', () => {
     const expectedAction = {
-      type: SET_TRANSLATION_DATA,
+      type: translationActions.SET_TRANSLATION_DATA,
     };
-    expect(setTranslationData()).toEqual(expectedAction);
+    expect(translationActions.setTranslationData()).toEqual(expectedAction);
   });
 
   it('should create an action to clearTranslationForm', () => {
     const expectedAction = {
-      type: CLEAR_TRANSLATION_FORM,
+      type: translationActions.CLEAR_TRANSLATION_FORM,
     };
-    expect(clearTranslationForm()).toEqual(expectedAction);
+    expect(translationActions.clearTranslationForm()).toEqual(expectedAction);
   });
 });

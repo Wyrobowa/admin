@@ -1,6 +1,9 @@
 export const SEND_PHRASE_SUCCESSFUL = 'SEND_PHRASE_SUCCESSFUL';
 export const SEND_PHRASE_UNSUCCESSFUL = 'SEND_PHRASE_UNSUCCESSFUL';
 export const REQUEST_SEND_PHRASE = 'REQUEST_SEND_PHRASE';
+export const DELETE_PHRASE_SUCCESSFUL = 'DELETE_PHRASE_SUCCESSFUL';
+export const DELETE_PHRASE_UNSUCCESSFUL = 'DELETE_PHRASE_UNSUCCESSFUL';
+export const REQUEST_DELETE_PHRASE = 'REQUEST_DELETE_PHRASE';
 export const EDIT_PHRASE_FORM = 'EDIT_PHRASE_FORM';
 export const GET_PHRASE_SUCCESSFUL = 'GET_PHRASE_SUCCESSFUL';
 export const GET_PHRASES_LIST_SUCCESSFUL = 'GET_PHRASES_LIST_SUCCESSFUL';
@@ -27,6 +30,20 @@ export const sendPhraseUnsuccessful = () => ({
 
 export const requestSendPhrase = () => ({
   type: REQUEST_SEND_PHRASE,
+});
+
+export const deletePhraseSuccessful = slug => ({
+  type: DELETE_PHRASE_SUCCESSFUL,
+  slug,
+});
+
+export const deletePhraseUnsuccessful = () => ({
+  type: DELETE_PHRASE_UNSUCCESSFUL,
+});
+
+export const requestDeletePhrase = slug => ({
+  type: REQUEST_DELETE_PHRASE,
+  slug,
 });
 
 export const getPhraseSuccessful = payload => ({

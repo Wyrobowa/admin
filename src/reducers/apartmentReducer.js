@@ -69,8 +69,6 @@ const apartment = (state = initialState, action) => {
         [action.field]: action.value,
       };
     case apartmentActions.EDIT_APARTMENT_ADDRESS_FORM:
-      console.log(action.field);
-      console.log(action.value);
       return {
         ...state,
         address: {

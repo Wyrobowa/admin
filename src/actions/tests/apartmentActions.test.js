@@ -1,104 +1,104 @@
-import {
-  editApartmentForm,
-  EDIT_APARTMENT_FORM,
-  sendApartmentSuccessful,
-  SEND_APARTMENT_SUCCESSFUL,
-  sendApartmentUnsuccessful,
-  SEND_APARTMENT_UNSUCCESSFUL,
-  requestSendApartment,
-  REQUEST_SEND_APARTMENT,
-  getApartmentSuccessful,
-  GET_APARTMENT_SUCCESSFUL,
-  getApartmentUnsuccessful,
-  GET_APARTMENT_UNSUCCESSFUL,
-  requestGetApartment,
-  REQUEST_GET_APARTMENT,
-  getApartmentsListSuccessful,
-  GET_APARTMENTS_LIST_SUCCESSFUL,
-  getApartmentsListUnsuccessful,
-  GET_APARTMENTS_LIST_UNSUCCESSFUL,
-  requestGetApartmentsList,
-  REQUEST_GET_APARTMENTS_LIST,
-  clearApartmentForm,
-  CLEAR_APARTMENT_FORM,
-} from '../apartmentActions';
+import * as apartmentActions from '../apartmentActions';
 
 describe('apartmentActions', () => {
   it('should create an action to editApartment form ', () => {
     const expectedAction = {
-      type: EDIT_APARTMENT_FORM,
+      type: apartmentActions.EDIT_APARTMENT_FORM,
     };
-    expect(editApartmentForm()).toEqual(expectedAction);
+    expect(apartmentActions.editApartmentForm()).toEqual(expectedAction);
   });
 
   it('should create an action to sendApartmentSuccessful', () => {
     const expectedAction = {
-      type: SEND_APARTMENT_SUCCESSFUL,
+      type: apartmentActions.SEND_APARTMENT_SUCCESSFUL,
     };
-    expect(sendApartmentSuccessful()).toEqual(expectedAction);
+    expect(apartmentActions.sendApartmentSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to sendApartmentUnsuccessful', () => {
     const expectedAction = {
-      type: SEND_APARTMENT_UNSUCCESSFUL,
+      type: apartmentActions.SEND_APARTMENT_UNSUCCESSFUL,
     };
-    expect(sendApartmentUnsuccessful()).toEqual(expectedAction);
+    expect(apartmentActions.sendApartmentUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestSendApartment', () => {
     const expectedAction = {
-      type: REQUEST_SEND_APARTMENT,
+      type: apartmentActions.REQUEST_SEND_APARTMENT,
     };
-    expect(requestSendApartment()).toEqual(expectedAction);
+    expect(apartmentActions.requestSendApartment()).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteApartmentSuccessful', () => {
+    const expectedAction = {
+      type: apartmentActions.DELETE_APARTMENT_SUCCESSFUL,
+      slug: 'exampleSlug',
+    };
+    expect(apartmentActions.deleteApartmentSuccessful('exampleSlug')).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteApartmentUnsuccessful', () => {
+    const expectedAction = {
+      type: apartmentActions.DELETE_APARTMENT_UNSUCCESSFUL,
+    };
+    expect(apartmentActions.deleteApartmentUnsuccessful()).toEqual(expectedAction);
+  });
+
+  it('should create an action to requestDeleteApartment', () => {
+    const expectedAction = {
+      type: apartmentActions.REQUEST_DELETE_APARTMENT,
+      slug: 'exampleSlug',
+    };
+    expect(apartmentActions.requestDeleteApartment('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getApartmentSuccessful', () => {
     const expectedAction = {
-      type: GET_APARTMENT_SUCCESSFUL,
+      type: apartmentActions.GET_APARTMENT_SUCCESSFUL,
     };
-    expect(getApartmentSuccessful()).toEqual(expectedAction);
+    expect(apartmentActions.getApartmentSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getApartmentUnsuccessful', () => {
     const expectedAction = {
-      type: GET_APARTMENT_UNSUCCESSFUL,
+      type: apartmentActions.GET_APARTMENT_UNSUCCESSFUL,
     };
-    expect(getApartmentUnsuccessful()).toEqual(expectedAction);
+    expect(apartmentActions.getApartmentUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetApartment', () => {
     const expectedAction = {
-      type: REQUEST_GET_APARTMENT,
+      type: apartmentActions.REQUEST_GET_APARTMENT,
       slug: 'exampleSlug',
     };
-    expect(requestGetApartment('exampleSlug')).toEqual(expectedAction);
+    expect(apartmentActions.requestGetApartment('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getApartmentsListSuccessful', () => {
     const expectedAction = {
-      type: GET_APARTMENTS_LIST_SUCCESSFUL,
+      type: apartmentActions.GET_APARTMENTS_LIST_SUCCESSFUL,
     };
-    expect(getApartmentsListSuccessful()).toEqual(expectedAction);
+    expect(apartmentActions.getApartmentsListSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getApartmentsListUnsuccessful', () => {
     const expectedAction = {
-      type: GET_APARTMENTS_LIST_UNSUCCESSFUL,
+      type: apartmentActions.GET_APARTMENTS_LIST_UNSUCCESSFUL,
     };
-    expect(getApartmentsListUnsuccessful()).toEqual(expectedAction);
+    expect(apartmentActions.getApartmentsListUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetApartmentsList', () => {
     const expectedAction = {
-      type: REQUEST_GET_APARTMENTS_LIST,
+      type: apartmentActions.REQUEST_GET_APARTMENTS_LIST,
     };
-    expect(requestGetApartmentsList()).toEqual(expectedAction);
+    expect(apartmentActions.requestGetApartmentsList()).toEqual(expectedAction);
   });
 
   it('should create an action to clearApartmentForm', () => {
     const expectedAction = {
-      type: CLEAR_APARTMENT_FORM,
+      type: apartmentActions.CLEAR_APARTMENT_FORM,
     };
-    expect(clearApartmentForm()).toEqual(expectedAction);
+    expect(apartmentActions.clearApartmentForm()).toEqual(expectedAction);
   });
 });

@@ -28,6 +28,14 @@ const ButtonStyled = styled.button`
       background: var(--cl-secondary-100);
     }
   `};
+  
+  ${({ model }) => model === 'tertiary' && `
+    background: var(--cl-red-60);
+
+    &:hover {
+      background: var(--cl-red-100);
+    }
+  `};
 
   ${({ model }) => model === 'quaternary' && `
     background-color: transparent;

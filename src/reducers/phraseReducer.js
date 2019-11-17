@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   text: '',
-  id: '',
+  _id: '',
 };
 
 const phrase = (state = initialState, action) => {
@@ -43,7 +43,6 @@ const phrase = (state = initialState, action) => {
 
     case CLEAR_PHRASE_FORM:
       return {
-        ...state,
         ...initialState,
       };
     default:

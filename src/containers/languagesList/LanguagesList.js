@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetLanguagesList } from '../../actions/languageActions';
+import { requestDeleteLanguage, requestGetLanguagesList } from '../../actions/languageActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -17,27 +17,37 @@ import Table from '../../components/table/Table';
 import { getLanguagesListFiltered } from '../../reducers/languagesListReducer';
 
 // Styles
-import { Heading } from './languagesListStyles';
+import * as Styled from './languagesListStyles';
 
 const headers = ['Language name'];
 
-const LanguagesList = ({ requestGetLanguagesListAction, languages }) => {
+const LanguagesList = ({
+  requestGetLanguagesListAction,
+  requestDeleteLanguageAction,
+  languages,
+}) => {
   useEffect(() => {
     requestGetLanguagesListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeleteLanguageAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Languages list
             </Title>
             <Link to="/language">
               <Button model="primary" type="button">Add language</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -56,9 +66,10 @@ const LanguagesList = ({ requestGetLanguagesListAction, languages }) => {
                   {Object.keys(row).map(key => (
                     key === 'code'
                       ? (
-                        <Table.Cell key={row.name + key} textAlign="right">
-                          <Link to={`/language/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.name + key} textAlign="right">
+                          <Styled.EditButton to={`/language/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.code}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.name + key}>
                           {row[key]}
@@ -77,6 +88,7 @@ const LanguagesList = ({ requestGetLanguagesListAction, languages }) => {
 
 LanguagesList.propTypes = {
   requestGetLanguagesListAction: PropTypes.func.isRequired,
+  requestDeleteLanguageAction: PropTypes.func.isRequired,
   languages: PropTypes.array.isRequired,
 };
 
@@ -88,5 +100,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetLanguagesListAction: requestGetLanguagesList,
+    requestDeleteLanguageAction: requestDeleteLanguage,
   },
 )(LanguagesList);

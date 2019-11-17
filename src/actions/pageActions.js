@@ -1,6 +1,9 @@
 export const SEND_PAGE_SUCCESSFUL = 'SEND_PAGE_SUCCESSFUL';
 export const SEND_PAGE_UNSUCCESSFUL = 'SEND_PAGE_UNSUCCESSFUL';
 export const REQUEST_SEND_PAGE = 'REQUEST_SEND_PAGE';
+export const DELETE_PAGE_SUCCESSFUL = 'DELETE_PAGE_SUCCESSFUL';
+export const DELETE_PAGE_UNSUCCESSFUL = 'DELETE_PAGE_UNSUCCESSFUL';
+export const REQUEST_DELETE_PAGE = 'REQUEST_DELETE_PAGE';
 export const EDIT_PAGE_FORM = 'EDIT_PAGE_FORM';
 export const GET_PAGE_SUCCESSFUL = 'GET_PAGE_SUCCESSFUL';
 export const GET_PAGES_LIST_SUCCESSFUL = 'GET_PAGES_LIST_SUCCESSFUL';
@@ -27,6 +30,20 @@ export const sendPageUnsuccessful = () => ({
 
 export const requestSendPage = () => ({
   type: REQUEST_SEND_PAGE,
+});
+
+export const deletePageSuccessful = slug => ({
+  type: DELETE_PAGE_SUCCESSFUL,
+  slug,
+});
+
+export const deletePageUnsuccessful = () => ({
+  type: DELETE_PAGE_UNSUCCESSFUL,
+});
+
+export const requestDeletePage = slug => ({
+  type: REQUEST_DELETE_PAGE,
+  slug,
 });
 
 export const getPageSuccessful = () => ({

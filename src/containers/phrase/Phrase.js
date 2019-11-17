@@ -19,9 +19,9 @@ const Phrase = ({
   phrase,
   editPhraseAction,
   requestSendPhraseAction,
-  match,
   requestGetPhraseAction,
   clearPhraseFormAction,
+  match,
 }) => {
   useEffect(() => {
     if (match.params.phraseId) {

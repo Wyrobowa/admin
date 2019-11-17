@@ -1,10 +1,10 @@
 import reducer from '../apartmentsListReducer';
-import { GET_APARTMENTS_LIST_SUCCESSFUL } from '../../actions/apartmentActions';
+import * as apartmentActions from '../../actions/apartmentActions';
 
 describe('apartmentsList reducer', () => {
   it('should handle GET_APARTMENTS_LIST_SUCCESSFUL', () => {
     expect(reducer({}, {
-      type: GET_APARTMENTS_LIST_SUCCESSFUL,
+      type: apartmentActions.GET_APARTMENTS_LIST_SUCCESSFUL,
       payload: [{
         name: 'testApartment',
         yieldApartmentId: '1',

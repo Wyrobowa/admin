@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetLocationsList } from '../../actions/locationActions';
+import { requestGetLocationsList, requestDeleteLocation } from '../../actions/locationActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -17,27 +17,37 @@ import Table from '../../components/table/Table';
 import { getLocationsListFiltered } from '../../reducers/locationsListReducer';
 
 // Styles
-import { Heading } from './locationsListStyles';
+import * as Styled from './locationsListStyles';
 
 const headers = ['Location name'];
 
-const LocationsList = ({ requestGetLocationsListAction, locations }) => {
+const LocationsList = ({
+  requestGetLocationsListAction,
+  requestDeleteLocationAction,
+  locations,
+}) => {
   useEffect(() => {
     requestGetLocationsListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeleteLocationAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Locations list
             </Title>
             <Link to="/location">
               <Button model="primary" type="button">Add location</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -56,9 +66,10 @@ const LocationsList = ({ requestGetLocationsListAction, locations }) => {
                   {Object.keys(row).map(key => (
                     key === 'slug'
                       ? (
-                        <Table.Cell key={row.slug + key} textAlign="right">
-                          <Link to={`/location/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.slug + key} textAlign="right">
+                          <Styled.EditButton to={`/location/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.slug + key}>
                           {row[key]}
@@ -77,6 +88,7 @@ const LocationsList = ({ requestGetLocationsListAction, locations }) => {
 
 LocationsList.propTypes = {
   requestGetLocationsListAction: PropTypes.func.isRequired,
+  requestDeleteLocationAction: PropTypes.func.isRequired,
   locations: PropTypes.array.isRequired,
 };
 
@@ -88,5 +100,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetLocationsListAction: requestGetLocationsList,
+    requestDeleteLocationAction: requestDeleteLocation,
   },
 )(LocationsList);

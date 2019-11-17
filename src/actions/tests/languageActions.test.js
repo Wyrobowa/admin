@@ -1,113 +1,111 @@
-import {
-  editLanguageForm,
-  EDIT_LANGUAGE_FORM,
-  sendLanguageSuccessful,
-  SEND_LANGUAGE_SUCCESSFUL,
-  sendLanguageUnsuccessful,
-  SEND_LANGUAGE_UNSUCCESSFUL,
-  requestSendLanguage,
-  REQUEST_SEND_LANGUAGE,
-  getLanguageSuccessful,
-  GET_LANGUAGE_SUCCESSFUL,
-  getLanguageUnsuccessful,
-  GET_LANGUAGE_UNSUCCESSFUL,
-  requestGetLanguage,
-  REQUEST_GET_LANGUAGE,
-  getLanguagesListSuccessful,
-  GET_LANGUAGES_LIST_SUCCESSFUL,
-  getLanguagesListUnsuccessful,
-  GET_LANGUAGES_LIST_UNSUCCESSFUL,
-  requestGetLanguagesList,
-  REQUEST_GET_LANGUAGES_LIST,
-  setLanguageData,
-  SET_LANGUAGE_DATA,
-  clearLanguageForm,
-  CLEAR_LANGUAGE_FORM,
-} from '../languageActions';
+import * as languageActions from '../languageActions';
 
 describe('languageActions', () => {
   it('should create an action to editLanguage form ', () => {
     const expectedAction = {
-      type: EDIT_LANGUAGE_FORM,
+      type: languageActions.EDIT_LANGUAGE_FORM,
     };
-    expect(editLanguageForm()).toEqual(expectedAction);
+    expect(languageActions.editLanguageForm()).toEqual(expectedAction);
   });
 
   it('should create an action to sendLanguageSuccessful', () => {
     const expectedAction = {
-      type: SEND_LANGUAGE_SUCCESSFUL,
+      type: languageActions.SEND_LANGUAGE_SUCCESSFUL,
     };
-    expect(sendLanguageSuccessful()).toEqual(expectedAction);
+    expect(languageActions.sendLanguageSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to sendLanguageUnsuccessful', () => {
     const expectedAction = {
-      type: SEND_LANGUAGE_UNSUCCESSFUL,
+      type: languageActions.SEND_LANGUAGE_UNSUCCESSFUL,
     };
-    expect(sendLanguageUnsuccessful()).toEqual(expectedAction);
+    expect(languageActions.sendLanguageUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestSendLanguage', () => {
     const expectedAction = {
-      type: REQUEST_SEND_LANGUAGE,
+      type: languageActions.REQUEST_SEND_LANGUAGE,
     };
-    expect(requestSendLanguage()).toEqual(expectedAction);
+    expect(languageActions.requestSendLanguage()).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteLanguageSuccessful', () => {
+    const expectedAction = {
+      type: languageActions.DELETE_LANGUAGE_SUCCESSFUL,
+      slug: 'exampleSlug',
+    };
+    expect(languageActions.deleteLanguageSuccessful('exampleSlug')).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteLanguageUnsuccessful', () => {
+    const expectedAction = {
+      type: languageActions.DELETE_LANGUAGE_UNSUCCESSFUL,
+    };
+    expect(languageActions.deleteLanguageUnsuccessful()).toEqual(expectedAction);
+  });
+
+  it('should create an action to requestDeleteLanguage', () => {
+    const expectedAction = {
+      type: languageActions.REQUEST_DELETE_LANGUAGE,
+      slug: 'exampleSlug',
+    };
+    expect(languageActions.requestDeleteLanguage('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getLanguageSuccessful', () => {
     const expectedAction = {
-      type: GET_LANGUAGE_SUCCESSFUL,
+      type: languageActions.GET_LANGUAGE_SUCCESSFUL,
     };
-    expect(getLanguageSuccessful()).toEqual(expectedAction);
+    expect(languageActions.getLanguageSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getLanguageUnsuccessful', () => {
     const expectedAction = {
-      type: GET_LANGUAGE_UNSUCCESSFUL,
+      type: languageActions.GET_LANGUAGE_UNSUCCESSFUL,
     };
-    expect(getLanguageUnsuccessful()).toEqual(expectedAction);
+    expect(languageActions.getLanguageUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetLanguage', () => {
     const expectedAction = {
-      type: REQUEST_GET_LANGUAGE,
+      type: languageActions.REQUEST_GET_LANGUAGE,
       slug: 'exampleSlug',
     };
-    expect(requestGetLanguage('exampleSlug')).toEqual(expectedAction);
+    expect(languageActions.requestGetLanguage('exampleSlug')).toEqual(expectedAction);
   });
 
   it('should create an action to getLanguagesListSuccessful', () => {
     const expectedAction = {
-      type: GET_LANGUAGES_LIST_SUCCESSFUL,
+      type: languageActions.GET_LANGUAGES_LIST_SUCCESSFUL,
     };
-    expect(getLanguagesListSuccessful()).toEqual(expectedAction);
+    expect(languageActions.getLanguagesListSuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to getLanguagesListUnsuccessful', () => {
     const expectedAction = {
-      type: GET_LANGUAGES_LIST_UNSUCCESSFUL,
+      type: languageActions.GET_LANGUAGES_LIST_UNSUCCESSFUL,
     };
-    expect(getLanguagesListUnsuccessful()).toEqual(expectedAction);
+    expect(languageActions.getLanguagesListUnsuccessful()).toEqual(expectedAction);
   });
 
   it('should create an action to requestGetLanguagesList', () => {
     const expectedAction = {
-      type: REQUEST_GET_LANGUAGES_LIST,
+      type: languageActions.REQUEST_GET_LANGUAGES_LIST,
     };
-    expect(requestGetLanguagesList()).toEqual(expectedAction);
+    expect(languageActions.requestGetLanguagesList()).toEqual(expectedAction);
   });
 
   it('should create an action to setLanguageData', () => {
     const expectedAction = {
-      type: SET_LANGUAGE_DATA,
+      type: languageActions.SET_LANGUAGE_DATA,
     };
-    expect(setLanguageData()).toEqual(expectedAction);
+    expect(languageActions.setLanguageData()).toEqual(expectedAction);
   });
 
   it('should create an action to clearLanguageForm', () => {
     const expectedAction = {
-      type: CLEAR_LANGUAGE_FORM,
+      type: languageActions.CLEAR_LANGUAGE_FORM,
     };
-    expect(clearLanguageForm()).toEqual(expectedAction);
+    expect(languageActions.clearLanguageForm()).toEqual(expectedAction);
   });
 });

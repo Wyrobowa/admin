@@ -6,17 +6,7 @@ import {
 } from 'redux-saga/effects';
 
 // Actions
-import {
-  REQUEST_SEND_PAGE,
-  REQUEST_GET_PAGE,
-  REQUEST_GET_PAGES_LIST,
-  sendPageSuccessful,
-  sendPageUnsuccessful,
-  getPageSuccessful,
-  getPageUnsuccessful,
-  getPagesListSuccessful,
-  getPagesListUnsuccessful,
-} from '../actions/pageActions';
+import * as pageActions from '../actions/pageActions';
 
 // Reducers
 import { getPage } from '../reducers/pageReducer';
@@ -25,7 +15,7 @@ import { getPage } from '../reducers/pageReducer';
 import { getDataSaga } from './sagasHelpers';
 
 // Services
-import { sendData, updateData } from '../services/requestService/requestService';
+import { deleteData, sendData, updateData } from '../services/requestService/requestService';
 
 import History from '../history';
 
@@ -36,31 +26,46 @@ export function* sendPage() {
   const sendMethod = isEdited ? updateData : sendData;
 
   try {
-    yield call(sendMethod, 'adminPage', pageFormData);
+    yield call(sendMethod, 'page', pageFormData);
 
-    yield put(sendPageSuccessful());
+    yield put(pageActions.sendPageSuccessful());
     History.push('/pages-list');
   } catch (error) {
-    yield put(sendPageUnsuccessful());
+    yield put(pageActions.sendPageUnsuccessful());
+  }
+}
+
+export function* deletePage(action) {
+  try {
+    yield call(deleteData, 'page', action.slug);
+
+    yield put(pageActions.deletePageSuccessful(action.slug));
+    History.push('/pages-list');
+  } catch (error) {
+    yield put(pageActions.deletePageUnsuccessful());
   }
 }
 
 export function* watchSendPage() {
-  yield takeEvery(REQUEST_SEND_PAGE, sendPage);
+  yield takeEvery(pageActions.REQUEST_SEND_PAGE, sendPage);
+}
+
+export function* watchDeletePage() {
+  yield takeEvery(pageActions.REQUEST_DELETE_PAGE, deletePage);
 }
 
 export function* watchGetPage() {
-  yield takeEvery(REQUEST_GET_PAGE, getDataSaga(
-    getPageSuccessful,
-    getPageUnsuccessful,
+  yield takeEvery(pageActions.REQUEST_GET_PAGE, getDataSaga(
+    pageActions.getPageSuccessful,
+    pageActions.getPageUnsuccessful,
     'page',
   ));
 }
 
 export function* watchGetPagesList() {
-  yield takeEvery(REQUEST_GET_PAGES_LIST, getDataSaga(
-    getPagesListSuccessful,
-    getPagesListUnsuccessful,
+  yield takeEvery(pageActions.REQUEST_GET_PAGES_LIST, getDataSaga(
+    pageActions.getPagesListSuccessful,
+    pageActions.getPagesListUnsuccessful,
     'pagesList',
   ));
 }

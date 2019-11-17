@@ -6,6 +6,7 @@ import {
 } from '../actions/languageActions';
 
 const initialState = {
+  _id: '',
   name: '',
   code: '',
 };
@@ -34,16 +35,13 @@ const language = (state = initialState, action) => {
         ...state,
         ...action.payload.data,
       };
-
     case GET_LANGUAGE_SUCCESSFUL:
       return {
         ...state,
         ...action.payload,
       };
-
     case CLEAR_LANGUAGE_FORM:
       return {
-        ...state,
         ...initialState,
       };
     default:

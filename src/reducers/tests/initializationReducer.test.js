@@ -1,5 +1,5 @@
 import reducer, { getInitStatus } from '../appInitializationReducer';
-import { INITIALIZATION_SUCCESSFUL, INITIALIZATION_FAILED } from '../../actions/appInitializationActions';
+import * as appInitializationActions from '../../actions/appInitializationActions';
 
 describe('initialization reducer', () => {
   it('should return the initial state', () => {
@@ -10,7 +10,7 @@ describe('initialization reducer', () => {
 
   it('should handle INITIALIZATION_SUCCESSFUL', () => {
     expect(reducer({}, {
-      type: INITIALIZATION_SUCCESSFUL,
+      type: appInitializationActions.INITIALIZATION_SUCCESSFUL,
     })).toEqual({
       initStatus: 'successful',
     });
@@ -18,7 +18,7 @@ describe('initialization reducer', () => {
 
   it('should handle INITIALIZATION_FAILED', () => {
     expect(reducer({}, {
-      type: INITIALIZATION_FAILED,
+      type: appInitializationActions.INITIALIZATION_FAILED,
     })).toEqual({
       initStatus: 'failed',
     });

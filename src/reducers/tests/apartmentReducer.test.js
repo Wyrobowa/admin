@@ -1,5 +1,5 @@
 import reducer from '../apartmentReducer';
-import { EDIT_APARTMENT_FORM, GET_APARTMENT_SUCCESSFUL, CLEAR_APARTMENT_FORM } from '../../actions/apartmentActions';
+import * as apartmentActions from '../../actions/apartmentActions';
 
 const initialState = {
   name: '',
@@ -51,7 +51,7 @@ describe('apartment reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_APARTMENT_FORM,
+      type: apartmentActions.EDIT_APARTMENT_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -67,7 +67,7 @@ describe('apartment reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_APARTMENT_FORM,
+      type: apartmentActions.EDIT_APARTMENT_FORM,
       field: 'attributes.guestsNumber',
       value: '10',
     })).toEqual(changedState);
@@ -80,14 +80,14 @@ describe('apartment reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: GET_APARTMENT_SUCCESSFUL,
+      type: apartmentActions.GET_APARTMENT_SUCCESSFUL,
       payload,
     })).toEqual(payload);
   });
 
   it('should handle CLEAR_APARTMENT_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_APARTMENT_FORM,
+      type: apartmentActions.CLEAR_APARTMENT_FORM,
     })).toEqual(initialState);
   });
 });

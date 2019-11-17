@@ -1,5 +1,5 @@
 import reducer from '../locationReducer';
-import { EDIT_LOCATION_FORM, SET_LOCATION_DATA, CLEAR_LOCATION_FORM } from '../../actions/locationActions';
+import * as locationActions from '../../actions/locationActions';
 
 const initialState = {
   name: '',
@@ -22,7 +22,7 @@ describe('location reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_LOCATION_FORM,
+      type: locationActions.EDIT_LOCATION_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -38,7 +38,7 @@ describe('location reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_LOCATION_FORM,
+      type: locationActions.EDIT_LOCATION_FORM,
       field: 'attributes.additionalAttribute',
       value: '10',
     })).toEqual(changedState);
@@ -58,14 +58,14 @@ describe('location reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: SET_LOCATION_DATA,
+      type: locationActions.SET_LOCATION_DATA,
       payload,
     })).toEqual(changedState);
   });
 
   it('should handle CLEAR_LOCATION_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_LOCATION_FORM,
+      type: locationActions.CLEAR_LOCATION_FORM,
     })).toEqual(initialState);
   });
 });

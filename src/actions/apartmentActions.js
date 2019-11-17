@@ -1,6 +1,9 @@
 export const SEND_APARTMENT_SUCCESSFUL = 'SEND_APARTMENT_SUCCESSFUL';
 export const SEND_APARTMENT_UNSUCCESSFUL = 'SEND_APARTMENT_UNSUCCESSFUL';
 export const REQUEST_SEND_APARTMENT = 'REQUEST_SEND_APARTMENT';
+export const DELETE_APARTMENT_SUCCESSFUL = 'DELETE_APARTMENT_SUCCESSFUL';
+export const DELETE_APARTMENT_UNSUCCESSFUL = 'DELETE_APARTMENT_UNSUCCESSFUL';
+export const REQUEST_DELETE_APARTMENT = 'REQUEST_DELETE_APARTMENT';
 export const EDIT_APARTMENT_FORM = 'EDIT_APARTMENT_FORM';
 export const EDIT_APARTMENT_ADDRESS_FORM = 'EDIT_APARTMENT_ADDRESS_FORM';
 export const GET_APARTMENT_SUCCESSFUL = 'GET_APARTMENT_SUCCESSFUL';
@@ -33,6 +36,20 @@ export const sendApartmentUnsuccessful = () => ({
 
 export const requestSendApartment = () => ({
   type: REQUEST_SEND_APARTMENT,
+});
+
+export const deleteApartmentSuccessful = slug => ({
+  type: DELETE_APARTMENT_SUCCESSFUL,
+  slug,
+});
+
+export const deleteApartmentUnsuccessful = () => ({
+  type: DELETE_APARTMENT_UNSUCCESSFUL,
+});
+
+export const requestDeleteApartment = slug => ({
+  type: REQUEST_DELETE_APARTMENT,
+  slug,
 });
 
 export const getApartmentSuccessful = payload => ({

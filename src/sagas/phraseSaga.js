@@ -6,17 +6,7 @@ import {
 } from 'redux-saga/effects';
 
 // Actions
-import {
-  REQUEST_SEND_PHRASE,
-  REQUEST_GET_PHRASE,
-  REQUEST_GET_PHRASES_LIST,
-  sendPhraseSuccessful,
-  sendPhraseUnsuccessful,
-  getPhraseSuccessful,
-  getPhraseUnsuccessful,
-  getPhrasesListSuccessful,
-  getPhrasesListUnsuccessful,
-} from '../actions/phraseActions';
+import * as phraseActions from '../actions/phraseActions';
 
 // Reducers
 import { getPhrase } from '../reducers/phraseReducer';
@@ -25,7 +15,7 @@ import { getPhrase } from '../reducers/phraseReducer';
 import { getDataSaga } from './sagasHelpers';
 
 // Services
-import { sendData, updateData } from '../services/requestService/requestService';
+import { deleteData, sendData, updateData } from '../services/requestService/requestService';
 
 import History from '../history';
 
@@ -38,30 +28,45 @@ export function* sendPhrase() {
   try {
     yield call(sendMethod, 'phrase', phraseFormData);
 
-    yield put(sendPhraseSuccessful());
+    yield put(phraseActions.sendPhraseSuccessful());
     History.push('/phrases-list');
   } catch (error) {
-    yield put(sendPhraseUnsuccessful());
+    yield put(phraseActions.sendPhraseUnsuccessful());
+  }
+}
+
+export function* deletePhrase(action) {
+  try {
+    yield call(deleteData, 'phrase', action.slug);
+
+    yield put(phraseActions.deletePhraseSuccessful(action.slug));
+    History.push('/phrases-list');
+  } catch (error) {
+    yield put(phraseActions.deletePhraseUnsuccessful());
   }
 }
 
 export function* watchSendPhrase() {
-  yield takeEvery(REQUEST_SEND_PHRASE, sendPhrase);
+  yield takeEvery(phraseActions.REQUEST_SEND_PHRASE, sendPhrase);
+}
+
+export function* watchDeletePhrase() {
+  yield takeEvery(phraseActions.REQUEST_DELETE_PHRASE, deletePhrase);
 }
 
 export function* watchGetPhrase() {
-  yield takeEvery(REQUEST_GET_PHRASE, getDataSaga(
-    getPhraseSuccessful,
-    getPhraseUnsuccessful,
+  yield takeEvery(phraseActions.REQUEST_GET_PHRASE, getDataSaga(
+    phraseActions.getPhraseSuccessful,
+    phraseActions.getPhraseUnsuccessful,
     'phrase',
     'id',
   ));
 }
 
 export function* watchGetPhrasesList() {
-  yield takeEvery(REQUEST_GET_PHRASES_LIST, getDataSaga(
-    getPhrasesListSuccessful,
-    getPhrasesListUnsuccessful,
+  yield takeEvery(phraseActions.REQUEST_GET_PHRASES_LIST, getDataSaga(
+    phraseActions.getPhrasesListSuccessful,
+    phraseActions.getPhrasesListUnsuccessful,
     'phrasesList',
   ));
 }

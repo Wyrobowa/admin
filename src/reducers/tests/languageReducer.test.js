@@ -1,7 +1,8 @@
 import reducer from '../languageReducer';
-import { EDIT_LANGUAGE_FORM, SET_LANGUAGE_DATA, CLEAR_LANGUAGE_FORM } from '../../actions/languageActions';
+import * as languageActions from '../../actions/languageActions';
 
 const initialState = {
+  _id: '',
   name: '',
   code: '',
 };
@@ -18,7 +19,7 @@ describe('language reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_LANGUAGE_FORM,
+      type: languageActions.EDIT_LANGUAGE_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -34,7 +35,7 @@ describe('language reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_LANGUAGE_FORM,
+      type: languageActions.EDIT_LANGUAGE_FORM,
       field: 'attributes.additionalAttribute',
       value: '10',
     })).toEqual(changedState);
@@ -54,14 +55,14 @@ describe('language reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: SET_LANGUAGE_DATA,
+      type: languageActions.SET_LANGUAGE_DATA,
       payload,
     })).toEqual(changedState);
   });
 
   it('should handle CLEAR_LANGUAGE_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_LANGUAGE_FORM,
+      type: languageActions.CLEAR_LANGUAGE_FORM,
     })).toEqual(initialState);
   });
 });

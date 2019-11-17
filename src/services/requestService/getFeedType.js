@@ -27,19 +27,13 @@ const getFeedType = (feedType) => {
 
     case 'apartment':
       feedTarget = {
-        target: '/apartment',
+        target: '/admin/apartment',
       };
       break;
 
     case 'apartmentsList':
       feedTarget = {
-        target: '/apartments-list',
-      };
-      break;
-
-    case 'adminApartment':
-      feedTarget = {
-        target: '/admin/apartment',
+        target: '/admin/apartments-list',
       };
       break;
 

@@ -9,6 +9,7 @@ const initialState = {
   text: '',
   language: '',
   phrase: '',
+  _id: '',
 };
 
 const translation = (state = initialState, action) => {
@@ -44,7 +45,6 @@ const translation = (state = initialState, action) => {
 
     case CLEAR_TRANSLATION_FORM:
       return {
-        ...state,
         ...initialState,
       };
     default:

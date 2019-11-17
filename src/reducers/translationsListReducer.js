@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { GET_TRANSLATIONS_LIST_SUCCESSFUL } from '../actions/translationActions';
+import { GET_TRANSLATIONS_LIST_SUCCESSFUL, DELETE_TRANSLATION_SUCCESSFUL } from '../actions/translationActions';
 
 const translationsList = (state = {
   translations: [],
@@ -9,6 +9,15 @@ const translationsList = (state = {
       return {
         ...state,
         translations: action.payload,
+      };
+    case DELETE_TRANSLATION_SUCCESSFUL:
+      const newTranslations = state.translations.filter(
+        translation => action.slug !== translation._id,
+      );
+
+      return {
+        ...state,
+        translations: newTranslations,
       };
     default:
       return state;

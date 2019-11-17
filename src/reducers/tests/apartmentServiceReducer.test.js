@@ -1,7 +1,5 @@
 import reducer from '../apartmentServiceReducer';
-import {
-  EDIT_APARTMENT_SERVICE_FORM, GET_APARTMENT_SERVICE_SUCCESSFUL, CLEAR_APARTMENT_SERVICE_FORM,
-} from '../../actions/apartmentServiceActions';
+import * as apartmentServiceActions from '../../actions/apartmentServiceActions';
 
 const initialState = {
   name: '',
@@ -26,7 +24,7 @@ describe('apartment service reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_APARTMENT_SERVICE_FORM,
+      type: apartmentServiceActions.EDIT_APARTMENT_SERVICE_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -42,7 +40,7 @@ describe('apartment service reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_APARTMENT_SERVICE_FORM,
+      type: apartmentServiceActions.EDIT_APARTMENT_SERVICE_FORM,
       field: 'nested.nestedProperty',
       value: '10',
     })).toEqual(changedState);
@@ -60,14 +58,14 @@ describe('apartment service reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: GET_APARTMENT_SERVICE_SUCCESSFUL,
+      type: apartmentServiceActions.GET_APARTMENT_SERVICE_SUCCESSFUL,
       payload,
     })).toEqual(changedState);
   });
 
   it('should handle CLEAR_APARTMENT_SERVICE_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_APARTMENT_SERVICE_FORM,
+      type: apartmentServiceActions.CLEAR_APARTMENT_SERVICE_FORM,
     })).toEqual(initialState);
   });
 });

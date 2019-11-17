@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { GET_PAGES_LIST_SUCCESSFUL } from '../actions/pageActions';
+import { GET_PAGES_LIST_SUCCESSFUL, DELETE_PAGE_SUCCESSFUL } from '../actions/pageActions';
 
 const pagesList = (state = {
   pages: [],
@@ -9,6 +9,13 @@ const pagesList = (state = {
       return {
         ...state,
         pages: action.payload,
+      };
+    case DELETE_PAGE_SUCCESSFUL:
+      const newPages = state.pages.filter(page => action.slug !== page.slug);
+
+      return {
+        ...state,
+        pages: newPages,
       };
     default:
       return state;

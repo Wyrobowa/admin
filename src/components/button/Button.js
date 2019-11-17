@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { ButtonStyled } from './buttonStyles';
 
 const Button = ({
-  children, isDisabled, onClick, model, type,
+  children, isDisabled, onClick, model, type, ...rest
 }) => (
   // eslint-disable-next-line react/button-has-type
   <ButtonStyled
@@ -13,13 +13,14 @@ const Button = ({
     model={model}
     type={type || 'button'}
     disabled={isDisabled}
+    {...rest}
   >
     {children}
   </ButtonStyled>
 );
 
 Button.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   model: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'quaternary']).isRequired,

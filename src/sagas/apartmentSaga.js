@@ -6,17 +6,7 @@ import {
 } from 'redux-saga/effects';
 
 // Actions
-import {
-  REQUEST_SEND_APARTMENT,
-  REQUEST_GET_APARTMENT,
-  REQUEST_GET_APARTMENTS_LIST,
-  sendApartmentSuccessful,
-  sendApartmentUnsuccessful,
-  getApartmentSuccessful,
-  getApartmentUnsuccessful,
-  getApartmentsListSuccessful,
-  getApartmentsListUnsuccessful,
-} from '../actions/apartmentActions';
+import * as apartmentActions from '../actions/apartmentActions';
 
 // SagasHelpers
 import { getDataSaga } from './sagasHelpers';
@@ -25,7 +15,7 @@ import { getDataSaga } from './sagasHelpers';
 import { getApartment } from '../reducers/apartmentReducer';
 
 // Services
-import { sendData, updateData } from '../services/requestService/requestService';
+import { sendData, updateData, deleteData } from '../services/requestService/requestService';
 
 import History from '../history';
 
@@ -36,31 +26,46 @@ export function* sendApartment() {
   const sendMethod = isEdited ? updateData : sendData;
 
   try {
-    yield call(sendMethod, 'adminApartment', apartmentFormData);
+    yield call(sendMethod, 'apartment', apartmentFormData);
 
-    yield put(sendApartmentSuccessful());
+    yield put(apartmentActions.sendApartmentSuccessful());
     History.push('/apartments-list');
   } catch (error) {
-    yield put(sendApartmentUnsuccessful());
+    yield put(apartmentActions.sendApartmentUnsuccessful());
+  }
+}
+
+export function* deleteApartment(action) {
+  try {
+    yield call(deleteData, 'apartment', action.slug);
+
+    yield put(apartmentActions.deleteApartmentSuccessful(action.slug));
+    History.push('/apartments-list');
+  } catch (error) {
+    yield put(apartmentActions.deleteApartmentUnsuccessful());
   }
 }
 
 export function* watchSendApartment() {
-  yield takeEvery(REQUEST_SEND_APARTMENT, sendApartment);
+  yield takeEvery(apartmentActions.REQUEST_SEND_APARTMENT, sendApartment);
+}
+
+export function* watchDeleteApartment() {
+  yield takeEvery(apartmentActions.REQUEST_DELETE_APARTMENT, deleteApartment);
 }
 
 export function* watchGetApartment() {
-  yield takeEvery(REQUEST_GET_APARTMENT, getDataSaga(
-    getApartmentSuccessful,
-    getApartmentUnsuccessful,
+  yield takeEvery(apartmentActions.REQUEST_GET_APARTMENT, getDataSaga(
+    apartmentActions.getApartmentSuccessful,
+    apartmentActions.getApartmentUnsuccessful,
     'apartment',
   ));
 }
 
 export function* watchGetApartmentsList() {
-  yield takeEvery(REQUEST_GET_APARTMENTS_LIST, getDataSaga(
-    getApartmentsListSuccessful,
-    getApartmentsListUnsuccessful,
+  yield takeEvery(apartmentActions.REQUEST_GET_APARTMENTS_LIST, getDataSaga(
+    apartmentActions.getApartmentsListSuccessful,
+    apartmentActions.getApartmentsListUnsuccessful,
     'apartmentsList',
   ));
 }

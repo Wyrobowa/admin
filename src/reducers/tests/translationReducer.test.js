@@ -1,10 +1,11 @@
 import reducer from '../translationReducer';
-import { EDIT_TRANSLATION_FORM, SET_TRANSLATION_DATA, CLEAR_TRANSLATION_FORM } from '../../actions/translationActions';
+import * as translationActions from '../../actions/translationActions';
 
 const initialState = {
   text: '',
   language: '',
   phrase: '',
+  _id: '',
 };
 
 describe('translation reducer', () => {
@@ -19,7 +20,7 @@ describe('translation reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_TRANSLATION_FORM,
+      type: translationActions.EDIT_TRANSLATION_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -35,7 +36,7 @@ describe('translation reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_TRANSLATION_FORM,
+      type: translationActions.EDIT_TRANSLATION_FORM,
       field: 'attributes.additionalAttribute',
       value: '10',
     })).toEqual(changedState);
@@ -55,14 +56,14 @@ describe('translation reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: SET_TRANSLATION_DATA,
+      type: translationActions.SET_TRANSLATION_DATA,
       payload,
     })).toEqual(changedState);
   });
 
   it('should handle CLEAR_TRANSLATION_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_TRANSLATION_FORM,
+      type: translationActions.CLEAR_TRANSLATION_FORM,
     })).toEqual(initialState);
   });
 });

@@ -1,5 +1,5 @@
 import reducer from '../apartmentServiceListReducer';
-import { GET_APARTMENT_SERVICE_LIST_SUCCESSFUL } from '../../actions/apartmentServiceActions';
+import * as apartmentServiceActions from '../../actions/apartmentServiceActions';
 
 const initialState = {
   apartmentServices: [],
@@ -27,7 +27,7 @@ describe('apartment service list reducer', () => {
     ];
 
     expect(reducer(initialState, {
-      type: GET_APARTMENT_SERVICE_LIST_SUCCESSFUL,
+      type: apartmentServiceActions.GET_APARTMENT_SERVICE_LIST_SUCCESSFUL,
       payload,
     })).toEqual(changedState);
   });

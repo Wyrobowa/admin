@@ -3,7 +3,7 @@ import { EDIT_PAGE_FORM, SET_PAGE_DATA, CLEAR_PAGE_FORM } from '../actions/pageA
 const initialState = {
   name: '',
   text: '',
-  visibility: true,
+  published: false,
 };
 
 const page = (state = initialState, action) => {
@@ -32,7 +32,6 @@ const page = (state = initialState, action) => {
       };
     case CLEAR_PAGE_FORM:
       return {
-        ...state,
         ...initialState,
       };
     default:

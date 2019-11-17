@@ -2,42 +2,52 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit } from 'react-icons/md';
+import { MdModeEdit, MdBlock } from 'react-icons/md';
 
 // Actions
-import { requestGetApartmentsList } from '../../actions/apartmentActions';
+import { requestGetApartmentsList, requestDeleteApartment } from '../../actions/apartmentActions';
 
 // Components
 import Button from '../../components/button/Button';
-import Title from '../../components/title/Title';
 import Skeleton from '../../components/skeleton/Skeleton';
+import Title from '../../components/title/Title';
 import Table from '../../components/table/Table';
 
 // Reducers
 import { getApartmentsListFiltered } from '../../reducers/apartmentsListReducer';
 
 // Styles
-import { Heading } from './apartmentsListStyles';
+import * as Styled from './apartmentsListStyles';
 
 const headers = ['Apartment name'];
 
-const ApartmentsList = ({ requestGetApartmentsListAction, apartments }) => {
+const ApartmentsList = ({
+  requestGetApartmentsListAction,
+  requestDeleteApartmentAction,
+  apartments,
+}) => {
   useEffect(() => {
     requestGetApartmentsListAction();
   }, []);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+
+    requestDeleteApartmentAction(event.currentTarget.getAttribute('data-slug'));
+  };
 
   return (
     <section>
       <Skeleton>
         <Skeleton.Item type="row-top">
-          <Heading>
+          <Styled.Heading>
             <Title heading="h2" type="secondary">
               Apartments list
             </Title>
             <Link to="/apartment">
               <Button model="primary" type="button">Add apartment</Button>
             </Link>
-          </Heading>
+          </Styled.Heading>
         </Skeleton.Item>
         <Skeleton.Item type="content">
           <Table>
@@ -56,9 +66,10 @@ const ApartmentsList = ({ requestGetApartmentsListAction, apartments }) => {
                   {Object.keys(row).map(key => (
                     key === 'slug'
                       ? (
-                        <Table.Cell key={row.name + key} textAlign="right">
-                          <Link to={`/apartment/${row[key]}`}><MdModeEdit /></Link>
-                        </Table.Cell>
+                        <Styled.Cell key={row.name + key} textAlign="right">
+                          <Styled.EditButton to={`/apartment/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdBlock /></Styled.DeleteButton>
+                        </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.name + key}>
                           {row[key]}
@@ -77,6 +88,7 @@ const ApartmentsList = ({ requestGetApartmentsListAction, apartments }) => {
 
 ApartmentsList.propTypes = {
   requestGetApartmentsListAction: PropTypes.func.isRequired,
+  requestDeleteApartmentAction: PropTypes.func.isRequired,
   apartments: PropTypes.array.isRequired,
 };
 
@@ -88,5 +100,6 @@ export default connect(
   mapStateToProps,
   {
     requestGetApartmentsListAction: requestGetApartmentsList,
+    requestDeleteApartmentAction: requestDeleteApartment,
   },
 )(ApartmentsList);

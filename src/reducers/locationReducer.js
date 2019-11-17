@@ -36,7 +36,6 @@ const location = (state = initialState, action) => {
       };
     case CLEAR_LOCATION_FORM:
       return {
-        ...state,
         ...initialState,
       };
     default:

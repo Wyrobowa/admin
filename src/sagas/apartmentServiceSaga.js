@@ -6,17 +6,7 @@ import {
 } from 'redux-saga/effects';
 
 // Actions
-import {
-  REQUEST_GET_APARTMENT_SERVICE,
-  REQUEST_GET_APARTMENT_SERVICE_LIST,
-  REQUEST_SEND_APARTMENT_SERVICE,
-  sendApartmentServiceSuccessful,
-  sendApartmentServiceUnsuccessful,
-  getApartmentServiceSuccessful,
-  getApartmentServiceUnsuccessful,
-  getApartmentServiceListSuccessful,
-  getApartmentServiceListUnsuccessful,
-} from '../actions/apartmentServiceActions';
+import * as apartmentServicesActions from '../actions/apartmentServiceActions';
 
 // SagasHelpers
 import { getDataSaga } from './sagasHelpers';
@@ -25,7 +15,7 @@ import { getDataSaga } from './sagasHelpers';
 import { getApartmentService } from '../reducers/apartmentServiceReducer';
 
 // Services
-import { sendData, updateData } from '../services/requestService/requestService';
+import { deleteData, sendData, updateData } from '../services/requestService/requestService';
 
 import History from '../history';
 
@@ -38,29 +28,47 @@ export function* sendApartmentService() {
   try {
     yield call(sendMethod, 'adminApartmentService', apartmentFormData);
 
-    yield put(sendApartmentServiceSuccessful());
+    yield put(apartmentServicesActions.sendApartmentServiceSuccessful());
     History.push('/apartment-service-list');
   } catch (error) {
-    yield put(sendApartmentServiceUnsuccessful());
+    yield put(apartmentServicesActions.sendApartmentServiceUnsuccessful());
+  }
+}
+
+export function* deleteApartmentService(action) {
+  try {
+    yield call(deleteData, 'adminApartmentService', action.slug);
+
+    yield put(apartmentServicesActions.deleteApartmentServiceSuccessful(action.slug));
+    History.push('/apartment-service-list');
+  } catch (error) {
+    yield put(apartmentServicesActions.deleteApartmentServiceUnsuccessful());
   }
 }
 
 export function* watchSendApartmentService() {
-  yield takeEvery(REQUEST_SEND_APARTMENT_SERVICE, sendApartmentService);
+  yield takeEvery(apartmentServicesActions.REQUEST_SEND_APARTMENT_SERVICE, sendApartmentService);
+}
+
+export function* watchDeleteApartmentService() {
+  yield takeEvery(
+    apartmentServicesActions.REQUEST_DELETE_APARTMENT_SERVICE,
+    deleteApartmentService,
+  );
 }
 
 export function* watchGetApartmentService() {
-  yield takeEvery(REQUEST_GET_APARTMENT_SERVICE, getDataSaga(
-    getApartmentServiceSuccessful,
-    getApartmentServiceUnsuccessful,
+  yield takeEvery(apartmentServicesActions.REQUEST_GET_APARTMENT_SERVICE, getDataSaga(
+    apartmentServicesActions.getApartmentServiceSuccessful,
+    apartmentServicesActions.getApartmentServiceUnsuccessful,
     'adminApartmentService',
   ));
 }
 
 export function* watchGetApartmentServiceList() {
-  yield takeEvery(REQUEST_GET_APARTMENT_SERVICE_LIST, getDataSaga(
-    getApartmentServiceListSuccessful,
-    getApartmentServiceListUnsuccessful,
+  yield takeEvery(apartmentServicesActions.REQUEST_GET_APARTMENT_SERVICE_LIST, getDataSaga(
+    apartmentServicesActions.getApartmentServiceListSuccessful,
+    apartmentServicesActions.getApartmentServiceListUnsuccessful,
     'adminApartmentServiceList',
   ));
 }

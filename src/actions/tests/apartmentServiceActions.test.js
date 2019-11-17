@@ -29,6 +29,29 @@ describe('apartmentServiceActions', () => {
     expect(apartmentServiceActions.requestSendApartmentService()).toEqual(expectedAction);
   });
 
+  it('should create an action to deleteApartmentServiceSuccessful', () => {
+    const expectedAction = {
+      type: apartmentServiceActions.DELETE_APARTMENT_SERVICE_SUCCESSFUL,
+      slug: 'exampleSlug',
+    };
+    expect(apartmentServiceActions.deleteApartmentServiceSuccessful('exampleSlug')).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteApartmentServiceUnsuccessful', () => {
+    const expectedAction = {
+      type: apartmentServiceActions.DELETE_APARTMENT_SERVICE_UNSUCCESSFUL,
+    };
+    expect(apartmentServiceActions.deleteApartmentServiceUnsuccessful()).toEqual(expectedAction);
+  });
+
+  it('should create an action to requestDeleteApartmentService', () => {
+    const expectedAction = {
+      type: apartmentServiceActions.REQUEST_DELETE_APARTMENT_SERVICE,
+      slug: 'exampleSlug',
+    };
+    expect(apartmentServiceActions.requestDeleteApartmentService('exampleSlug')).toEqual(expectedAction);
+  });
+
   it('should create an action to getApartmentServiceSuccessful', () => {
     const expectedAction = {
       type: apartmentServiceActions.GET_APARTMENT_SERVICE_SUCCESSFUL,

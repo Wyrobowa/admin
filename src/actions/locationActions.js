@@ -1,6 +1,9 @@
 export const SEND_LOCATION_SUCCESSFUL = 'SEND_LOCATION_SUCCESSFUL';
 export const SEND_LOCATION_UNSUCCESSFUL = 'SEND_LOCATION_UNSUCCESSFUL';
 export const REQUEST_SEND_LOCATION = 'REQUEST_SEND_LOCATION';
+export const DELETE_LOCATION_SUCCESSFUL = 'DELETE_LOCATION_SUCCESSFUL';
+export const DELETE_LOCATION_UNSUCCESSFUL = 'DELETE_LOCATION_UNSUCCESSFUL';
+export const REQUEST_DELETE_LOCATION = 'REQUEST_DELETE_LOCATION';
 export const EDIT_LOCATION_FORM = 'EDIT_LOCATION_FORM';
 export const GET_LOCATION_SUCCESSFUL = 'GET_LOCATION_SUCCESSFUL';
 export const GET_LOCATIONS_LIST_SUCCESSFUL = 'GET_LOCATIONS_LIST_SUCCESSFUL';
@@ -27,6 +30,20 @@ export const sendLocationUnsuccessful = () => ({
 
 export const requestSendLocation = () => ({
   type: REQUEST_SEND_LOCATION,
+});
+
+export const deleteLocationSuccessful = slug => ({
+  type: DELETE_LOCATION_SUCCESSFUL,
+  slug,
+});
+
+export const deleteLocationUnsuccessful = () => ({
+  type: DELETE_LOCATION_UNSUCCESSFUL,
+});
+
+export const requestDeleteLocation = slug => ({
+  type: REQUEST_DELETE_LOCATION,
+  slug,
 });
 
 export const getLocationSuccessful = () => ({

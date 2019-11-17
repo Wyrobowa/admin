@@ -100,3 +100,17 @@ export const updateData = async (feedType, data, additionalQuery = '') => {
 
   return requester(feedUrl, 'PUT', data);
 };
+
+/**
+ * Delete data, based on passed id in argument
+ * @async
+ * @param {string} feedType
+ * @param {string} slug
+ * @param {string=} additionalQuery
+ * @return {Promise<object>}
+ */
+export const deleteData = async (feedType, slug, additionalQuery = '') => {
+  const feedUrl = buildFeedUrl(feedType, additionalQuery);
+
+  return requester(feedUrl, 'DELETE', { slug });
+};

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { GET_LANGUAGES_LIST_SUCCESSFUL } from '../actions/languageActions';
+import { GET_LANGUAGES_LIST_SUCCESSFUL, DELETE_LANGUAGE_SUCCESSFUL } from '../actions/languageActions';
 
 const languagesList = (state = {
   languages: [],
@@ -9,6 +9,13 @@ const languagesList = (state = {
       return {
         ...state,
         languages: action.payload,
+      };
+    case DELETE_LANGUAGE_SUCCESSFUL:
+      const newLanguages = state.languages.filter(language => action.slug !== language.code);
+
+      return {
+        ...state,
+        languages: newLanguages,
       };
     default:
       return state;

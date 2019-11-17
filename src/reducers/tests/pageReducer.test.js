@@ -1,10 +1,10 @@
 import reducer from '../pageReducer';
-import { EDIT_PAGE_FORM, SET_PAGE_DATA, CLEAR_PAGE_FORM } from '../../actions/pageActions';
+import * as pageActions from '../../actions/pageActions';
 
 const initialState = {
   name: '',
   text: '',
-  visibility: true,
+  published: false,
 };
 
 describe('page reducer', () => {
@@ -19,7 +19,7 @@ describe('page reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_PAGE_FORM,
+      type: pageActions.EDIT_PAGE_FORM,
       field: 'name',
       value: 'testValue',
     })).toEqual(changedState);
@@ -35,7 +35,7 @@ describe('page reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: EDIT_PAGE_FORM,
+      type: pageActions.EDIT_PAGE_FORM,
       field: 'attributes.additionalAttribute',
       value: '10',
     })).toEqual(changedState);
@@ -55,14 +55,14 @@ describe('page reducer', () => {
     };
 
     expect(reducer(initialState, {
-      type: SET_PAGE_DATA,
+      type: pageActions.SET_PAGE_DATA,
       payload,
     })).toEqual(changedState);
   });
 
   it('should handle CLEAR_PAGE_FORM', () => {
     expect(reducer(initialState, {
-      type: CLEAR_PAGE_FORM,
+      type: pageActions.CLEAR_PAGE_FORM,
     })).toEqual(initialState);
   });
 });

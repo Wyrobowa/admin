@@ -37,7 +37,6 @@ const apartmentService = (state = initialState, action) => {
       };
     case CLEAR_APARTMENT_SERVICE_FORM:
       return {
-        ...state,
         ...initialState,
       };
     default:

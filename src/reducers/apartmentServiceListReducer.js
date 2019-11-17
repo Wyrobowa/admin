@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { GET_APARTMENT_SERVICE_LIST_SUCCESSFUL } from '../actions/apartmentServiceActions';
+import { GET_APARTMENT_SERVICE_LIST_SUCCESSFUL, DELETE_APARTMENT_SERVICE_SUCCESSFUL } from '../actions/apartmentServiceActions';
 
 const apartmentServiceList = (state = {
   apartmentServices: [],
@@ -9,6 +9,15 @@ const apartmentServiceList = (state = {
       return {
         ...state,
         apartmentServices: action.payload,
+      };
+    case DELETE_APARTMENT_SERVICE_SUCCESSFUL:
+      const newApartmentServices = state.apartmentServices.filter(
+        apartmentService => action.slug !== apartmentService.slug,
+      );
+
+      return {
+        ...state,
+        apartmentServices: newApartmentServices,
       };
     default:
       return state;
