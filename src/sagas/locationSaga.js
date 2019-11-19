@@ -39,7 +39,7 @@ export function* sendLocation() {
   const sendMethod = isEdited ? updateData : sendData;
 
   try {
-    yield call(sendMethod, 'adminLocation', locationFormData);
+    yield call(sendMethod, 'location', locationFormData);
 
     yield put(sendLocationSuccessful());
     History.push('/locations-list');
