@@ -22,9 +22,13 @@ const CellStyled = styled.td`
 
 const RowStyled = styled.tr`
   border-bottom: 1px solid var(--cl-grey-20);
-  
+
   &:last-child {
     border: 0;
+  }
+
+  &:hover {
+    background-color: var(--cl-grey-20);
   }
 `;
 
