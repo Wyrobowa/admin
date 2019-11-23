@@ -74,6 +74,109 @@ describe('apartment reducer', () => {
     })).toEqual(changedState);
   });
 
+  it('should handle adding gallery image EDIT_APARTMENT_FORM', () => {
+    const changedState = {
+      ...initialState,
+      gallery: [
+        ...initialState.gallery,
+        '12345abcde',
+      ],
+    };
+
+    expect(reducer(initialState, {
+      type: apartmentActions.EDIT_APARTMENT_FORM,
+      field: 'gallery',
+      value: '12345abcde',
+    })).toEqual(changedState);
+  });
+
+  it('should handle EDIT_APARTMENT_ADDRESS_FORM', () => {
+    const changedState = {
+      ...initialState,
+      address: {
+        ...initialState.address,
+        mapCoordinates: {
+          ...initialState.address.mapCoordinates,
+          lat: '10',
+        },
+      },
+    };
+
+    expect(reducer(initialState, {
+      type: apartmentActions.EDIT_APARTMENT_ADDRESS_FORM,
+      field: 'lat',
+      value: '10',
+    })).toEqual(changedState);
+  });
+
+  it('should handle EDIT_APARTMENT_SERVICES_FORM when service is assigned to apartment and has been changed', () => {
+    const addedApartmentServices = {
+      ...initialState,
+      apartmentServices: [
+        '12345abcde',
+      ],
+    };
+
+    const changedState = {
+      ...addedApartmentServices,
+      apartmentServices: [],
+    };
+
+    expect(reducer(addedApartmentServices, {
+      type: apartmentActions.EDIT_APARTMENT_SERVICES_FORM,
+      field: 'apartmentServices.12345abcde',
+      value: false,
+    })).toEqual(changedState);
+  });
+
+  it('should handle EDIT_APARTMENT_SERVICES_FORM when service isn\'t assigned to apartment and has been changed', () => {
+    const changedState = {
+      ...initialState,
+      apartmentServices: [
+        '12345abcde',
+      ],
+    };
+
+    expect(reducer(initialState, {
+      type: apartmentActions.EDIT_APARTMENT_SERVICES_FORM,
+      field: 'apartmentServices.12345abcde',
+      value: true,
+    })).toEqual(changedState);
+  });
+
+  it('should handle EDIT_APARTMENT_SERVICES_FORM when service value hasn\'t been changed', () => {
+    const changedState = {
+      ...initialState,
+      apartmentServices: [],
+    };
+
+    expect(reducer(initialState, {
+      type: apartmentActions.EDIT_APARTMENT_SERVICES_FORM,
+      field: 'apartmentServices.12345abcde',
+      value: false,
+    })).toEqual(changedState);
+  });
+
+  it('should handle DELETE_APARTMENT_GALLERY_IMAGE', () => {
+    const addedImageToGallery = {
+      ...initialState,
+      gallery: [
+        '12345abcde',
+      ],
+    };
+
+    const changedState = {
+      ...addedImageToGallery,
+      gallery: [],
+    };
+
+    expect(reducer(addedImageToGallery, {
+      type: apartmentActions.DELETE_APARTMENT_GALLERY_IMAGE,
+      field: 'gallery',
+      value: '12345abcde',
+    })).toEqual(changedState);
+  });
+
   it('should handle GET_APARTMENT_SUCCESSFUL', () => {
     const payload = {
       ...initialState,

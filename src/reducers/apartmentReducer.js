@@ -60,7 +60,7 @@ const apartment = (state = initialState, action) => {
           ...state,
           [action.field]: [
             ...state[property],
-            ...action.value,
+            action.value,
           ],
         };
       }
@@ -86,14 +86,14 @@ const apartment = (state = initialState, action) => {
       const isInState = state.apartmentServices.includes(nestedPropertyApartmentService);
 
       if (isInState && action.value === false) {
-        const filteredState = state.apartmentServices.filter(
+        const stateWithoutDeletedImage = state.apartmentServices.filter(
           item => item !== nestedPropertyApartmentService,
         );
 
         return {
           ...state,
           apartmentServices: [
-            ...filteredState,
+            ...stateWithoutDeletedImage,
           ],
         };
       }
@@ -113,6 +113,20 @@ const apartment = (state = initialState, action) => {
           ...state.apartmentServices,
         ],
       };
+    case apartmentActions.DELETE_APARTMENT_GALLERY_IMAGE:
+      const stateWithoutDeletedImage = state.gallery.filter(
+        item => item !== action.value,
+      );
+
+      if (action.field === 'gallery') {
+        return {
+          ...state,
+          gallery: [
+            ...stateWithoutDeletedImage,
+          ],
+        };
+      }
+      return state;
     case apartmentActions.GET_APARTMENT_SUCCESSFUL:
       return {
         ...state,

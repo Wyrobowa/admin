@@ -44,6 +44,13 @@ describe('locationActions', () => {
     expect(locationActions.deleteLocationUnsuccessful()).toEqual(expectedAction);
   });
 
+  it('should create an action to deleteLocationImage', () => {
+    const expectedAction = {
+      type: locationActions.DELETE_LOCATION_IMAGE,
+    };
+    expect(locationActions.deleteLocationImage()).toEqual(expectedAction);
+  });
+
   it('should create an action to requestDeleteLocation', () => {
     const expectedAction = {
       type: locationActions.REQUEST_DELETE_LOCATION,

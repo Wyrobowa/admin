@@ -7,6 +7,7 @@ import {
   editApartmentForm,
   editApartmentAddressForm,
   editApartmentServicesForm,
+  deleteApartmentGalleryImage,
   requestSendApartment,
   requestGetApartment,
   clearApartmentForm,
@@ -38,6 +39,7 @@ const Apartment = ({
   editApartmentAction,
   editApartmentAddressCoordinatesAction,
   editApartmentServicesAction,
+  deleteImageAction,
   requestSendApartmentAction,
   requestGetApartmentAction,
   requestGetApartmentServiceListAction,
@@ -118,6 +120,10 @@ const Apartment = ({
     const { name, value } = target;
 
     editApartmentAction(name, value);
+  };
+
+  const handleDeleteImage = ({ currentTarget }) => {
+    deleteImageAction('gallery', currentTarget.getAttribute('data-slug'));
   };
 
   const handleSubmit = (event) => {
@@ -230,6 +236,7 @@ const Apartment = ({
             type: 'apartment',
             alt: apartment.name,
             height: '150',
+            handleDelete: handleDeleteImage,
           },
         },
       ],
@@ -373,8 +380,8 @@ const Apartment = ({
       <ApartmentServices
         handleCheckboxChange={handleApartmentServicesCheckboxChange}
         handleInputChange={handleInputChange}
-        mainObject={apartment}
-        listOfAvailableObjects={apartmentServices}
+        apartmentData={apartment}
+        listOfAvailableServices={apartmentServices}
       />
       <Button model="primary" type="submit" onClick={handleSubmit}>Save Apartment</Button>
     </section>
@@ -391,6 +398,7 @@ Apartment.propTypes = {
   requestGetApartmentAction: PropTypes.func.isRequired,
   requestGetApartmentServiceListAction: PropTypes.func.isRequired,
   requestSendApartmentAction: PropTypes.func.isRequired,
+  deleteImageAction: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
@@ -409,5 +417,6 @@ export default connect(
     requestSendApartmentAction: requestSendApartment,
     requestGetApartmentAction: requestGetApartment,
     requestGetApartmentServiceListAction: requestGetApartmentServiceList,
+    deleteImageAction: deleteApartmentGalleryImage,
   },
 )(Apartment);

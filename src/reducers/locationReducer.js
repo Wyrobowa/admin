@@ -1,17 +1,17 @@
-import { EDIT_LOCATION_FORM, SET_LOCATION_DATA, CLEAR_LOCATION_FORM } from '../actions/locationActions';
+import * as locationActions from '../actions/locationActions';
 
 const initialState = {
   name: '',
   description: '',
   gallery: [],
-  mainPhoto: '',
+  mainPicture: '',
   isPromoted: false,
   apartmentsList: [],
 };
 
 const location = (state = initialState, action) => {
   switch (action.type) {
-    case EDIT_LOCATION_FORM:
+    case locationActions.EDIT_LOCATION_FORM:
       const field = action.field || '';
       const [property, nestedProperty] = field.split('.');
 
@@ -29,12 +29,20 @@ const location = (state = initialState, action) => {
         ...state,
         [action.field]: action.value,
       };
-    case SET_LOCATION_DATA:
+    case locationActions.DELETE_LOCATION_IMAGE:
+      if (action.field === 'mainPicture') {
+        return {
+          ...state,
+          mainPicture: '',
+        };
+      }
+      return state;
+    case locationActions.SET_LOCATION_DATA:
       return {
         ...state,
         ...action.payload.data,
       };
-    case CLEAR_LOCATION_FORM:
+    case locationActions.CLEAR_LOCATION_FORM:
       return {
         ...initialState,
       };

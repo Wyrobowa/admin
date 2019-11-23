@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import {
-  editLocationForm, requestSendLocation, requestGetLocation, clearLocationForm,
-} from '../../actions/locationActions';
+import * as locationActions from '../../actions/locationActions';
 
 // Components
 import Button from '../../components/button/Button';
@@ -22,7 +20,7 @@ import { sendData } from '../../services/requestService/requestService';
 
 const Location = ({
   location, editLocationAction, requestSendLocationAction, match,
-  requestGetLocationAction, clearLocationAction,
+  requestGetLocationAction, clearLocationAction, deleteImageAction,
 }) => {
   useEffect(() => {
     if (match.params.locationSlug) {
@@ -60,6 +58,10 @@ const Location = ({
 
   const handleIsPromotedChange = ({ target }) => {
     editLocationAction('isPromoted', target.checked);
+  };
+
+  const handleDeleteImage = (event) => {
+    deleteImageAction('mainPicture', event.currentTarget.getAttribute('data-slug'));
   };
 
   const handleSubmit = (event) => {
@@ -116,6 +118,7 @@ const Location = ({
             type: 'location',
             alt: location.name,
             height: '150',
+            handleDelete: handleDeleteImage,
           },
         },
       ],
@@ -137,6 +140,7 @@ const Location = ({
 Location.propTypes = {
   location: PropTypes.object.isRequired,
   editLocationAction: PropTypes.func.isRequired,
+  deleteImageAction: PropTypes.func.isRequired,
   requestSendLocationAction: PropTypes.func.isRequired,
   requestGetLocationAction: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
@@ -150,9 +154,10 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    requestSendLocationAction: requestSendLocation,
-    requestGetLocationAction: requestGetLocation,
-    editLocationAction: editLocationForm,
-    clearLocationAction: clearLocationForm,
+    requestSendLocationAction: locationActions.requestSendLocation,
+    requestGetLocationAction: locationActions.requestGetLocation,
+    editLocationAction: locationActions.editLocationForm,
+    deleteImageAction: locationActions.deleteLocationImage,
+    clearLocationAction: locationActions.clearLocationForm,
   },
 )(Location);

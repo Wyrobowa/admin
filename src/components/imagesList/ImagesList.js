@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import { ImagesWrapper, ImageStyles } from './imagesListStyles';
+import * as Styled from './imagesListStyles';
 
 const ImagesList = ({
-  item, type, width, height, format,
+  item, type, width, height, format, handleDelete,
 }) => (
-  <ImagesWrapper>
+  <Styled.ImagesWrapper>
     {item.gallery && (
       item.gallery.map(imageName => (
-        <ImageStyles
+        <Styled.ImageStyles
           key={imageName}
           item={item}
           imageName={imageName}
@@ -19,10 +19,11 @@ const ImagesList = ({
           width={width}
           height={height}
           format={format}
+          handleDelete={handleDelete}
         />
       ))
     )}
-  </ImagesWrapper>
+  </Styled.ImagesWrapper>
 );
 
 ImagesList.propTypes = {
@@ -31,12 +32,14 @@ ImagesList.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   format: PropTypes.string,
+  handleDelete: PropTypes.func,
 };
 
 ImagesList.defaultProps = {
   width: null,
   height: null,
   format: null,
+  handleDelete: () => {},
 };
 
 export default ImagesList;

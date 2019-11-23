@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { MdBlock } from 'react-icons/md';
 
 // Helpers
 import { getImageUrl } from '../../helpers/helpers';
 
+// Styles
+import * as Styled from './imageStyles';
+
 const Image = ({
-  item, imageName, type, alt, width, height, format, className,
+  item, imageName, type, alt, width, height, format, className, handleDelete,
 }) => {
   const params = {
     type,
@@ -19,12 +23,26 @@ const Image = ({
   const imageSrc = getImageUrl(params);
 
   return (
-    <Fragment>
+    <Styled.Image>
       {imageName
-        ? <img src={imageSrc} alt={alt || item.slug} className={className} />
+        ? (
+          <Styled.ImageWrapper>
+            <img src={imageSrc} alt={alt || item.slug} className={className} />
+            {handleDelete && (
+              <Styled.DeleteButton
+                type="button"
+                model="quaternary"
+                onClick={handleDelete}
+                data-slug={imageName}
+              >
+                <MdBlock />
+              </Styled.DeleteButton>
+            )}
+          </Styled.ImageWrapper>
+        )
         : <p>No image</p>
       }
-    </Fragment>
+    </Styled.Image>
   );
 };
 
@@ -37,6 +55,7 @@ Image.propTypes = {
   height: PropTypes.string,
   format: PropTypes.string,
   className: PropTypes.string,
+  handleDelete: PropTypes.func,
 };
 
 Image.defaultProps = {
@@ -46,6 +65,7 @@ Image.defaultProps = {
   height: null,
   format: null,
   className: '',
+  handleDelete: null,
 };
 
 export default Image;

@@ -4,7 +4,7 @@ import * as locationActions from '../../actions/locationActions';
 const initialState = {
   name: '',
   description: '',
-  mainPhoto: '',
+  mainPicture: '',
   gallery: [],
   isPromoted: false,
   apartmentsList: [],

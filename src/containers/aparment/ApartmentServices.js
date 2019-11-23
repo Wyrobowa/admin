@@ -6,7 +6,7 @@ import Checkbox from '../../components/checkbox/Checkbox';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
 
 const ApartmentServices = ({
-  handleCheckboxChange, handleInputChange, mainObject, listOfAvailableObjects,
+  handleCheckboxChange, handleInputChange, apartmentData, listOfAvailableServices,
 }) => {
   const [form, setForm] = useState({
     sectionTitle: 'Apartment Services',
@@ -18,17 +18,17 @@ const ApartmentServices = ({
     const fieldsData = [];
 
     // eslint-disable-next-line no-plusplus
-    for (let j = 0; j < listOfAvailableObjects.length; j++) {
+    for (let j = 0; j < listOfAvailableServices.length; j++) {
       fieldsData.push(
         {
           component: Checkbox,
-          id: `apartmentServices.${listOfAvailableObjects[j]._id}`,
+          id: `apartmentServices.${listOfAvailableServices[j]._id}`,
           props: {
             onChange: handleCheckboxChange,
             isSwitch: true,
-            checked: mainObject.apartmentServices.includes(listOfAvailableObjects[j]._id),
+            checked: apartmentData.apartmentServices.includes(listOfAvailableServices[j]._id),
           },
-          description: listOfAvailableObjects[j].name,
+          description: listOfAvailableServices[j].name,
         },
       );
     }
@@ -37,14 +37,14 @@ const ApartmentServices = ({
       ...form,
       fields: fieldsData,
     });
-  }, [mainObject, listOfAvailableObjects]);
+  }, [apartmentData, listOfAvailableServices]);
 
   return (
     <>
       <FormGenerator
         formData={[form]}
         handleInputChange={handleInputChange}
-        valueObject={mainObject}
+        valueObject={apartmentData}
       />
     </>
   );
@@ -53,8 +53,8 @@ const ApartmentServices = ({
 ApartmentServices.propTypes = {
   handleCheckboxChange: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  mainObject: PropTypes.object.isRequired,
-  listOfAvailableObjects: PropTypes.array.isRequired,
+  apartmentData: PropTypes.object.isRequired,
+  listOfAvailableServices: PropTypes.array.isRequired,
 };
 
 export default ApartmentServices;

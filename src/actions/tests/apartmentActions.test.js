@@ -1,11 +1,25 @@
 import * as apartmentActions from '../apartmentActions';
 
 describe('apartmentActions', () => {
-  it('should create an action to editApartment form ', () => {
+  it('should create an action to editApartmentForm', () => {
     const expectedAction = {
       type: apartmentActions.EDIT_APARTMENT_FORM,
     };
     expect(apartmentActions.editApartmentForm()).toEqual(expectedAction);
+  });
+
+  it('should create an action to editApartmentAddressForm', () => {
+    const expectedAction = {
+      type: apartmentActions.EDIT_APARTMENT_ADDRESS_FORM,
+    };
+    expect(apartmentActions.editApartmentAddressForm()).toEqual(expectedAction);
+  });
+
+  it('should create an action to editApartmentServicesForm', () => {
+    const expectedAction = {
+      type: apartmentActions.EDIT_APARTMENT_SERVICES_FORM,
+    };
+    expect(apartmentActions.editApartmentServicesForm()).toEqual(expectedAction);
   });
 
   it('should create an action to sendApartmentSuccessful', () => {
@@ -42,6 +56,13 @@ describe('apartmentActions', () => {
       type: apartmentActions.DELETE_APARTMENT_UNSUCCESSFUL,
     };
     expect(apartmentActions.deleteApartmentUnsuccessful()).toEqual(expectedAction);
+  });
+
+  it('should create an action to deleteApartmentGalleryImage', () => {
+    const expectedAction = {
+      type: apartmentActions.DELETE_APARTMENT_GALLERY_IMAGE,
+    };
+    expect(apartmentActions.deleteApartmentGalleryImage()).toEqual(expectedAction);
   });
 
   it('should create an action to requestDeleteApartment', () => {
