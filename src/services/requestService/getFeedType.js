@@ -97,6 +97,30 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'apartmentFacility':
+      feedTarget = {
+        target: '/admin/apartment-facility',
+      };
+      break;
+
+    case 'apartmentFacilityList':
+      feedTarget = {
+        target: '/admin/apartment-facility-list',
+      };
+      break;
+
+    case 'apartmentFacilityGroup':
+      feedTarget = {
+        target: '/admin/apartment-facility-group',
+      };
+      break;
+
+    case 'apartmentFacilityGroupList':
+      feedTarget = {
+        target: '/admin/apartment-facility-group-list',
+      };
+      break;
+
     case 'apartmentService':
       feedTarget = {
         target: '/admin/apartment-service',

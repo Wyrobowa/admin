@@ -5,38 +5,35 @@ import PropTypes from 'prop-types';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 
 // Actions
-import {
-  requestDeleteApartmentServiceGroup,
-  requestGetApartmentServiceGroupList,
-} from '../../actions/apartmentServiceGroupActions';
+import * as apartmentFacilityGroupActions from '../../actions/apartmentFacilityGroupActions';
 
 // Components
 import Button from '../../components/button/Button';
-import Title from '../../components/title/Title';
 import Skeleton from '../../components/skeleton/Skeleton';
 import Table from '../../components/table/Table';
+import Title from '../../components/title/Title';
 
 // Reducers
-import { getApartmentServiceGroupListFiltered } from '../../reducers/apartmentServiceGroupListReducer';
+import { getApartmentFacilityGroupListFiltered } from '../../reducers/apartmentFacilityGroupListReducer';
 
 // Styles
-import * as Styled from './apartmentServiceGroupListStyles';
+import * as Styled from './apartmentFacilityGroupListStyles';
 
-const headers = ['Service Group name'];
+const headers = ['Facility Group name'];
 
-const ApartmentServiceGroupGroupList = ({
-  requestGetApartmentServiceGroupListAction,
-  requestDeleteApartmentServiceGroupAction,
-  apartmentServiceGroups,
+const ApartmentFacilityGroupGroupList = ({
+  requestGetApartmentFacilityGroupListAction,
+  requestDeleteApartmentFacilityGroupAction,
+  apartmentFacilityGroups,
 }) => {
   useEffect(() => {
-    requestGetApartmentServiceGroupListAction();
+    requestGetApartmentFacilityGroupListAction();
   }, []);
 
   const handleDelete = (event) => {
     event.stopPropagation();
 
-    requestDeleteApartmentServiceGroupAction(event.currentTarget.getAttribute('data-slug'));
+    requestDeleteApartmentFacilityGroupAction(event.currentTarget.getAttribute('data-slug'));
   };
 
   return (
@@ -45,10 +42,10 @@ const ApartmentServiceGroupGroupList = ({
         <Skeleton.Item type="row-top">
           <Styled.Heading>
             <Title heading="h2" type="secondary">
-              Apartment Service Group list
+              Apartment Facility Group list
             </Title>
-            <Link to="/apartment-service-group">
-              <Button model="primary" type="button">Add apartment service group</Button>
+            <Link to="/apartment-facility-group">
+              <Button model="primary" type="button">Add apartment facility group</Button>
             </Link>
           </Styled.Heading>
         </Skeleton.Item>
@@ -64,13 +61,13 @@ const ApartmentServiceGroupGroupList = ({
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {apartmentServiceGroups.map(row => (
+              {apartmentFacilityGroups.map(row => (
                 <Table.Row key={row.name}>
                   {Object.keys(row).map(key => (
                     key === 'id'
                       ? (
                         <Styled.Cell key={row.id + key} textAlign="right">
-                          <Styled.EditButton to={`/apartment-service-group/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.EditButton to={`/apartment-facility-group/${row[key]}`}><MdModeEdit /></Styled.EditButton>
                           <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
@@ -89,20 +86,22 @@ const ApartmentServiceGroupGroupList = ({
   );
 };
 
-ApartmentServiceGroupGroupList.propTypes = {
-  requestGetApartmentServiceGroupListAction: PropTypes.func.isRequired,
-  requestDeleteApartmentServiceGroupAction: PropTypes.func.isRequired,
-  apartmentServiceGroups: PropTypes.array.isRequired,
+ApartmentFacilityGroupGroupList.propTypes = {
+  requestGetApartmentFacilityGroupListAction: PropTypes.func.isRequired,
+  requestDeleteApartmentFacilityGroupAction: PropTypes.func.isRequired,
+  apartmentFacilityGroups: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  apartmentServiceGroups: getApartmentServiceGroupListFiltered(state),
+  apartmentFacilityGroups: getApartmentFacilityGroupListFiltered(state),
 });
 
 export default connect(
   mapStateToProps,
   {
-    requestGetApartmentServiceGroupListAction: requestGetApartmentServiceGroupList,
-    requestDeleteApartmentServiceGroupAction: requestDeleteApartmentServiceGroup,
+    requestGetApartmentFacilityGroupListAction: apartmentFacilityGroupActions
+      .requestGetApartmentFacilityGroupList,
+    requestDeleteApartmentFacilityGroupAction: apartmentFacilityGroupActions
+      .requestDeleteApartmentFacilityGroup,
   },
-)(ApartmentServiceGroupGroupList);
+)(ApartmentFacilityGroupGroupList);

@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Actions
-import {
-  editApartmentForm,
-  editApartmentAddressForm,
-  editApartmentServicesForm,
-  deleteApartmentGalleryImage,
-  requestSendApartment,
-  requestGetApartment,
-  clearApartmentForm,
-} from '../../actions/apartmentActions';
-import { requestGetApartmentServiceList } from '../../actions/apartmentServiceActions';
+import * as apartmentActions from '../../actions/apartmentActions';
+import * as apartmentFacilityActions from '../../actions/apartmentFacilityActions';
+import * as apartmentServiceActions from '../../actions/apartmentServiceActions';
 
 // Components
 import ApartmentAddress from '../../components/apartmentAddress/ApartmentAddress';
+import ApartmentFacilities from './ApartmentFacilities';
 import ApartmentServices from './ApartmentServices';
 import Button from '../../components/button/Button';
 import Checkbox from '../../components/checkbox/Checkbox';
@@ -28,20 +22,24 @@ import TextField from '../../components/textField/TextField';
 
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
+import { getApartmentFacilityList } from '../../reducers/apartmentFacilityListReducer';
 import { getApartmentServiceList } from '../../reducers/apartmentServiceListReducer';
 
 // Services
-import { getData, sendData } from '../../services/requestService/requestService';
+import * as requestService from '../../services/requestService/requestService';
 
 const Apartment = ({
   apartment,
+  apartmentFacilities,
   apartmentServices,
   editApartmentAction,
   editApartmentAddressCoordinatesAction,
+  editApartmentFacilitiesAction,
   editApartmentServicesAction,
   deleteImageAction,
   requestSendApartmentAction,
   requestGetApartmentAction,
+  requestGetApartmentFacilityListAction,
   requestGetApartmentServiceListAction,
   clearApartmentFormAction,
   match,
@@ -60,11 +58,12 @@ const Apartment = ({
       clearApartmentFormAction();
     }
 
+    requestGetApartmentFacilityListAction();
     requestGetApartmentServiceListAction();
   }, []);
 
   async function getLocationsList() {
-    const response = await getData('locationsList');
+    const response = await requestService.getData('locationsList');
     setLocationsList(response.data);
   }
 
@@ -95,6 +94,12 @@ const Apartment = ({
     editApartmentAction(name, checked);
   };
 
+  const handleApartmentFacilitiesCheckboxChange = ({ target }) => {
+    const { name, checked } = target;
+
+    editApartmentFacilitiesAction(name, checked);
+  };
+
   const handleApartmentServicesCheckboxChange = ({ target }) => {
     const { name, checked } = target;
 
@@ -109,7 +114,7 @@ const Apartment = ({
     });
 
     const additionalQuery = `?slug=${apartment.slug}&type=apartment`;
-    const requestResult = await sendData('adminGalleryUpload', data, additionalQuery);
+    const requestResult = await requestService.sendData('adminGalleryUpload', data, additionalQuery);
 
     if (requestResult.imagesList) {
       editApartmentAction('gallery', requestResult.imagesList);
@@ -271,98 +276,6 @@ const Apartment = ({
         },
       ],
     },
-    {
-      sectionTitle: 'Facilities',
-      id: 'facilities',
-      fields: [
-        {
-          component: Checkbox,
-          id: 'facilities.wlan',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.wlan,
-          },
-          description: 'Wi-fi',
-        },
-        {
-          component: Checkbox,
-          id: 'facilities.parking',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.parking,
-          },
-          description: 'Parking',
-        },
-        {
-          component: Checkbox,
-          id: 'facilities.elevator',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.elevator,
-          },
-          description: 'Elevator',
-        },
-        {
-          component: Checkbox,
-          id: 'facilities.balcony',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.balcony,
-          },
-          description: 'Balcony',
-        },
-        {
-          component: Checkbox,
-          id: 'facilities.garden',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.garden,
-          },
-          description: 'Garden',
-        },
-        {
-          component: Checkbox,
-          id: 'facilities.cosmetics',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.cosmetics,
-          },
-          description: 'Cosmetics',
-        },
-        {
-          component: Checkbox,
-          id: 'facilities.towels',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.facilities.towels,
-          },
-          description: 'Towels',
-        },
-      ],
-    },
-    {
-      sectionTitle: 'Equipment',
-      id: 'equipment',
-      fields: [
-        {
-          component: Checkbox,
-          id: 'equipment.hairDryer',
-          props: {
-            onChange: handleCheckboxChange,
-            isSwitch: true,
-            checked: apartment.equipment.hairDryer,
-          },
-          description: 'Hair dryer',
-        },
-      ],
-    },
   ];
 
   return (
@@ -377,6 +290,12 @@ const Apartment = ({
         onAddressCoordinatesChange={handleAddressCoordinatesInputChange}
         apartmentAddressData={apartment.address}
       />
+      <ApartmentFacilities
+        handleCheckboxChange={handleApartmentFacilitiesCheckboxChange}
+        handleInputChange={handleInputChange}
+        apartmentData={apartment}
+        listOfAvailableApartmentFacilities={apartmentFacilities}
+      />
       <ApartmentServices
         handleCheckboxChange={handleApartmentServicesCheckboxChange}
         handleInputChange={handleInputChange}
@@ -390,12 +309,15 @@ const Apartment = ({
 
 Apartment.propTypes = {
   apartment: PropTypes.object.isRequired,
+  apartmentFacilities: PropTypes.array.isRequired,
   apartmentServices: PropTypes.array.isRequired,
   clearApartmentFormAction: PropTypes.func.isRequired,
   editApartmentAction: PropTypes.func.isRequired,
   editApartmentAddressCoordinatesAction: PropTypes.func.isRequired,
+  editApartmentFacilitiesAction: PropTypes.func.isRequired,
   editApartmentServicesAction: PropTypes.func.isRequired,
   requestGetApartmentAction: PropTypes.func.isRequired,
+  requestGetApartmentFacilityListAction: PropTypes.func.isRequired,
   requestGetApartmentServiceListAction: PropTypes.func.isRequired,
   requestSendApartmentAction: PropTypes.func.isRequired,
   deleteImageAction: PropTypes.func.isRequired,
@@ -404,19 +326,22 @@ Apartment.propTypes = {
 
 const mapStateToProps = state => ({
   apartment: getApartment(state),
+  apartmentFacilities: getApartmentFacilityList(state),
   apartmentServices: getApartmentServiceList(state),
 });
 
 export default connect(
   mapStateToProps,
   {
-    clearApartmentFormAction: clearApartmentForm,
-    editApartmentAction: editApartmentForm,
-    editApartmentAddressCoordinatesAction: editApartmentAddressForm,
-    editApartmentServicesAction: editApartmentServicesForm,
-    requestSendApartmentAction: requestSendApartment,
-    requestGetApartmentAction: requestGetApartment,
-    requestGetApartmentServiceListAction: requestGetApartmentServiceList,
-    deleteImageAction: deleteApartmentGalleryImage,
+    clearApartmentFormAction: apartmentActions.clearApartmentForm,
+    editApartmentAction: apartmentActions.editApartmentForm,
+    editApartmentAddressCoordinatesAction: apartmentActions.editApartmentAddressForm,
+    editApartmentFacilitiesAction: apartmentActions.editApartmentFacilitiesForm,
+    editApartmentServicesAction: apartmentActions.editApartmentServicesForm,
+    requestSendApartmentAction: apartmentActions.requestSendApartment,
+    requestGetApartmentAction: apartmentActions.requestGetApartment,
+    requestGetApartmentFacilityListAction: apartmentFacilityActions.requestGetApartmentFacilityList,
+    requestGetApartmentServiceListAction: apartmentServiceActions.requestGetApartmentServiceList,
+    deleteImageAction: apartmentActions.deleteApartmentGalleryImage,
   },
 )(Apartment);

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit, MdBlock } from 'react-icons/md';
+import { MdModeEdit, MdDelete } from 'react-icons/md';
 
 // Actions
 import { requestGetPhrasesList, requestDeletePhrase } from '../../actions/phraseActions';
@@ -64,7 +64,7 @@ const PhrasesList = ({ requestGetPhrasesListAction, requestDeletePhraseAction, p
                       ? (
                         <Styled.Cell key={row.id + key} textAlign="right">
                           <Styled.EditButton to={`/phrase/${row[key]}`}><MdModeEdit /></Styled.EditButton>
-                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdBlock /></Styled.DeleteButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.id + key}>

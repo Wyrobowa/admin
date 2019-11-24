@@ -3,6 +3,8 @@ import { all } from 'redux-saga/effects';
 import * as appInitializationWatchers from './appInitializationSaga';
 import * as authWatchers from './authSaga';
 import * as apartmentWatchers from './apartmentSaga';
+import * as apartmentFacilityWatchers from './apartmentFacilitySaga';
+import * as apartmentFacilityGroupWatchers from './apartmentFacilityGroupSaga';
 import * as apartmentServiceWatchers from './apartmentServiceSaga';
 import * as apartmentServiceGroupWatchers from './apartmentServiceGroupSaga';
 import * as languageWatchers from './languageSaga';
@@ -19,6 +21,14 @@ export default function* rootSaga() {
     apartmentWatchers.watchGetApartment(),
     apartmentWatchers.watchSendApartment(),
     apartmentWatchers.watchDeleteApartment(),
+    apartmentFacilityWatchers.watchGetApartmentFacility(),
+    apartmentFacilityWatchers.watchGetApartmentFacilityList(),
+    apartmentFacilityWatchers.watchSendApartmentFacility(),
+    apartmentFacilityWatchers.watchDeleteApartmentFacility(),
+    apartmentFacilityGroupWatchers.watchGetApartmentFacilityGroup(),
+    apartmentFacilityGroupWatchers.watchGetApartmentFacilityGroupList(),
+    apartmentFacilityGroupWatchers.watchSendApartmentFacilityGroup(),
+    apartmentFacilityGroupWatchers.watchDeleteApartmentFacilityGroup(),
     apartmentServiceWatchers.watchSendApartmentService(),
     apartmentServiceWatchers.watchGetApartmentService(),
     apartmentServiceWatchers.watchGetApartmentServiceList(),

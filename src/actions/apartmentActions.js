@@ -7,6 +7,7 @@ export const DELETE_APARTMENT_GALLERY_IMAGE = 'DELETE_APARTMENT_GALLERY_IMAGE';
 export const REQUEST_DELETE_APARTMENT = 'REQUEST_DELETE_APARTMENT';
 export const EDIT_APARTMENT_FORM = 'EDIT_APARTMENT_FORM';
 export const EDIT_APARTMENT_ADDRESS_FORM = 'EDIT_APARTMENT_ADDRESS_FORM';
+export const EDIT_APARTMENT_FACILITIES_FORM = 'EDIT_APARTMENT_FACILITIES_FORM';
 export const EDIT_APARTMENT_SERVICES_FORM = 'EDIT_APARTMENT_SERVICES_FORM';
 export const GET_APARTMENT_SUCCESSFUL = 'GET_APARTMENT_SUCCESSFUL';
 export const GET_APARTMENTS_LIST_SUCCESSFUL = 'GET_APARTMENTS_LIST_SUCCESSFUL';
@@ -24,6 +25,12 @@ export const editApartmentForm = (field, value) => ({
 
 export const editApartmentAddressForm = (field, value) => ({
   type: EDIT_APARTMENT_ADDRESS_FORM,
+  field,
+  value,
+});
+
+export const editApartmentFacilitiesForm = (field, value) => ({
+  type: EDIT_APARTMENT_FACILITIES_FORM,
   field,
   value,
 });

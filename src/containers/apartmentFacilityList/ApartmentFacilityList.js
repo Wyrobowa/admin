@@ -5,38 +5,35 @@ import PropTypes from 'prop-types';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 
 // Actions
-import {
-  requestDeleteApartmentService,
-  requestGetApartmentServiceList,
-} from '../../actions/apartmentServiceActions';
+import * as apartmentFacilityActions from '../../actions/apartmentFacilityActions';
 
 // Components
 import Button from '../../components/button/Button';
-import Title from '../../components/title/Title';
 import Skeleton from '../../components/skeleton/Skeleton';
 import Table from '../../components/table/Table';
+import Title from '../../components/title/Title';
 
 // Reducers
-import { getApartmentServiceListFiltered } from '../../reducers/apartmentServiceListReducer';
+import { getApartmentFacilityListFiltered } from '../../reducers/apartmentFacilityListReducer';
 
 // Styles
-import * as Styled from './apartmentServiceListStyles';
+import * as Styled from './apartmentFacilityListStyles';
 
-const headers = ['Service name'];
+const headers = ['Facility name'];
 
-const ApartmentServiceList = ({
-  requestGetApartmentServiceListAction,
-  requestDeleteApartmentServiceAction,
-  apartmentServices,
+const ApartmentFacilityList = ({
+  requestGetApartmentFacilityListAction,
+  requestDeleteApartmentFacilityAction,
+  apartmentFacilities,
 }) => {
   useEffect(() => {
-    requestGetApartmentServiceListAction();
+    requestGetApartmentFacilityListAction();
   }, []);
 
   const handleDelete = (event) => {
     event.stopPropagation();
 
-    requestDeleteApartmentServiceAction(event.currentTarget.getAttribute('data-slug'));
+    requestDeleteApartmentFacilityAction(event.currentTarget.getAttribute('data-slug'));
   };
 
   return (
@@ -45,10 +42,10 @@ const ApartmentServiceList = ({
         <Skeleton.Item type="row-top">
           <Styled.Heading>
             <Title heading="h2" type="secondary">
-              Apartment Service list
+              Apartment Facility list
             </Title>
-            <Link to="/apartment-service">
-              <Button model="primary" type="button">Add apartment service</Button>
+            <Link to="/apartment-facility">
+              <Button model="primary" type="button">Add apartment facility</Button>
             </Link>
           </Styled.Heading>
         </Skeleton.Item>
@@ -64,14 +61,14 @@ const ApartmentServiceList = ({
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {apartmentServices.map(row => (
+              {apartmentFacilities.map(row => (
                 <Table.Row key={row.name}>
                   {Object.keys(row).map(key => (
-                    key === 'slug'
+                    key === 'id'
                       ? (
                         <Styled.Cell key={row.name + key} textAlign="right">
-                          <Styled.EditButton to={`/apartment-service/${row[key]}`}><MdModeEdit /></Styled.EditButton>
-                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdDelete /></Styled.DeleteButton>
+                          <Styled.EditButton to={`/apartment-facility/${row[key]}`}><MdModeEdit /></Styled.EditButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.name + key}>
@@ -89,20 +86,20 @@ const ApartmentServiceList = ({
   );
 };
 
-ApartmentServiceList.propTypes = {
-  requestGetApartmentServiceListAction: PropTypes.func.isRequired,
-  requestDeleteApartmentServiceAction: PropTypes.func.isRequired,
-  apartmentServices: PropTypes.array.isRequired,
+ApartmentFacilityList.propTypes = {
+  requestGetApartmentFacilityListAction: PropTypes.func.isRequired,
+  requestDeleteApartmentFacilityAction: PropTypes.func.isRequired,
+  apartmentFacilities: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  apartmentServices: getApartmentServiceListFiltered(state),
+  apartmentFacilities: getApartmentFacilityListFiltered(state),
 });
 
 export default connect(
   mapStateToProps,
   {
-    requestGetApartmentServiceListAction: requestGetApartmentServiceList,
-    requestDeleteApartmentServiceAction: requestDeleteApartmentService,
+    requestGetApartmentFacilityListAction: apartmentFacilityActions.requestGetApartmentFacilityList,
+    requestDeleteApartmentFacilityAction: apartmentFacilityActions.requestDeleteApartmentFacility,
   },
-)(ApartmentServiceList);
+)(ApartmentFacilityList);

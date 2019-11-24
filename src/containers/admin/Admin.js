@@ -10,6 +10,10 @@ import ContentLoader from '../../components/contentLoader/ContentLoader';
 // Containers
 import Apartment from '../aparment/Apartment';
 import ApartmentsList from '../apartmentsList/ApartmentsList';
+import ApartmentFacility from '../apartmentFacility/ApartmentFacility';
+import ApartmentFacilityList from '../apartmentFacilityList/ApartmentFacilityList';
+import ApartmentFacilityGroup from '../apartmentFacilityGroup/ApartmentFacilityGroup';
+import ApartmentFacilityGroupList from '../apartmentFacilityGroupList/ApartmentFacilityGroupList';
 import ApartmentService from '../apartmentService/ApartmentService';
 import ApartmentServiceList from '../apartmentServiceList/ApartmentServiceList';
 import ApartmentServiceGroup from '../apartmentServiceGroup/ApartmentServiceGroup';
@@ -39,6 +43,10 @@ const Admin = () => (
       <Route path="/" exact component={Dashboard} />
       <Route path="/apartment/:apartmentSlug?" component={Apartment} />
       <Route path="/apartments-list" component={ApartmentsList} />
+      <Route path="/apartment-facility/:apartmentFacilitySlug?" component={ApartmentFacility} />
+      <Route path="/apartment-facility-list" component={ApartmentFacilityList} />
+      <Route path="/apartment-facility-group/:apartmentFacilityGroupSlug?" component={ApartmentFacilityGroup} />
+      <Route path="/apartment-facility-group-list" component={ApartmentFacilityGroupList} />
       <Route path="/apartment-service/:apartmentServiceSlug?" component={ApartmentService} />
       <Route path="/apartment-service-list" component={ApartmentServiceList} />
       <Route path="/apartment-service-group/:apartmentServiceGroupSlug?" component={ApartmentServiceGroup} />

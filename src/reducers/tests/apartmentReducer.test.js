@@ -9,25 +9,14 @@ const initialState = {
   location: '',
   mainPicture: '',
   gallery: [],
-  apartmentServices: [],
   attributes: {
     measurement: '',
     guestsNumber: '',
     guestsLimit: '',
     extraGuestPrice: '',
   },
-  facilities: {
-    wlan: false,
-    elevator: false,
-    balcony: false,
-    garden: false,
-    parking: false,
-    cosmetics: false,
-    towels: false,
-  },
-  equipment: {
-    hairDryer: false,
-  },
+  apartmentServices: [],
+  apartmentFacilities: [],
   address: {
     city: '',
     address: '',

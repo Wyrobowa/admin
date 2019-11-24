@@ -8,25 +8,14 @@ const initialState = {
   location: '',
   mainPicture: '',
   gallery: [],
-  apartmentServices: [],
   attributes: {
     measurement: '',
     guestsNumber: '',
     guestsLimit: '',
     extraGuestPrice: '',
   },
-  facilities: {
-    wlan: false,
-    elevator: false,
-    balcony: false,
-    garden: false,
-    parking: false,
-    cosmetics: false,
-    towels: false,
-  },
-  equipment: {
-    hairDryer: false,
-  },
+  apartmentServices: [],
+  apartmentFacilities: [],
   address: {
     city: '',
     address: '',
@@ -80,12 +69,45 @@ const apartment = (state = initialState, action) => {
           },
         },
       };
+    case apartmentActions.EDIT_APARTMENT_FACILITIES_FORM:
+      const fieldApartmentFacility = action.field || '';
+      const [, nestedPropertyApartmentFacility] = fieldApartmentFacility.split('.');
+      const isInStateFacility = state.apartmentFacilities.includes(nestedPropertyApartmentFacility);
+
+      if (isInStateFacility && action.value === false) {
+        const filteredState = state.apartmentFacilities.filter(
+          item => item !== nestedPropertyApartmentFacility,
+        );
+
+        return {
+          ...state,
+          apartmentFacilities: [
+            ...filteredState,
+          ],
+        };
+      }
+      if (!isInStateFacility && action.value === true) {
+        return {
+          ...state,
+          apartmentFacilities: [
+            ...state.apartmentFacilities,
+            nestedPropertyApartmentFacility,
+          ],
+        };
+      }
+
+      return {
+        ...state,
+        apartmentFacilities: [
+          ...state.apartmentFacilities,
+        ],
+      };
     case apartmentActions.EDIT_APARTMENT_SERVICES_FORM:
       const fieldApartmentService = action.field || '';
       const [, nestedPropertyApartmentService] = fieldApartmentService.split('.');
-      const isInState = state.apartmentServices.includes(nestedPropertyApartmentService);
+      const isInStateService = state.apartmentServices.includes(nestedPropertyApartmentService);
 
-      if (isInState && action.value === false) {
+      if (isInStateService && action.value === false) {
         const stateWithoutDeletedImage = state.apartmentServices.filter(
           item => item !== nestedPropertyApartmentService,
         );
@@ -97,7 +119,7 @@ const apartment = (state = initialState, action) => {
           ],
         };
       }
-      if (!isInState && action.value === true) {
+      if (!isInStateService && action.value === true) {
         return {
           ...state,
           apartmentServices: [

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit, MdBlock } from 'react-icons/md';
+import { MdModeEdit, MdDelete } from 'react-icons/md';
 
 // Actions
 import { requestGetApartmentsList, requestDeleteApartment } from '../../actions/apartmentActions';
@@ -68,7 +68,7 @@ const ApartmentsList = ({
                       ? (
                         <Styled.Cell key={row.slug + key} textAlign="right">
                           <Styled.EditButton to={`/apartment/${row[key]}`}><MdModeEdit /></Styled.EditButton>
-                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdBlock /></Styled.DeleteButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.slug + key}>

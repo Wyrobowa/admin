@@ -8,6 +8,8 @@ import {
   MdLanguage,
   MdTextFields,
   MdTranslate,
+  MdCollections,
+  MdTv,
 } from 'react-icons/md';
 
 // Components
@@ -60,9 +62,31 @@ const MainNav = () => {
       },
     },
     {
+      name: 'Apartment Facility List',
+      href: '/apartment-facility-list',
+      id: '6',
+      icon: {
+        component: MdTv,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
+      name: 'Apartment Facility Groups List',
+      href: '/apartment-facility-group-list',
+      id: '7',
+      icon: {
+        component: MdCollections,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
       name: 'Apartment Service List',
       href: '/apartment-service-list',
-      id: '6',
+      id: '8',
       icon: {
         component: MdLocalAirport,
         props: {
@@ -73,9 +97,9 @@ const MainNav = () => {
     {
       name: 'Apartment Service Groups List',
       href: '/apartment-service-group-list',
-      id: '7',
+      id: '9',
       icon: {
-        component: MdLocalAirport,
+        component: MdCollections,
         props: {
           value: { size: '20px', style: { marginRight: '10px' } },
         },
@@ -84,7 +108,7 @@ const MainNav = () => {
     {
       name: 'Languages',
       href: '/languages-list',
-      id: '8',
+      id: '10',
       icon: {
         component: MdLanguage,
         props: {
@@ -95,7 +119,7 @@ const MainNav = () => {
     {
       name: 'Phrases',
       href: '/phrases-list',
-      id: '9',
+      id: '11',
       icon: {
         component: MdTextFields,
         props: {
@@ -106,7 +130,7 @@ const MainNav = () => {
     {
       name: 'Translations',
       href: '/translations-list',
-      id: '10',
+      id: '12',
       icon: {
         component: MdTranslate,
         props: {

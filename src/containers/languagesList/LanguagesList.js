@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MdModeEdit, MdBlock } from 'react-icons/md';
+import { MdModeEdit, MdDelete } from 'react-icons/md';
 
 // Actions
 import { requestDeleteLanguage, requestGetLanguagesList } from '../../actions/languageActions';
@@ -68,7 +68,7 @@ const LanguagesList = ({
                       ? (
                         <Styled.Cell key={row.name + key} textAlign="right">
                           <Styled.EditButton to={`/language/${row[key]}`}><MdModeEdit /></Styled.EditButton>
-                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.code}><MdBlock /></Styled.DeleteButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.code}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.name + key}>
