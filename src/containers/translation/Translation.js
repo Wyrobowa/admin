@@ -23,20 +23,20 @@ const Translation = ({
   translation,
   editTranslationAction,
   requestSendTranslationAction,
-  match,
   requestGetTranslationAction,
   clearTranslationFormAction,
+  match,
 }) => {
   const [languagesList, setLanguagesList] = useState([
     {
-      _id: '',
+      slug: '',
       name: '',
       code: '',
     },
   ]);
   const [phrasesList, setPhrasesList] = useState([
     {
-      _id: '',
+      slug: '',
       text: '',
     },
   ]);
@@ -57,8 +57,8 @@ const Translation = ({
   }, []);
 
   useEffect(() => {
-    if (match.params.translationId) {
-      requestGetTranslationAction(match.params.translationId);
+    if (match.params.translationSlug) {
+      requestGetTranslationAction(match.params.translationSlug);
     } else {
       clearTranslationFormAction();
     }

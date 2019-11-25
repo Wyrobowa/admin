@@ -51,15 +51,15 @@ const Admin = () => (
       <Route path="/apartment-service-list" component={ApartmentServiceList} />
       <Route path="/apartment-service-group/:apartmentServiceGroupSlug?" component={ApartmentServiceGroup} />
       <Route path="/apartment-service-group-list" component={ApartmentServiceGroupList} />
-      <Route path="/language/:languageCode?" component={Language} />
+      <Route path="/language/:languageSlug?" component={Language} />
       <Route path="/languages-list" component={LanguagesList} />
       <Route path="/location/:locationSlug?" component={Location} />
       <Route path="/locations-list" component={LocationsList} />
       <Route path="/page/:pageSlug?" component={Page} />
       <Route path="/pages-list" component={PagesList} />
-      <Route path="/phrase/:phraseId?" component={Phrase} />
+      <Route path="/phrase/:phraseSlug?" component={Phrase} />
       <Route path="/phrases-list" component={PhrasesList} />
-      <Route path="/translation/:translationId?" component={Translation} />
+      <Route path="/translation/:translationSlug?" component={Translation} />
       <Route path="/translations-list" component={TranslationsList} />
       <ContentLoader />
     </Main>

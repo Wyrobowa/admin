@@ -27,8 +27,8 @@ const Language = ({
   clearLanguageFormAction,
 }) => {
   useEffect(() => {
-    if (match.params.languageCode) {
-      requestGetLanguageAction(match.params.languageCode);
+    if (match.params.languageSlug) {
+      requestGetLanguageAction(match.params.languageSlug);
     } else {
       clearLanguageFormAction();
     }

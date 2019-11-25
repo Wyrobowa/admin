@@ -7,12 +7,12 @@ describe('translationsList reducer', () => {
       type: translationActions.GET_TRANSLATIONS_LIST_SUCCESSFUL,
       payload: [{
         text: 'test translation text',
-        id: '0123',
+        slug: '0123',
       }],
     })).toEqual({
       translations: [{
         text: 'test translation text',
-        id: '0123',
+        slug: '0123',
       }],
     });
   });

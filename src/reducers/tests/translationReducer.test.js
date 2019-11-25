@@ -5,7 +5,7 @@ const initialState = {
   text: '',
   language: '',
   phrase: '',
-  _id: '',
+  slug: '',
 };
 
 describe('translation reducer', () => {

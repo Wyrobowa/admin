@@ -64,11 +64,11 @@ const ApartmentFacilityList = ({
               {apartmentFacilities.map(row => (
                 <Table.Row key={row.name}>
                   {Object.keys(row).map(key => (
-                    key === 'id'
+                    key === 'slug'
                       ? (
                         <Styled.Cell key={row.name + key} textAlign="right">
                           <Styled.EditButton to={`/apartment-facility/${row[key]}`}><MdModeEdit /></Styled.EditButton>
-                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdDelete /></Styled.DeleteButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
                         <Table.Cell key={row.name + key}>

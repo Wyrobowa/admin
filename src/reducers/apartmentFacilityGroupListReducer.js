@@ -12,7 +12,7 @@ const apartmentFacilityGroupList = (state = {
       };
     case apartmentFacilityGroupActions.DELETE_APARTMENT_FACILITY_GROUP_SUCCESSFUL:
       const newApartmentFacilityGroup = state.apartmentFacilityGroup.filter(
-        apartmentFacilityGroup => action.slug !== apartmentFacilityGroup._id,
+        apartmentFacilityGroup => action.slug !== apartmentFacilityGroup.slug,
       );
 
       return {
@@ -32,7 +32,7 @@ export const getApartmentFacilityGroupListFiltered = createSelector(
   [getApartmentFacilityGroupList],
   list => list.map(apartmentFacilityGroup => ({
     name: apartmentFacilityGroup.name,
-    id: apartmentFacilityGroup._id,
+    slug: apartmentFacilityGroup.slug,
   })),
 );
 

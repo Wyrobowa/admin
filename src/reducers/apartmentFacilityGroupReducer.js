@@ -2,7 +2,7 @@ import * as apartmentFacilityGroupActions from '../actions/apartmentFacilityGrou
 
 const initialState = {
   name: '',
-  _id: '',
+  slug: '',
 };
 
 const apartmentFacilityGroup = (state = initialState, action) => {

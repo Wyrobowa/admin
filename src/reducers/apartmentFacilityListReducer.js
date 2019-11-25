@@ -30,7 +30,7 @@ export const getApartmentFacilityListFiltered = createSelector(
   [getApartmentFacilityList],
   list => list.map(apartmentFacility => ({
     name: apartmentFacility.name,
-    id: apartmentFacility._id,
+    slug: apartmentFacility.slug,
   })),
 );
 

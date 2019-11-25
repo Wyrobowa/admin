@@ -6,7 +6,7 @@ import {
 } from '../actions/languageActions';
 
 const initialState = {
-  _id: '',
+  slug: '',
   name: '',
   code: '',
 };

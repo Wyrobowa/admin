@@ -49,7 +49,7 @@ const Apartment = ({
 }) => {
   const [locationsList, setLocationsList] = useState([
     {
-      _id: '',
+      slug: '',
       name: '',
     },
   ]);

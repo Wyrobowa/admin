@@ -9,7 +9,7 @@ const initialState = {
   text: '',
   language: '',
   phrase: '',
-  _id: '',
+  slug: '',
 };
 
 const translation = (state = initialState, action) => {

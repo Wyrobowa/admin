@@ -26,7 +26,7 @@ const ApartmentFacility = ({
 }) => {
   const [apartmentFacilityGroupList, setApartmentFacilityGroupList] = useState([
     {
-      _id: '',
+      slug: '',
       name: '',
     },
   ]);

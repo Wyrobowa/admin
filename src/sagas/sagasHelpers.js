@@ -10,9 +10,9 @@ import { hideLoader, showLoader } from '../actions/appStatusActions';
 import { getData } from '../services/requestService/requestService';
 
 const getDataSaga = (
-  successfulAction, unsuccessfulAction, requestTarget, queryParamName,
+  successfulAction, unsuccessfulAction, requestTarget,
 ) => function* getDataSagaGenerator(action) {
-  const requestParams = action.slug ? `?${queryParamName ? `${queryParamName}` : 'slug'}=${action.slug}` : '';
+  const requestParams = action.slug ? `?slug=${action.slug}` : '';
 
   try {
     yield put(showLoader());

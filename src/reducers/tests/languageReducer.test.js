@@ -2,7 +2,7 @@ import reducer from '../languageReducer';
 import * as languageActions from '../../actions/languageActions';
 
 const initialState = {
-  _id: '',
+  slug: '',
   name: '',
   code: '',
 };

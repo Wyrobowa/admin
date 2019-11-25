@@ -3,7 +3,7 @@ import * as phraseActions from '../../actions/phraseActions';
 
 const initialState = {
   text: '',
-  _id: '',
+  slug: '',
 };
 
 describe('phrase reducer', () => {

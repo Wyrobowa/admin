@@ -29,6 +29,7 @@ export const getLanguagesListFiltered = createSelector(
   list => list.map(language => ({
     name: language.name,
     code: language.code,
+    slug: language.slug,
   })),
 );
 

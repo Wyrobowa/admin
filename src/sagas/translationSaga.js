@@ -59,7 +59,6 @@ export function* watchGetTranslation() {
     translationActions.getTranslationSuccessful,
     translationActions.getTranslationUnsuccessful,
     'translation',
-    'id',
   ));
 }
 

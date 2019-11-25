@@ -3,7 +3,7 @@ import * as apartmentFacilityGroupActions from '../../actions/apartmentFacilityG
 
 const initialState = {
   name: '',
-  _id: '',
+  slug: '',
 };
 
 describe('apartment facility group reducer', () => {

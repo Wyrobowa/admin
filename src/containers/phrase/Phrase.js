@@ -24,8 +24,8 @@ const Phrase = ({
   match,
 }) => {
   useEffect(() => {
-    if (match.params.phraseId) {
-      requestGetPhraseAction(match.params.phraseId);
+    if (match.params.phraseSlug) {
+      requestGetPhraseAction(match.params.phraseSlug);
     } else {
       clearPhraseFormAction();
     }

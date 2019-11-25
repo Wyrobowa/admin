@@ -59,7 +59,6 @@ export function* watchGetPhrase() {
     phraseActions.getPhraseSuccessful,
     phraseActions.getPhraseUnsuccessful,
     'phrase',
-    'id',
   ));
 }
 

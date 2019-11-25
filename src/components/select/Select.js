@@ -18,7 +18,7 @@ const Select = ({
       <option value="">{` - ${labelText} - `}</option>
       {list.map(option => (
         <option
-          key={option._id}
+          key={option.slug}
           value={option._id}
         >
           {option[optionTextField]}

@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   text: '',
-  _id: '',
+  slug: '',
 };
 
 const phrase = (state = initialState, action) => {

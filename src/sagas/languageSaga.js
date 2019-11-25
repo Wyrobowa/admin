@@ -59,7 +59,6 @@ export function* watchGetLanguage() {
     languageActions.getLanguageSuccessful,
     languageActions.getLanguageUnsuccessful,
     'language',
-    'code',
   ));
 }
 

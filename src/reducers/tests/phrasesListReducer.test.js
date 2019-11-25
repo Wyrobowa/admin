@@ -7,12 +7,12 @@ describe('phrasesList reducer', () => {
       type: phraseActions.GET_PHRASES_LIST_SUCCESSFUL,
       payload: [{
         text: 'test phrase text',
-        id: '0123',
+        slug: '0123',
       }],
     })).toEqual({
       phrases: [{
         text: 'test phrase text',
-        id: '0123',
+        slug: '0123',
       }],
     });
   });

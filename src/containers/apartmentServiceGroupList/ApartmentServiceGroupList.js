@@ -67,14 +67,14 @@ const ApartmentServiceGroupGroupList = ({
               {apartmentServiceGroups.map(row => (
                 <Table.Row key={row.name}>
                   {Object.keys(row).map(key => (
-                    key === 'id'
+                    key === 'slug'
                       ? (
-                        <Styled.Cell key={row.id + key} textAlign="right">
+                        <Styled.Cell key={row.slug + key} textAlign="right">
                           <Styled.EditButton to={`/apartment-service-group/${row[key]}`}><MdModeEdit /></Styled.EditButton>
-                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.id}><MdDelete /></Styled.DeleteButton>
+                          <Styled.DeleteButton type="button" model="quaternary" onClick={handleDelete} data-slug={row.slug}><MdDelete /></Styled.DeleteButton>
                         </Styled.Cell>
                       ) : (
-                        <Table.Cell key={row.id + key}>
+                        <Table.Cell key={row.slug + key}>
                           {row[key]}
                         </Table.Cell>
                       )

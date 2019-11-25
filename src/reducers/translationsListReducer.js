@@ -12,7 +12,7 @@ const translationsList = (state = {
       };
     case DELETE_TRANSLATION_SUCCESSFUL:
       const newTranslations = state.translations.filter(
-        translation => action.slug !== translation._id,
+        translation => action.slug !== translation.slug,
       );
 
       return {
@@ -30,11 +30,11 @@ export const getTranslationsListFiltered = createSelector(
   [getTranslationsList],
   list => list.map(translation => ({
     text: translation.text,
-    id: translation._id,
-    languageId: translation.language._id,
+    slug: translation.slug,
+    languageId: translation.language.slug,
     languageName: translation.language.name,
     languageCode: translation.language.code,
-    phraseId: translation.phrase._id,
+    phraseId: translation.phrase.slug,
     phraseText: translation.phrase.text,
   })),
 );

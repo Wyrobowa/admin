@@ -33,7 +33,7 @@ const ApartmentService = ({
 }) => {
   const [apartmentServiceGroupList, setApartmentServiceGroupList] = useState([
     {
-      _id: '',
+      slug: '',
       name: '',
     },
   ]);

@@ -11,7 +11,7 @@ const phrasesList = (state = {
         phrases: action.payload,
       };
     case DELETE_PHRASE_SUCCESSFUL:
-      const newPhrases = state.phrases.filter(phrase => action.slug !== phrase._id);
+      const newPhrases = state.phrases.filter(phrase => action.slug !== phrase.slug);
 
       return {
         ...state,
@@ -28,7 +28,7 @@ export const getPhrasesListFiltered = createSelector(
   [getPhrasesList],
   list => list.map(phrase => ({
     text: phrase.text,
-    id: phrase._id,
+    slug: phrase.slug,
   })),
 );
 
