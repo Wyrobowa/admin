@@ -20,6 +20,9 @@ import Image from '../../components/image/Image';
 import Select from '../../components/select/Select';
 import TextField from '../../components/textField/TextField';
 
+// Helpers
+import { getUrlWithoutProtocol } from '../../helpers/helpers';
+
 // Reducers
 import { getApartment } from '../../reducers/apartmentReducer';
 import { getApartmentFacilityList } from '../../reducers/apartmentFacilityListReducer';
@@ -110,14 +113,16 @@ const Apartment = ({
     const data = new FormData();
 
     Array.from(target.files).forEach((file) => {
-      data.append('images', file);
+      data.append('files', file);
     });
 
     const additionalQuery = `?slug=${apartment.slug}&type=apartment`;
-    const requestResult = await requestService.sendData('adminGalleryUpload', data, additionalQuery);
+    const requestResult = await requestService.sendData('statics', data, additionalQuery);
 
-    if (requestResult.imagesList) {
-      editApartmentAction('gallery', requestResult.imagesList);
+    const imagesList = requestResult.data.map(element => getUrlWithoutProtocol(element.url));
+
+    if (imagesList.length) {
+      editApartmentAction('gallery', imagesList);
     }
   };
 

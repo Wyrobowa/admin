@@ -68,14 +68,14 @@ describe('apartment reducer', () => {
       ...initialState,
       gallery: [
         ...initialState.gallery,
-        '12345abcde',
+        ...['12345abcde'],
       ],
     };
 
     expect(reducer(initialState, {
       type: apartmentActions.EDIT_APARTMENT_FORM,
       field: 'gallery',
-      value: '12345abcde',
+      value: ['12345abcde'],
     })).toEqual(changedState);
   });
 

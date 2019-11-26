@@ -30,4 +30,10 @@ const getImageUrl = (params) => {
   return url;
 };
 
-export { getImageUrl, serializeToQueryString };
+const getUrlWithoutProtocol = (url) => {
+  const { hostname, pathname } = new URL(url);
+
+  return `//${hostname}${pathname}`;
+};
+
+export { getImageUrl, serializeToQueryString, getUrlWithoutProtocol };

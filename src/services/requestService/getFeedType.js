@@ -151,6 +151,12 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'statics':
+      feedTarget = {
+        target: '/admin/statics',
+      };
+      break;
+
     default:
       feedTarget = {
         target: '',

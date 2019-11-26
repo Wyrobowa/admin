@@ -49,7 +49,7 @@ const apartment = (state = initialState, action) => {
           ...state,
           [action.field]: [
             ...state[property],
-            action.value,
+            ...action.value,
           ],
         };
       }

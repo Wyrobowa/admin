@@ -14,6 +14,7 @@ const ImagesList = ({
           key={imageName}
           item={item}
           imageName={imageName}
+          src={imageName}
           type={type}
           alt={item.name}
           width={width}
