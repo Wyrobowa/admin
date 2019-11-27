@@ -12,6 +12,9 @@ import FormGenerator from '../../components/formGenerator/FormGenerator';
 import Checkbox from '../../components/checkbox/Checkbox';
 import Image from '../../components/image/Image';
 
+// Helpers
+import { getUrlWithoutProtocol } from '../../helpers/helpers';
+
 // Reducers
 import { getLocation } from '../../reducers/locationReducer';
 
@@ -45,14 +48,18 @@ const Location = ({
 
   const handleFileInputChange = async ({ target }) => {
     const data = new FormData();
-    data.append('images', target.files[0]);
+
+    Array.from(target.files).forEach((file) => {
+      data.append('files', file);
+    });
 
     const additionalQuery = `?slug=${location.slug}&type=location`;
-    const requestResult = await sendData('adminGalleryUpload', data, additionalQuery);
-    const [uploadedImages] = requestResult.imagesList;
+    const requestResult = await sendData('statics', data, additionalQuery);
 
-    if (uploadedImages) {
-      editLocationAction('mainPicture', uploadedImages);
+    const [imagesList] = requestResult.data.map(element => getUrlWithoutProtocol(element.url));
+
+    if (imagesList.length) {
+      editLocationAction('mainPicture', imagesList);
     }
   };
 
@@ -115,7 +122,7 @@ const Location = ({
           props: {
             item: location,
             imageName: location.mainPicture,
-            type: 'location',
+            src: location.mainPicture,
             alt: location.name,
             height: '150',
             handleDelete: handleDeleteImage,
