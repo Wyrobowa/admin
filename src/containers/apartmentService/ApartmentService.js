@@ -16,6 +16,9 @@ import Checkbox from '../../components/checkbox/Checkbox';
 import FileInput from '../../components/fileInput/FileInput';
 import FormGenerator from '../../components/formGenerator/FormGenerator';
 
+// Helpers
+import { getUrlWithoutProtocol } from '../../helpers/helpers';
+
 // Reducers
 import { getApartmentService } from '../../reducers/apartmentServiceReducer';
 
@@ -74,14 +77,18 @@ const ApartmentService = ({
 
   const handleFileInputChange = async ({ target }) => {
     const data = new FormData();
-    data.append('images', target.files[0]);
 
-    const additionalQuery = `?slug=${apartmentService.slug}&type=apartment-service&isIcon=true`;
-    const requestResult = await sendData('adminGalleryUpload', data, additionalQuery);
-    const [uploadedImages] = requestResult.imagesList;
+    Array.from(target.files).forEach((file) => {
+      data.append('files', file);
+    });
 
-    if (uploadedImages) {
-      editApartmentServiceAction('mainPicture', uploadedImages);
+    const additionalQuery = `?slug=${apartmentService.slug}&type=apartment-service`;
+    const requestResult = await sendData('statics', data, additionalQuery);
+
+    const [imagesList] = requestResult.data.map(element => getUrlWithoutProtocol(element.url));
+
+    if (imagesList.length) {
+      editApartmentServiceAction('mainPicture', imagesList);
     }
   };
 
