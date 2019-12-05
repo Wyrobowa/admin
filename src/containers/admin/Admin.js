@@ -18,6 +18,8 @@ import ApartmentService from '../apartmentService/ApartmentService';
 import ApartmentServiceList from '../apartmentServiceList/ApartmentServiceList';
 import ApartmentServiceGroup from '../apartmentServiceGroup/ApartmentServiceGroup';
 import ApartmentServiceGroupList from '../apartmentServiceGroupList/ApartmentServiceGroupList';
+import ApartmentTranslations from '../apartmentTranslations/ApartmentTranslations';
+import ApartmentTranslationsList from '../apartmentTranslationsList/ApartmentTranslationsList';
 import Dashboard from '../dashboard/Dashboard';
 import Language from '../language/Language';
 import LanguagesList from '../languagesList/LanguagesList';
@@ -51,6 +53,8 @@ const Admin = () => (
       <Route path="/apartment-service-list" component={ApartmentServiceList} />
       <Route path="/apartment-service-group/:apartmentServiceGroupSlug?" component={ApartmentServiceGroup} />
       <Route path="/apartment-service-group-list" component={ApartmentServiceGroupList} />
+      <Route path="/apartment-translations/:apartmentTranslationsSlug?" component={ApartmentTranslations} />
+      <Route path="/apartment-translations-list" component={ApartmentTranslationsList} />
       <Route path="/language/:languageSlug?" component={Language} />
       <Route path="/languages-list" component={LanguagesList} />
       <Route path="/location/:locationSlug?" component={Location} />

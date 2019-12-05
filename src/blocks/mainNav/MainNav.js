@@ -40,9 +40,20 @@ const MainNav = () => {
       },
     },
     {
+      name: 'Apartments Translations',
+      href: '/apartment-translations-list',
+      id: '4',
+      icon: {
+        component: MdTranslate,
+        props: {
+          value: { size: '20px', style: { marginRight: '10px' } },
+        },
+      },
+    },
+    {
       name: 'Locations List',
       href: '/locations-list',
-      id: '4',
+      id: '5',
       icon: {
         component: MdLocationOn,
         props: {
@@ -53,7 +64,7 @@ const MainNav = () => {
     {
       name: 'Pages List',
       href: '/pages-list',
-      id: '5',
+      id: '6',
       icon: {
         component: MdPages,
         props: {
@@ -64,7 +75,7 @@ const MainNav = () => {
     {
       name: 'Apartment Facility List',
       href: '/apartment-facility-list',
-      id: '6',
+      id: '7',
       icon: {
         component: MdTv,
         props: {
@@ -75,7 +86,7 @@ const MainNav = () => {
     {
       name: 'Apartment Facility Groups List',
       href: '/apartment-facility-group-list',
-      id: '7',
+      id: '8',
       icon: {
         component: MdCollections,
         props: {
@@ -86,7 +97,7 @@ const MainNav = () => {
     {
       name: 'Apartment Service List',
       href: '/apartment-service-list',
-      id: '8',
+      id: '9',
       icon: {
         component: MdLocalAirport,
         props: {
@@ -97,7 +108,7 @@ const MainNav = () => {
     {
       name: 'Apartment Service Groups List',
       href: '/apartment-service-group-list',
-      id: '9',
+      id: '10',
       icon: {
         component: MdCollections,
         props: {
@@ -108,7 +119,7 @@ const MainNav = () => {
     {
       name: 'Languages',
       href: '/languages-list',
-      id: '10',
+      id: '11',
       icon: {
         component: MdLanguage,
         props: {
@@ -119,7 +130,7 @@ const MainNav = () => {
     {
       name: 'Phrases',
       href: '/phrases-list',
-      id: '11',
+      id: '12',
       icon: {
         component: MdTextFields,
         props: {
@@ -130,7 +141,7 @@ const MainNav = () => {
     {
       name: 'Translations',
       href: '/translations-list',
-      id: '12',
+      id: '13',
       icon: {
         component: MdTranslate,
         props: {

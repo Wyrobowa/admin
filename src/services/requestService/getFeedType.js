@@ -145,6 +145,18 @@ const getFeedType = (feedType) => {
       };
       break;
 
+    case 'apartmentTranslations':
+      feedTarget = {
+        target: '/admin/apartment-translations',
+      };
+      break;
+
+    case 'apartmentTranslationsList':
+      feedTarget = {
+        target: '/admin/apartment-translations-list',
+      };
+      break;
+
     case 'adminGalleryUpload':
       feedTarget = {
         target: '/admin/gallery/add',

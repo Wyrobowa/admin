@@ -10,6 +10,8 @@ import apartmentService from './apartmentServiceReducer';
 import apartmentServiceList from './apartmentServiceListReducer';
 import apartmentServiceGroup from './apartmentServiceGroupReducer';
 import apartmentServiceGroupList from './apartmentServiceGroupListReducer';
+import apartmentTranslations from './apartmentTranslationsReducer';
+import apartmentTranslationsList from './apartmentTranslationsListReducer';
 import appInitialization from './appInitializationReducer';
 import appStatus from './appStatusReducer';
 import language from './languageReducer';
@@ -37,6 +39,8 @@ const AppReducer = combineReducers({
   apartmentServiceList,
   apartmentServiceGroup,
   apartmentServiceGroupList,
+  apartmentTranslations,
+  apartmentTranslationsList,
   appInitialization,
   appStatus,
   language,

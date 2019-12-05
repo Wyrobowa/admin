@@ -7,6 +7,7 @@ import * as apartmentFacilityWatchers from './apartmentFacilitySaga';
 import * as apartmentFacilityGroupWatchers from './apartmentFacilityGroupSaga';
 import * as apartmentServiceWatchers from './apartmentServiceSaga';
 import * as apartmentServiceGroupWatchers from './apartmentServiceGroupSaga';
+import * as apartmentTranslationsWatchers from './apartmentTranslationSaga';
 import * as languageWatchers from './languageSaga';
 import * as locationWatchers from './locationSaga';
 import * as pageWatchers from './pageSaga';
@@ -37,6 +38,10 @@ export default function* rootSaga() {
     apartmentServiceGroupWatchers.watchGetApartmentServiceGroup(),
     apartmentServiceGroupWatchers.watchGetApartmentServiceGroupList(),
     apartmentServiceGroupWatchers.watchDeleteApartmentServiceGroup(),
+    apartmentTranslationsWatchers.watchSendApartmentTranslations(),
+    apartmentTranslationsWatchers.watchGetApartmentTranslations(),
+    apartmentTranslationsWatchers.watchGetApartmentTranslationsList(),
+    apartmentTranslationsWatchers.watchDeleteApartmentTranslations(),
     languageWatchers.watchSendLanguage(),
     languageWatchers.watchGetLanguage(),
     languageWatchers.watchGetLanguagesList(),
