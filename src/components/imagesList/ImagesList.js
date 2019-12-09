@@ -37,7 +37,7 @@ ImagesList.propTypes = {
 };
 
 ImagesList.defaultProps = {
-  width: null,
+  width: '300',
   height: null,
   format: null,
   handleDelete: () => {},

@@ -5,6 +5,8 @@ const initialState = {
   yieldApartmentId: '',
   apartmentNumber: '',
   description: '',
+  addons: [],
+  additionalInfo: '',
   location: '',
   mainPicture: '',
   gallery: [],

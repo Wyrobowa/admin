@@ -8,6 +8,7 @@ import * as apartmentFacilityActions from '../../actions/apartmentFacilityAction
 import * as apartmentServiceActions from '../../actions/apartmentServiceActions';
 
 // Components
+import ApartmentAddons from '../../components/apartmentAddons/ApartmentAddons';
 import ApartmentAddress from '../../components/apartmentAddress/ApartmentAddress';
 import ApartmentFacilities from './ApartmentFacilities';
 import ApartmentServices from './ApartmentServices';
@@ -53,6 +54,7 @@ const Apartment = ({
       name: '',
     },
   ]);
+
 
   useEffect(() => {
     if (match.params.apartmentSlug) {
@@ -171,6 +173,28 @@ const Apartment = ({
             fieldType: 'textarea',
             onChange: handleInputChange,
             value: apartment.description,
+          },
+        },
+        {
+          component: ApartmentAddons,
+          labelText: 'Free Addons',
+          id: 'addons',
+          description: 'Free Addons',
+          props: {
+            labelText: 'Free Addons',
+            editAction: editApartmentAction,
+            values: apartment.addons,
+          },
+        },
+        {
+          component: TextField,
+          labelText: 'Additional Information',
+          id: 'additionalInfo',
+          description: 'Additional Information',
+          props: {
+            fieldType: 'textarea',
+            onChange: handleInputChange,
+            value: apartment.additionalInfo,
           },
         },
         {

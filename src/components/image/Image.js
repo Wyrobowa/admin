@@ -6,13 +6,13 @@ import { MdBlock } from 'react-icons/md';
 import * as Styled from './imageStyles';
 
 const Image = ({
-  item, imageName, alt, className, handleDelete, src,
+  item, imageName, alt, className, handleDelete, src, width,
 }) => (
-  <Styled.Image>
+  <Styled.ImageBox>
     {imageName
       ? (
         <Styled.ImageWrapper>
-          <img src={src} alt={alt || item.slug} className={className} />
+          <Styled.Image src={`${src}?width=${width}`} alt={alt || item.slug} className={className} />
           {handleDelete && (
             <Styled.DeleteButton
               type="button"
@@ -24,17 +24,19 @@ const Image = ({
             </Styled.DeleteButton>
           )}
         </Styled.ImageWrapper>
+      ) : (
+        <p>No image</p>
       )
-      : <p>No image</p>
     }
-  </Styled.Image>
+  </Styled.ImageBox>
 );
 
 
 Image.propTypes = {
   item: PropTypes.object.isRequired,
   imageName: PropTypes.string,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
+  width: PropTypes.string,
   className: PropTypes.string,
   handleDelete: PropTypes.func,
   alt: PropTypes.string.isRequired,
@@ -42,6 +44,8 @@ Image.propTypes = {
 
 Image.defaultProps = {
   imageName: null,
+  src: '',
+  width: '300',
   className: '',
   handleDelete: null,
 };

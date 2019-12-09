@@ -3,13 +3,18 @@ import styled from 'styled-components';
 // Components
 import Button from '../button/Button';
 
-export const Image = styled.div`
+export const ImageBox = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
+`;
+
+export const Image = styled.img`
+  max-width: 300px;
+  max-height: 150px;
 `;
 
 export const DeleteButton = styled(Button)`
