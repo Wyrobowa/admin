@@ -1,6 +1,4 @@
-# Accomore
-
-Some description... Seba will fill that soon :)
+# Admin Panel
 
 ---
 
